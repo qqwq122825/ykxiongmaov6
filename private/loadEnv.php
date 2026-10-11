@@ -18,8 +18,10 @@ function loadEnv($envPath = null) {
         list($key, $value) = explode('=', $line, 2);
         $key = trim($key);
         $value = trim($value, " \t\n\r\0\x0B\"'");
-        if ($key !== '' && !getenv($key)) {
-            putenv("$key=$value");
+        if ($key !== '' && !getenv($key) && !isset($_ENV[$key]) && !isset($_SERVER[$key])) {
+            if (function_exists('putenv')) {
+                putenv("$key=$value");
+            }
             $_ENV[$key] = $value;
             $_SERVER[$key] = $value;
         }

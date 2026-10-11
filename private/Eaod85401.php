@@ -17,7 +17,10 @@ loadEnv();
 
 function _env($key, $default = '') {
     $v = getenv($key);
-    return ($v !== false && $v !== '') ? $v : $default;
+    if ($v !== false && $v !== '') return $v;
+    if (isset($_ENV[$key]) && $_ENV[$key] !== '') return $_ENV[$key];
+    if (isset($_SERVER[$key]) && $_SERVER[$key] !== '') return $_SERVER[$key];
+    return $default;
 }
 
 //DB - 从环境变量读取，无则用默认（部署时务必配置 .env 并移除下方默认值）

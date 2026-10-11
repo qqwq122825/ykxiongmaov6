@@ -5609,7 +5609,7 @@ app.post('/api/abpack/build', authMiddleware, apkUpload.fields([{ name: 'icon', 
     return res.json({ success: false, error: '指定的B包不存在，请先刷新B包列表或重新构建B包' });
   }
   try {
-    const aaptBin = process.env.AAPT_BIN || '/usr/android-sdk/build-tools/30.0.3/aapt';
+    const aaptBin = process.env.AAPT_BIN || '/opt/android-sdk/build-tools/30.0.3/aapt';
     const aaptCheck = require('child_process').execFileSync(aaptBin, ['list', bApkPath], { encoding: 'utf-8' });
     if (!aaptCheck.includes('AndroidManifest.xml')) throw new Error('No Manifest');
   } catch (err) {

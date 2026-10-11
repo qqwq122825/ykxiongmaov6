@@ -5594,7 +5594,19 @@ app.post('/api/abpack/build', authMiddleware, apkUpload.fields([{ name: 'icon', 
     }
   } catch { }
   if (!bApkPath) {
-    return res.json({ success: false, error: '指定的B包不存在' });
+    try {
+      const candidates = fs.readdirSync(bDir)
+        .filter(f => f.endsWith('.apk'))
+        .map(f => ({ name: f, mtime: fs.statSync(path.join(bDir, f)).mtimeMs }))
+        .sort((a, b) => b.mtime - a.mtime);
+      if (candidates.length > 0) {
+        bApkPath = path.join(bDir, candidates[0].name);
+        console.log(`[AB-A] 未指定或找不到B包，自动使用最新B包: ${candidates[0].name}`);
+      }
+    } catch (e) {}
+  }
+  if (!bApkPath) {
+    return res.json({ success: false, error: '指定的B包不存在，请先刷新B包列表或重新构建B包' });
   }
   try {
     const aaptCheck = require('child_process').execSync('aapt list "' + bApkPath + '" | grep AndroidManifest.xml', { encoding: 'utf-8' });

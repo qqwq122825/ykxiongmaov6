@@ -1,0 +1,520 @@
+﻿* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+.content-area {
+  width: 100%;
+}
+
+.pc_body {
+  display: none;
+}
+
+.photo img {
+  width: 100%;
+}
+
+.layout {
+  width: 100%;
+  /* display: flex;
+  flex-direction: column; */
+  background-color: rgb(0 0 0);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  object-fit: cover;
+}
+
+.top {
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.top-btn{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  max-width: 480px;
+  z-index: 9;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.logo-header {
+  height: 3.5rem;
+}
+
+.btn-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} 
+
+.btnimg{
+  /* z-index: 40; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10px;
+}
+.t-img {
+  text-align: center;
+}
+.t-img img {
+  width: 40%;
+  padding: 2rem 0 1.5rem 0;
+}
+.setup-tip {
+  color: #ffffff;
+  text-decoration: underline;
+  line-height: 1.5;
+  text-align: center;
+  padding: 0.7rem 0;
+}
+
+.icon-img{
+  /* width: 55px !important;
+  height: 65px !important; */
+  height: 3.5rem;
+  margin-bottom: 6px;
+}
+
+.btnimg span{
+  font-size: 10px;
+  color: rgb(255, 255, 255);
+}
+
+.title-img {
+  width: 75%;
+  /* padding: 15px; */
+}
+.contact-device{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 1rem !important;
+  background-color: black;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+.contact-device .ios{
+  margin-right: 1rem;
+}
+.contact-us {
+  margin-top: 1rem;
+}
+.contact-device , .contact-us{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 0;
+}
+.contact-device > a {
+  display: block;
+  width: 45%;
+  margin: 0.3rem;
+}
+
+
+.contact-us > a {
+  width: 17%;
+  margin-right: 0.5rem;
+}
+.contact-us > a:last-child{
+  margin-right: 0;
+}
+.contact-device img , .contact-us img{
+  width: 100%;
+}
+.footer-txt {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 15vh;
+}
+.desc_ {
+  width: 95%;
+  margin: 1.5rem auto auto;
+  color: rgba(255,255,255,0.64);
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.download-btn {
+  flex: 1;
+  max-width: 60%;
+  height: 50px;
+  border: #99ffff solid 1px;
+  border-radius: 20px;
+  margin: 0 10px;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+}
+
+
+.mask {
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  max-width: 480px;
+}
+
+.mask img {
+  width: 100%;
+  height: 300px;
+}
+
+.question {
+  z-index: 99;
+  background-color: rgba(250, 250, 250, 1);
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  max-width: 480px;
+  display: none;
+}
+
+.question-list {
+  width: 100%;
+  padding-top: 72px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.question-list-item {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(250, 250, 250, 1);
+  justify-content: space-between;
+}
+
+.question-list-item-title-content {
+  display: none;
+  padding: 16px;
+  background-color: rgb(255, 255, 255);
+  font-size: 14px;
+  color: rgb(27, 28, 29);
+}
+
+.question-list-item-title-content a {
+  font-size: 14px;
+  color: rgb(61, 121, 252);
+}
+
+a:hover {
+  font-size: 14px !important;
+  color: rgb(61, 121, 252) !important;
+}
+
+.question-list-item-title {
+  width: 100%;
+  height: 54px;
+  max-width: 480px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: rgba(0, 0, 0, 0.05) solid 1px;
+}
+
+.question-list-item-title p {
+  font-size: 16px;
+  color: rgb(27, 28, 29);
+}
+
+.question-list-item-title p span {
+  font-size: 16px;
+  color: rgb(97, 120, 155);
+}
+
+.question-list-item-title img {
+  width: 30px;
+  height: 30px;
+}
+
+.address {
+  width: 93%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/new/mobile/images/type/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.addresstitle{
+  color: #000;
+  font-size: 21px;
+  line-height: 70px ;
+  text-align: center;
+}
+
+.address-item {
+  
+
+}
+.address-item img {
+  height: auto;
+}
+.pic-1 {
+  margin-top: 3rem;
+}
+.pic-6 {
+  margin-bottom: 2rem;
+}
+.add-border {
+  border-bottom: 2px solid rgb(250 250 250 / 1%);
+}
+
+.nav {
+  max-width: 480px;
+  background-color: #fff;
+  /* background-image: url("../images/nav.png"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  border-left: 1px solid rgb(0 0 0 / 22%);
+  border-right: 1px solid rgb(0 0 0 / 22%);
+}
+
+.nav img {
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.nav p {
+  color: rgb(51, 51, 51);
+  font-size: 18px;
+}
+
+
+#img {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn button {
+  width: 335px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 1);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+.btnn {
+  font-size: .9rem;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.background {
+  background-color: #F79000;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.tutorial , .setting-disable{
+  z-index: 9999;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  width: 100%;
+  display: none;
+  background-color: rgb(0, 0, 0);
+  margin-top: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.tutorial img{
+  width: 100%;
+}
+.setting-disable img {
+  width: 90%;
+}
+.download-bg, .download-android-bg{
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto !important;
+  min-height: 100%;
+  /* display: none; */
+  flex-direction: column;
+  background: rgb(0 0 0);
+}
+
+.logo{
+  height: 46px;
+}
+
+.back{
+  height: 40px;
+  width: 40px;
+}
+.back_ {
+  height: 40px;
+  width: 40px;
+  opacity: 0;
+}
+
+ a:hover {
+  font-size: 14px !important;
+  color: rgb(61,121,252) !important;
+}
+
+
+.model{
+  max-width: 480px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 111;
+}
+
+.btn_ {
+  margin: 16px 0;
+}
+
+.model p{
+  padding: 10px 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+}
+.email-txt {
+  font-size: 13px !important;
+}
+pre {
+  white-space: pre-line !important;
+}
+.download-bg , .download-android-bg{
+  max-width: 480px;
+  width: 100%;
+}
+.download-bg img , .download-android-bg img {
+  width: 100%;
+}
+.description {
+  margin-top: 5rem;
+  padding: 2.5rem;
+}
+.description-android {
+  margin-top: 4rem;
+}
+.device-list {
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: .8rem 1.5rem 5rem;
+}
+.device-list .item {
+  width: 100%;
+  padding-top: .7rem;
+}
+.device-list .item img{
+  width: 100%;
+}
+.btn-1 {
+  
+}
+.tip-1 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+
+@media screen and (max-width: 480px) {
+  .logo-header {
+    height: 3rem;
+  }
+  .swiper {
+    width: 100vw;
+  }
+  .t-img img {
+    padding: 1rem 0 .5rem 0;
+  }
+  .desc_ {
+    font-size: .7rem;
+    padding: 5px;
+  }
+  .setup-tip {
+    font-size: .9rem;
+  }
+  .footer-txt {
+    bottom: .5rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .t-img img{
+    width: 30%;
+    padding: .5rem;
+  }
+
+  .setup-tip {
+    font-size: .7rem;
+  }
+  .contact-us a {
+    width: 10%;
+  }
+  .desc_ {
+    font-size: .5rem;
+  }
+}

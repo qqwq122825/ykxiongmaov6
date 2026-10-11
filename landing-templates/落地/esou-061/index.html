@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,minimum-scale=1, user-scalable=no">
+    <meta name="author" content="91porn">
+    <meta name="referrer" content="same-origin">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="./61/static/css/swiper-bundle.min.css">
+    <link rel="stylesheet" media="screen and (min-width: 750px)" href="./61/static/css/index.css">
+    <link rel="stylesheet" media="screen and (max-width: 750px)" href="./61/static/css/mobile.css">
+    <link rel="stylesheet" href="./61/static/css/androidModal.css">
+    <script>
+        var dataMap = {
+            androidLink : "https://qiantaoh5.dtmdtxn.cn",
+            specialAnd : "https://qiantaoh5.dtmdtxn.cn",
+            iosLink : "/index.php?m=index&a=pwa&aff_code=uUdY",
+            tgLink1 : "https://t.me/yuyuyuyuyuml",
+            tgLink2: "https://t.me/porn91app",
+            tgLink3: "https://w2.huephzcc.cc/?91porn_aff=",
+            appLink: "https://www.google.com/",
+            affCode : "91porn_aff:uUdY",
+            qrCodeUrl : location.href,
+            copyText: "91porn_aff:uUdY",
+        };
+    </script>
+</head>
+<body>
+    <div class="desktop">
+        <div class="container">
+            <div class="header">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="./61/static/image/madoulogo.png" alt="">
+                    </div>
+                </div>
+                <div class="contact-container">
+                </div>
+            </div>
+            <div class="main">
+                <div class="theme-content">
+                    <div class="slider-container">
+                        <div class="slide">
+                            <a class="down_btn clickable">
+                                <div class="pc_slide">
+                                    <div class="m-pic">
+                                        <img src="./61/static/picture/s-01-1.webp" alt="">
+                                    </div>
+                                    <div class="m_title">
+                                        <img src="./61/static/picture/txt-01-1.webp" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slide">
+                            <a class="down_btn clickable">
+                                <div class="pc_slide">
+                                    <div class="m-pic">
+                                        <img src="./61/static/picture/s-02-1.webp" alt="">
+                                    </div>
+                                    <div class="m_title">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="decs-container">
+                    <div class="qr-part">
+                        <div class="qr-area">
+                            <div class="qrCode" id="qrcode"></div>
+                        </div>
+                        <div class="download">
+                            <div class="app-logo-ios">
+                                <div class="ios-btn clickable">
+                                    <img src="./61/static/picture/uc-1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="app-logo-android">
+                                <div class="android-btn clickable">
+                                    <img src="./61/static/picture/uc-2.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-body" id="blur">
+        <div class="main-content">
+            <div class="header-area btn_down">
+                <div class="header-activity">
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="./61/static/image/madoulogo.png" alt="">
+                        </div>
+                    </div>
+                    <div class="contact-container">
+                        <div class="contact-us clickable" onclick="onAddress('link1')">
+                        </div>
+                        <div class="contact-us clickable" onclick="onAddress('link2')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="swiper mySwiper2 content-area-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="txt-slider">
+                                <img src="./61/static/picture/txt-1-1.webp" alt="">
+                            </div>
+                            <div class="photo">
+                                <img src="./61/static/picture/s-1-1.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="txt-slider">
+                                <img src="./61/static/picture/txt-2-1.webp" alt="">
+                            </div>
+                            <div class="photo">
+                                <img src="./61/static/picture/s-2-1.webp" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="footer-area btn_down">
+                <div class="tips-image-container"><img src="./61/static/picture/tips-image.png" alt="tips"></div>
+                <div class="app">
+                    <div class="app-logo-ios clickable" onclick="downloadApp('ios')">
+                        <div class="ios-btn">
+                        </div>
+                    </div>
+                    <div class="app-logo-android clickable" onclick="downloadApp('android')" id="androidbtn">
+                        <div class="android-btn">
+                            <img src="./61/static/picture/android1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="app-logo-android clickable" onclick="downloadApp('android2')" id="androidbtn2">
+                        <div class="android-btn">
+                            <img src="./61/static/picture/android2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="android-modal" id="platform-list">
+        <div class="header">
+            <div class="android-modal-arrow" data-type="1"><img src="./61/static/picture/back-black.png" alt=""></div>
+            <div class="title" id="show-platform-tips"><img src="./61/static/picture/u-1.png" alt=""></div>
+            <div>&nbsp;&nbsp;</div>
+        </div>
+        <div class="content">
+            <div class="platform-item" data-src="./assets/mobile/cell1-detail.jpg"><img src="./61/static/picture/cell1.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell2-detail.jpg"><img src="./61/static/picture/cell2.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell3-detail1.jpg" data-src2="/assets/mobile/cell3-detail2.jpg"><img src="./61/static/picture/cell3.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell4-detail.jpg"><img src="./61/static/picture/cell4.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell5-detail.jpg"><img src="./61/static/picture/cell5.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell6-detail.jpg"><img src="./61/static/picture/cell6.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell7-detail.jpg"><img src="./61/static/picture/cell7.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell8-detail.jpg"><img src="./61/static/picture/cell8.png" alt=""></div>
+            <div class="platform-item" data-src="./assets/mobile/cell9-detail.jpg"><img src="./61/static/picture/cell9.png" alt=""></div>
+        </div>
+    </div>
+    
+    <div class="android-modal two" id="platform-detail">
+        <div class="header">
+            <div class="android-modal-arrow" data-type="2"><img src="./61/static/picture/back-black.png" alt=""></div>
+            <div class="title"><img src="./61/static/picture/u-1.png" alt=""></div>
+            <div>&nbsp;&nbsp;</div>
+        </div>
+        <div class="content">
+            <img class="modal-common-img" alt="">
+            <img class="modal-common-img-2" alt="">
+        </div>
+    </div>
+    
+    <div class="android-modal two" id="ios-detail">
+        <div class="header">
+            <div class="android-modal-arrow" data-type="3"><img src="./61/static/picture/back-black.png" alt=""></div>
+            <div class="title"><img src="./61/static/picture/u-2.png" alt=""></div>
+            <div>&nbsp;&nbsp;</div>
+        </div>
+        <div class="content">
+            <img class="modal-common-img" src="./61/static/picture/doc-ios-1.jpeg">
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./61/static/js/jQuery.min.js"></script>
+    <script type="text/javascript" src="./61/static/js/jQuery.qrcode.js"></script>
+    <script type="text/javascript" src="./61/static/js/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="./61/static/js/main.js"></script>
+    <script type="text/javascript" src="./61/static/js/utf.js"></script>
+    <script type="text/javascript">
+        const userAgent = navigator.userAgent.toLowerCase()
+        let isPc = Boolean(userAgent.match(/mobile|android|iphone/i)) === false
+        let isMobile = Boolean(userAgent.match(/mobile|android|iphone/i))
+        let isWindow = Boolean(userAgent.match(/win32|win64|windows|wince/i))
+        let isMac = Boolean(userAgent.match(/mac/i))
+        let isIos = Boolean(userAgent.match(/iphone|ipad/i))
+        let isAndroid = Boolean(userAgent.match(/android|mobile|pad/i) && Boolean(userAgent.match(/ipad/i)) === false && Boolean(userAgent.match(/mac/i)) === false)
+        if (screen.availWidth >= 1024 && isAndroid) {
+            isPc = true
+            isMobile = false
+            isAndroid = false
+        }
+        
+        function openBaidu(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            window.open('download.php', '_blank');
+        }
+        
+        $(document).ready(function () {
+            $('.clickable, .down_btn, .ios-btn, .android-btn, .contact-us, .app-logo-ios, .app-logo-android, .platform-item, .set-up-tip, .btt').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openBaidu(e);
+            });
+            
+            $(".set-up-tip").on('click', function () {
+                $('#ios-detail').fadeIn().css('display', 'flex');
+                openBaidu();
+            })
+            $(".btt").on('click', function () {
+                openBaidu();
+            })
+
+            let swiper1 = new Swiper(".mySwiper2", {
+                direction: "horizontal",
+                spaceBetween: 50,
+                autoplay: {
+                    delay: 2000,
+                },
+            });
+
+            $('#qrcode').qrcode({
+                correctLevel: 1,
+                text: dataMap.qrCodeUrl
+            });
+
+            $('.platform-item').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openBaidu();
+            });
+
+            $('.android-modal-arrow').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const type = $(this).data('type')
+                if (type === 1) {
+                    $('#platform-list').fadeOut()
+                }
+                if (type === 2) {
+                    $('#platform-detail').fadeOut();
+                    const platformDetail = $('#platform-detail');
+                    platformDetail.find('.modal-common-img').attr('src', '');
+                    platformDetail.find('.modal-common-img-2').attr('src', '')
+                }
+                if (type === 3) {
+                    $('#ios-detail').fadeOut();
+                }
+                openBaidu();
+            });
+        });
+
+        $('#androidbtn').on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openBaidu();
+        });
+        $('.close').click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('.overlay').fadeOut();
+            openBaidu();
+        });
+        $(".link-btn").on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openBaidu();
+        });
+
+        function downloadApp(type) {
+            openBaidu();
+        }
+
+        function downapp_ios() {
+            openBaidu();
+        }
+        function downapp_android() {
+            openBaidu();
+        }
+
+        function downapp_android2() {
+            openBaidu();
+        }
+
+        function onAddress(type) {
+            event.stopPropagation()
+            openBaidu();
+        }
+
+        function copyText(obj) {
+            return true;
+        }
+    
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JFFYZ0PNL"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1JFFYZ0PNL');
+    </script>
+    
+    
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+
+</html>

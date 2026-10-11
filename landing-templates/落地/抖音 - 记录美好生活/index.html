@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)https://55.togeai.top/ -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抖音 - 记录美好生活</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* 背景图容器 */
+        .bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .bg-image.active {
+            opacity: 1;
+        }
+
+        /* 遮罩层 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+            z-index: 1;
+        }
+
+        /* 顶部导航栏 */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: #ffffff;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 32px;
+            width: auto;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff0050 0%, #ff4081 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-recharge {
+            padding: 8px 20px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            color: #000;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-recharge:hover {
+            background: #e8e8e8;
+        }
+
+        .btn-download {
+            padding: 8px 20px;
+            background: #ff0050;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-download:hover {
+            background: #e6004a;
+        }
+
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 20px;
+        }
+
+        .menu-icon span {
+            width: 100%;
+            height: 3px;
+            background: #000;
+            border-radius: 2px;
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .content-text {
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .content-text.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .heart-icon {
+            display: inline-block;
+            color: #ffd700;
+        }
+
+        .main-title {
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .description {
+            font-size: 28px;
+            font-weight: 300;
+            margin-top: 15px;
+            opacity: 0.95;
+        }
+
+        /* 底部区域 */
+        .bottom-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            background: transparent;
+        }
+
+        .cta-button {
+            background: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 50px;
+            font-size: 18px;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-logo {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* 分页指示器 */
+        .pagination {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            width: 24px;
+            height: 8px;
+            border-radius: 4px;
+            background: #ff0050;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .description {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .cta-button {
+                padding: 14px 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+	<style>
+  .imageye-selected {
+    outline: 2px solid black !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  }
+</style></head>
+<body>
+    <!-- 背景图容器 -->
+    <div class="bg-container">
+        <img src="./55/index_files/bg1.png" alt="背景1" class="bg-image">
+        <img src="./55/index_files/bg2.png" alt="背景2" class="bg-image active">
+        <img src="./55/index_files/bg3.png" alt="背景3" class="bg-image">
+        <img src="./55/index_files/bg4.png" alt="背景4" class="bg-image">
+        <img src="./55/index_files/bg5.png" alt="背景5" class="bg-image">
+    </div>
+
+    <!-- 遮罩层 -->
+    <div class="overlay"></div>
+
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="./55/index_files/logo2.png" alt="抖音" class="logo-img">
+        </div>
+        <div class="header-buttons">
+            <button class="btn-recharge" onclick="window.location.href='download.php'">充钻石</button>
+            <button class="btn-download" onclick="window.location.href='download.php'">下载APP</button>
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <div class="content-text" id="contentText">
+            <div class="subtitle" id="subtitle"></div>
+            <div class="main-title" id="mainTitle">抖音精选</div>
+            <div class="description" id="description">条条都是宝藏视频</div>
+        </div>
+    </main>
+
+    <!-- 底部区域 -->
+    <div class="bottom-section">
+        <button class="cta-button" onclick="window.location.href='download.php'">
+            <div class="cta-logo">
+                <img src="./55/index_files/logo.png" alt="抖音图标">
+            </div>
+            <span id="ctaText">下载抖音精选看更多</span>
+        </button>
+        <div class="pagination" id="pagination">
+            <div class="dot" data-index="0"></div>
+            <div class="dot active" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+            <div class="dot" data-index="4"></div>
+        </div>
+    </div>
+
+    <script>
+        // 内容配置 - 对应每个背景图
+        const contentConfig = [
+            {
+                subtitle: '记录美好生活 <span class="heart-icon">♥</span>',
+                mainTitle: '个性推荐',
+                description: '懂你喜欢 给你想看',
+                ctaText: '下载抖音看更多'
+            },
+            {
+                subtitle: '',
+                mainTitle: '抖音精选',
+                description: '条条都是宝藏视频',
+                ctaText: '下载抖音精选看更多'
+            },
+            {
+                subtitle: '',
+                mainTitle: '抖音电脑版',
+                description: '大屏看抖音 视频更清晰',
+                ctaText: '前往抖音电脑版'
+            },
+            {
+                subtitle: '记录美好生活 <span class="heart-icon">♥</span>',
+                mainTitle: '个性推荐',
+                description: '懂你喜欢 给你想看',
+                ctaText: '下载抖音看更多'
+            },
+            {
+                subtitle: '',
+                mainTitle: '抖音精选',
+                description: '条条都是宝藏视频',
+                ctaText: '下载抖音精选看更多'
+            }
+        ];
+
+        // 获取元素
+        const bgImages = document.querySelectorAll('.bg-image');
+        const dots = document.querySelectorAll('.dot');
+        const subtitle = document.getElementById('subtitle');
+        const mainTitle = document.getElementById('mainTitle');
+        const description = document.getElementById('description');
+        const ctaText = document.getElementById('ctaText');
+        const contentText = document.getElementById('contentText');
+
+        let currentIndex = 0;
+        const totalImages = bgImages.length;
+
+        // 切换背景图
+        function switchBackground(index) {
+            // 更新背景图
+            bgImages.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+
+            // 更新分页指示器
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+
+            // 更新内容文字
+            const config = contentConfig[index];
+            
+            // 先隐藏文字
+            contentText.classList.add('hidden');
+            
+            // 延迟更新内容，实现淡入淡出效果
+            setTimeout(() => {
+                subtitle.innerHTML = config.subtitle;
+                mainTitle.textContent = config.mainTitle;
+                description.textContent = config.description;
+                ctaText.textContent = config.ctaText;
+                
+                // 显示文字
+                setTimeout(() => {
+                    contentText.classList.remove('hidden');
+                }, 50);
+            }, 300);
+        }
+
+        // 自动切换
+        function autoSwitch() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            switchBackground(currentIndex);
+        }
+
+        // 点击分页指示器切换
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                switchBackground(currentIndex);
+                // 重置自动切换计时器
+                clearInterval(autoSwitchInterval);
+                autoSwitchInterval = setInterval(autoSwitch, 5000);
+            });
+        });
+
+        // 每5秒自动切换一次
+        let autoSwitchInterval = setInterval(autoSwitch, 5000);
+
+        // 鼠标悬停时暂停自动切换
+        let isHovering = false;
+        document.addEventListener('mouseenter', () => {
+            isHovering = true;
+            clearInterval(autoSwitchInterval);
+        }, true);
+
+        document.addEventListener('mouseleave', () => {
+            isHovering = false;
+            autoSwitchInterval = setInterval(autoSwitch, 5000);
+        }, true);
+
+        // 初始化
+        switchBackground(0);
+    </script>
+
+
+
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body></html>

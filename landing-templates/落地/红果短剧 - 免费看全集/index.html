@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>红果短剧 - 免费看全集</title>
+    <link rel="stylesheet" href="./40/static/css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span>红果短剧</span>
+        </div>
+        <div class="nav">
+            <a href="#" class="active">首页</a>
+            <a href="#">分类</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-img-wrap">
+            <div class="hero-slider" id="hero-slider">
+                <img src="./40/static/picture/1.png" alt="海报1">
+                <img src="./40/static/picture/2.png" alt="海报2">
+                <img src="./40/static/picture/3.png" alt="海报3">
+                <img src="./40/static/picture/4.png" alt="海报4">
+                <img src="./40/static/picture/5.png" alt="海报5">
+            </div>
+        </div>
+        <div class="hero-info">
+            <img class="hero-title-img" id="hero-title-img" src="https://novelquickapp.com//template/040/static/image/title_acyd.png" alt="暗潮涌动">
+            <div class="tags" id="hero-tags">
+                <span class="tag">民国爱情</span>
+                <span class="tag">家国情怀</span>
+                <span class="tag">谍战</span>
+                <span class="tag">日久生情</span>
+            </div>
+            <p class="hero-desc" id="hero-desc">卧底情侣上线即高危！狙击手与顶级特工伪装恋人潜伏，步步惊心的任务里情根深种！1940年，王牌狙击手佟雪与顶级卧底沈少尘，为潜伏任务被迫假扮情侣同住。表面是郎才女貌的恩爱眷侣，实则是默契十足的战友，联手拆解危急、传递情报、狙击敌特，数次在鬼门关边缘完成高难度任务。刀光剑影中，伪装的亲密渐生真心，试探与守护交织。当身份危机逼近，两人能否在敌巢中守住信仰，亦守住悄然萌芽的爱情？</p>
+            <div class="carousel-dots" id="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <div class="section-title">热门短剧</div>
+    </div>
+
+    <div class="drama-grid">
+        <div class="drama-item app-download">
+            <div class="drama-poster">
+                <img src="./40/static/images/1.png" alt="风越今朝入君怀">
+                <div class="drama-count">全70集</div>
+            </div>
+        </div>
+        <div class="drama-item app-download">
+            <div class="drama-poster">
+                <img src="./40/static/images/2.png" alt="被伤三年后真千金不再忍耐">
+                <div class="drama-count">全62集</div>
+            </div>
+        </div>
+        <div class="drama-item app-download">
+            <div class="drama-poster">
+                <img src="./40/static/images/3.png" alt="婆婆她不忍了">
+                <div class="drama-count">全82集</div>
+            </div>
+        </div>
+        <div class="drama-item app-download">
+            <div class="drama-poster">
+                <img src="./40/static/images/4.png" alt="金牌御医">
+                <div class="drama-count">全62集</div>
+            </div>
+        </div>
+        <div class="drama-item app-download">
+            <div class="drama-poster">
+                <img src="./40/static/images/5.png" alt="穿越成老黄牛后我立志当老爷">
+                <div class="drama-count">全82集</div>
+            </div>
+        </div>
+        <div class="drama-item app-download">
+            <div class="drama-poster">
+                <img src="./40/static/images/6.png" alt="花轿临门他拒嫁只盼故人归">
+                <div class="drama-count">全80集</div>
+            </div>
+        </div>
+    </div>
+
+    <div hraf="download.php" class="fixed-bottom">
+        <div class="main-btn app-download">
+             <span class="play-icon"></span> 前往「红果短剧」免费看全集
+        </div>
+    </div>
+    
+    <script>
+        const splashContainer = document.getElementById('splash-video-container');
+        const splashVideo = document.getElementById('splash-video');
+        
+        if (splashVideo) {
+            splashVideo.play().catch(e => {
+                splashContainer.style.display = 'none';
+            });
+
+            splashVideo.onended = function() {
+                splashContainer.style.opacity = '0';
+                setTimeout(() => {
+                    splashContainer.style.display = 'none';
+                }, 500);
+            };
+            setTimeout(() => {
+                if (splashContainer.style.display !== 'none') {
+                    splashContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        splashContainer.style.display = 'none';
+                    }, 500);
+                }
+            }, 3000);
+        }
+
+        const slider = document.getElementById('hero-slider');
+        const dots = document.querySelectorAll('#carousel-dots .dot');
+        let currentIndex = 0;
+        const totalImages = 5;
+
+        function updateCarousel(index) {
+            slider.style.transform = `translateX(-${index * 20}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel(currentIndex);
+        }, 3000);
+    </script>
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+</html>

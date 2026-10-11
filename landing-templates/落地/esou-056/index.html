@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <style>
+        /* 图片路径变量 - 方便统一修改 */
+        :root {
+            --img-bg: url('./56/images/bg-content.jpg');
+            --img-logo: url('./56/images/logo.png');
+            --img-title: url('./56/images/title.png');
+            --img-kefu: url('./56/images/kefu.png');
+            --img-bubble: url('./56/images/bubble.png');
+            --img-timer: url('./56/images/timer.png');
+            --img-btn: url('./56/images/btn.png');
+            --img-btn-ios: url('./56/images/btn1.png');
+        }
+        
+        /* 其他样式保持不变，但背景图引用改为变量 */
+        * {
+            padding: 0;
+            margin: 0;
+            letter-spacing: 0;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        img {
+            border-style: none;
+        }
+        
+        .hide {
+            display: none !important;
+        }
+        
+        .app {
+            overflow-y: hidden;
+            height: 100vh;
+            position: relative;
+            color: #000;
+            background: var(--img-bg) no-repeat;
+            background-size: 100%;
+            width: 100%;
+            height: 100%;
+            animation: slideshow 10s linear infinite normal;
+            max-width: 750px;
+        }
+        
+        .mask {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.4);
+            box-sizing: border-box;
+        }
+        
+        @keyframes scaleDrew {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.08); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.08); }
+        }
+        
+        @keyframes slideshow {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+        
+        /* PC */
+        @media screen and (min-width: 750px) {
+            .app {
+                margin: 0 auto;
+            }
+            .mask {
+                padding: 50px 0;
+            }
+            .service {
+                width: 100%;
+            }
+            .service a {
+                margin-left: -150px;
+                display: block;
+                width: 186px;
+                height: 56px;
+                background: var(--img-kefu) no-repeat;
+                background-size: 100% 100%;
+            }
+            .logo {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+                background: var(--img-logo) no-repeat;
+                background-size: 100% 100%;
+            }
+            .main-title {
+                width: 380px;
+                height: 254px;
+                background: var(--img-title) no-repeat;
+                background-size: 100% 100%;
+                margin: 0 auto;
+            }
+            .qrcode-wrap {
+                display: block;
+                width: 150px;
+                height: 150px;
+                padding: 5px;
+                background-color: #fff;
+                margin-bottom: 20px;
+            }
+            .timer {
+                background: var(--img-bubble) no-repeat;
+                width: 320px;
+                height: 40px;
+                background-size: 100% 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                padding-bottom: 10px;
+                margin: 0 auto;
+            }
+            .timer i {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: var(--img-timer) no-repeat;
+                background-size: 100% 100%;
+                margin-right: 1px;
+            }
+            .timer p {
+                font-size: 18px;
+                margin: 0px 2px;
+                display: inline-block;
+            }
+            .timer span {
+                font-size: 18px;
+                font-weight: bold;
+                display: block;
+                width: 50px;
+            }
+            .room {
+                width: 480px;
+                border: 1px solid white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10vw;
+                overflow: hidden;
+                color: white;
+                margin: 0 auto;
+                padding: 5px 0;
+            }
+            .room p:first-child {
+                font-size: 19px;
+            }
+            .room p:last-child {
+                font-size: 12px;
+                color: #ddd5d5;
+            }
+            .btn {
+                margin-top: 25px;
+                background-image: linear-gradient(to right, #595296, #323761);
+                width: 570px;
+                height: 70px;
+                border-radius: 10vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                animation: scaleDrew 2.5s ease-in-out infinite;
+                cursor: pointer;
+            }
+            .down i {
+                display: block;
+                width: 180px;
+                height: 36px;
+                background: var(--img-btn) no-repeat;
+                background-size: 100% 100%;
+            }
+            .ios i {
+                display: block;
+                width: 180px;
+                height: 36px;
+                background: var(--img-btn-ios) no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+        
+        /* H5 */
+        @media screen and (max-width: 750px) {
+            .mask {
+                padding: 8vw 0;
+            }
+            .service {
+                width: 100vw;
+                margin-bottom: 10vw;
+            }
+            .logo {
+                width: 50vw;
+                height: 50vw;
+                margin: 2vw auto;
+                background: var(--img-logo) no-repeat;
+                background-size: 100% 100%;
+            }
+            .service a {
+                display: block;
+                width: 24vw;
+                height: 8vw;
+                background: var(--img-kefu) no-repeat;
+                background-size: 100% 100%;
+                margin-left: 6vw;
+            }
+            .main-title {
+                width: 60vw;
+                height: 36vw;
+                background: var(--img-title) no-repeat;
+                background-size: 100% 100%;
+                margin: 0 auto;
+            }
+            .qrcode-wrap {
+                display: none;
+            }
+            .timer {
+                background: var(--img-bubble) no-repeat;
+                width: 60vw;
+                height: 9vw;
+                background-size: 100% 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                padding-bottom: 2vw;
+                margin: 0 auto;
+            }
+            .timer i {
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                background: var(--img-timer) no-repeat;
+                background-size: 100% 100%;
+                margin-right: 1px;
+            }
+            .timer p {
+                font-size: 13px;
+                margin: 0px 2px;
+                display: inline-block;
+            }
+            .timer span {
+                font-size: 13px;
+                font-weight: bold;
+                display: block;
+                width: 50px;
+            }
+            .room {
+                width: 85vw;
+                border: 1px solid white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10vw;
+                overflow: hidden;
+                color: white;
+                padding: 1vw 0;
+            }
+            .room p:first-child {
+                font-size: 18px;
+            }
+            .room p:last-child {
+                font-size: 12px;
+                color: #ddd5d5;
+                transform: scale(0.8);
+            }
+            .btn {
+                margin-top: 4vw;
+                background-image: linear-gradient(to right, #7464ff, #b40ce4);
+                width: 85vw;
+                height: 14vw;
+                border-radius: 10vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                animation: scaleDrew 2.5s ease-in-out infinite;
+            }
+            .down i {
+                display: block;
+                width: 24vw;
+                height: 6vw;
+                background: var(--img-btn) no-repeat;
+                background-size: 100% 100%;
+            }
+            .ios i {
+                display: block;
+                width: 24vw;
+                height: 6vw;
+                background: var(--img-btn-ios) no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app" id="app">
+        <div class="mask">
+            <div>
+                <div class="logo"></div>
+                <div class="main-title"></div>
+            </div>
+            <div>
+                <div class="room">
+                    <p class="inviteHref" id="copyLink1" data-clipboard-target="#bar1">激情 | 性感 | 骚女&nbsp;</p>
+                    <p>精彩不容错过</p>
+                </div>
+                <div class="down btn"><i></i></div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>系统设置 - 章鱼出海</title>
+  <link rel="stylesheet" href="./css/global-nav.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #e6e6e6; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 32px 20px; }
+    h1 { font-size: 24px; color: #58a6ff; margin-bottom: 8px; }
+    .subtitle { color: #8b949e; font-size: 14px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; }
+    .card-title { font-size: 12px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .card-value { font-size: 28px; font-weight: 700; color: #e6e6e6; }
+    .card-value.green { color: #3fb950; }
+    .card-value.blue { color: #58a6ff; }
+    .card-value.orange { color: #d29922; }
+    .card-sub { font-size: 12px; color: #8b949e; margin-top: 4px; }
+    .section-title { font-size: 18px; font-weight: 600; color: #c9d1d9; margin: 24px 0 12px; }
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table td { padding: 8px 12px; border-bottom: 1px solid #21262d; font-size: 14px; }
+    .info-table td:first-child { color: #8b949e; width: 200px; white-space: nowrap; }
+    .info-table td:last-child { color: #e6e6e6; }
+    .info-table tr:hover td { background: rgba(88, 166, 255, 0.05); }
+    .status-ok { color: #3fb950; }
+    .status-err { color: #f85149; }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="global-nav">
+    <div class="nav-brand">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2358a6ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/%3E%3C/svg%3E" alt="" />
+      <span>章鱼出海</span>
+    </div>
+    <div class="nav-links">
+      <a href="/"><span class="nav-icon">📱</span><span class="nav-label">设备控制</span></a>
+      <div class="nav-divider"></div>
+      <a href="/apk-builder"><span class="nav-icon">📦</span><span class="nav-label">APK生成</span></a>
+      <a href="/subaccount"><span class="nav-icon">👥</span><span class="nav-label">账户管理</span></a>
+      <a href="/system" class="active"><span class="nav-icon">⚙️</span><span class="nav-label">系统设置</span></a>
+    </div>
+    <div class="nav-right"><span id="navTime"></span><a href="#" onclick="logout()" class="nav-logout" title="退出登录">🚪 退出</a></div>
+  </nav>
+
+  <div class="container">
+    <h1>⚙️ 系统设置</h1>
+    <p class="subtitle">服务器状态与环境信息</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">PHP 版本</div>
+        <div class="card-value blue" id="phpVersion">-</div>
+        <div class="card-sub">运行环境</div>
+      </div>
+      <div class="card">
+        <div class="card-title">数据库状态</div>
+        <div class="card-value" id="dbStatus">检测中...</div>
+        <div class="card-sub" id="dbInfo">-</div>
+      </div>
+      <div class="card">
+        <div class="card-title">内存限制</div>
+        <div class="card-value orange" id="memoryLimit">-</div>
+        <div class="card-sub" id="memoryUsage">-</div>
+      </div>
+      <div class="card">
+        <div class="card-title">上传限制</div>
+        <div class="card-value green" id="uploadMax">-</div>
+        <div class="card-sub">Max Upload</div>
+      </div>
+      <div class="card">
+        <div class="card-title">在线用户</div>
+        <div class="card-value blue" id="onlineUsers">-</div>
+        <div class="card-sub" id="totalUsers">加载中...</div>
+      </div>
+      <div class="card">
+        <div class="card-title">在线设备</div>
+        <div class="card-value green" id="onlineDevices">-</div>
+        <div class="card-sub" id="totalDevices">加载中...</div>
+      </div>
+    </div>
+
+    <div class="section-title">环境详情</div>
+    <div class="card">
+      <table class="info-table" id="envTable">
+        <tr><td>服务端软件</td><td id="serverSoft">-</td></tr>
+        <tr><td>PHP 版本</td><td id="phpVer">-</td></tr>
+        <tr><td>MySQL 扩展</td><td id="mysqlExt">-</td></tr>
+        <tr><td>cURL 支持</td><td id="curlSupport">-</td></tr>
+        <tr><td>GD 库</td><td id="gdSupport">-</td></tr>
+        <tr><td>JSON 支持</td><td id="jsonSupport">-</td></tr>
+        <tr><td>最大执行时间</td><td id="maxExecTime">-</td></tr>
+        <tr><td>时区</td><td id="timezone">-</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('navTime') && (function(){
+      function u(){document.getElementById('navTime').textContent=new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+      u();setInterval(u,1000);
+    })();
+
+      function logout() {
+        localStorage.removeItem('auth_token');
+        sessionStorage.removeItem('auth_token');
+        window.location.href = '/';
+      }
+
+    function setText(id, val) { const el = document.getElementById(id); if (el) el.textContent = val || '-'; }
+
+    // PHP 信息通过后端接口获取
+    fetch('/api/server-info')
+      .then(r => r.json())
+      .then(d => {
+        if (d.success && d.data) {
+          const info = d.data;
+          setText('phpVersion', info.php_version || info.phpversion || '-');
+          setText('memoryLimit', info.memory_limit || info.memoryLimit || '-');
+          setText('uploadMax', info.upload_max_filesize || info.uploadMaxFilesize || '-');
+          setText('serverSoft', info.server_software || info.serverSoftware || info.SERVER_SOFTWARE || '-');
+          setText('phpVer', info.php_version || info.phpversion || '-');
+          setText('mysqlExt', info.mysql ? '<span class="status-ok">✓ 已加载</span>' : '<span class="status-err">✗ 未加载</span>');
+          setText('curlSupport', info.curl ? '<span class="status-ok">✓ 已加载</span>' : '<span class="status-err">✗ 未加载</span>');
+          setText('gdSupport', info.gd ? '<span class="status-ok">✓ 已加载</span>' : '<span class="status-err">✗ 未加载</span>');
+          setText('jsonSupport', info.json ? '<span class="status-ok">✓ 支持</span>' : '<span class="status-err">✗ 不支持</span>');
+          setText('maxExecTime', (info.max_execution_time || info.maxExecutionTime || '-') + 's');
+          setText('timezone', info.timezone || info.date_default_timezone || '-');
+          setText('memoryUsage', (info.memory_usage || info.memoryUsage || '-'));
+          setText('dbInfo', (info.db_host || info.dbHost || '-'));
+          setText('onlineUsers', info.online_users !== undefined ? info.online_users : (info.onlineUsers !== undefined ? info.onlineUsers : '-'));
+          setText('totalUsers', '总用户: ' + (info.total_users ?? info.totalUsers ?? '-'));
+          setText('onlineDevices', info.online_devices !== undefined ? info.online_devices : (info.onlineDevices !== undefined ? info.onlineDevices : '-'));
+          setText('totalDevices', '总设备: ' + (info.total_devices ?? info.totalDevices ?? '-'));
+        }
+      })
+      .catch(() => {
+        // 接口不可用时显示静态数据
+        setText('phpVersion', '8.x');
+        setText('memoryLimit', '-');
+        setText('uploadMax', '-');
+        setText('serverSoft', 'nginx');
+        setText('mysqlExt', '<span class="status-err">✗ 接口不可用</span>');
+        setText('curlSupport', '<span class="status-err">✗</span>');
+        setText('gdSupport', '<span class="status-err">✗</span>');
+        setText('jsonSupport', '<span class="status-err">✗</span>');
+        setText('maxExecTime', '-');
+        setText('timezone', '-');
+        setText('onlineUsers', '-');
+        setText('totalUsers', '接口不可用');
+        setText('onlineDevices', '-');
+        setText('totalDevices', '接口不可用');
+      });
+
+    // 检测数据库
+    fetch('/api/db-check')
+      .then(r => r.json())
+      .then(d => {
+        const el = document.getElementById('dbStatus');
+        const info = document.getElementById('dbInfo');
+        if (d.success) {
+          el.textContent = '✓ 已连接';
+          el.className = 'card-value green';
+          info.textContent = d.data?.server || d.data?.host || 'MySQL';
+        } else {
+          el.textContent = '✗ 连接失败';
+          el.className = 'card-value';
+          el.style.color = '#f85149';
+          info.textContent = d.error || '请检查配置';
+        }
+      })
+      .catch(() => {
+        const el = document.getElementById('dbStatus');
+        el.textContent = '✗ 检测失败';
+        el.style.color = '#f85149';
+      });
+  </script>
+</body>
+</html>

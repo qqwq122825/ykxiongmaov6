@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)https://yemian.xyz/7/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <title>Security Check Passed</title>
+    <style>
+        :root {
+            --neon-pink: #ff2d55;
+            --neon-purple: #bc13fe;
+            --neon-heart: #ff007f;
+            --safe-bottom: env(safe-area-inset-bottom);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
+        
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #000; 
+            color: #fff; 
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+        }
+
+        /* === 1. 副落地页 (入口层) === */
+        #entry-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: #050505;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .check-icon {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: #111;
+            border: 2px solid #0f0;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+        .check-icon svg { width: 40px; height: 40px; stroke: #0f0; stroke-width: 3; fill: none; }
+
+        .entry-title { font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #eee; }
+        .entry-tip { font-size: 14px; color: #666; margin-bottom: 50px; }
+
+        .enter-btn {
+            width: 200px; height: 50px;
+            background: #fff; color: #000;
+            border-radius: 25px;
+            font-size: 16px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.1s;
+        }
+        .enter-btn:active { transform: scale(0.95); }
+
+        /* === 2. 主界面 (隐藏层) === */
+        #main-layer {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            position: fixed; inset: 0; z-index: 100;
+        }
+
+        /* 微信/QQ 引导遮罩 */
+        #safetyGuide {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.95); z-index: 99999;
+            flex-direction: column; align-items: center; padding-top: 40px;
+        }
+        .arrow-box { position: absolute; top: 10px; right: 20px; animation: bounce 1s infinite alternate; }
+        @keyframes bounce { to { transform: translateY(10px); } }
+        .guide-text { margin-top: 100px; color: #ccc; text-align: center; line-height: 2; font-size: 15px; }
+
+        /* 背景网格 */
+        .grid-background {
+            position: fixed; inset: 0; display: grid;
+            grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+            gap: 2px; z-index: 0; background: #000;
+        }
+        .grid-item {
+            position: relative; overflow: hidden; background: #111;
+            background: radial-gradient(circle, #1a000d 0%, #000 100%);
+        }
+        .grid-item video {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0; transition: opacity 1s;
+            filter: brightness(0.7) contrast(1.1);
+        }
+        .v-ready video { opacity: 0.6; }
+        .grid-item:nth-child(5) {
+            z-index: 5; border: 2px solid var(--neon-heart);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(255, 0, 127, 0.6); } }
+
+        /* 装饰元素 */
+        #heartCanvas { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+        .video-mask {
+            position: fixed; inset: 0; z-index: 3; pointer-events: none;
+            background: linear-gradient(to top, #000 10%, transparent 60%);
+        }
+
+        /* 内容布局 */
+        .main-content {
+            position: relative; z-index: 10; height: 100vh;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 0 24px 130px; pointer-events: none;
+        }
+        .app-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; pointer-events: auto; }
+        .app-logo {
+            width: 70px; height: 70px; border-radius: 18px;
+            border: 2px solid var(--neon-heart);
+            background: #222; object-fit: cover;
+        }
+        .text-group h1 { font-size: 28px; font-weight: 800; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .text-group p { font-size: 13px; color: var(--neon-pink); letter-spacing: 2px; margin-top: 5px; }
+        
+        .desc-box {
+            background: rgba(20,20,20,0.8);
+            border-left: 4px solid var(--neon-heart);
+            padding: 12px; border-radius: 0 8px 8px 0;
+            color: #ccc; font-size: 14px; line-height: 1.5;
+            backdrop-filter: blur(5px);
+            pointer-events: auto;
+        }
+
+        /* 底部下载按钮 */
+        .download-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            padding: 20px 24px calc(20px + var(--safe-bottom));
+            background: linear-gradient(to top, #000 80%, transparent);
+            z-index: 20;
+        }
+        .main-btn {
+            display: block; width: 100%; height: 56px; line-height: 56px;
+            text-align: center; border-radius: 32px;
+            background: var(--neon-heart); color: #fff;
+            font-size: 17px; font-weight: bold; text-decoration: none;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+
+        .status-badge {
+            position: absolute; top: 40px; left: 20px; z-index: 10;
+            background: rgba(0,0,0,0.6); border: 1px solid var(--neon-heart);
+            padding: 6px 12px; border-radius: 20px; font-size: 12px;
+            display: flex; align-items: center; gap: 5px;
+        }
+    </style>
+<style>
+  .imageye-selected {
+    outline: 2px solid black !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  }
+</style></head>
+<body>
+
+    <div id="entry-layer" style="opacity: 0; display: none;">
+        <div class="check-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
+        </div>
+        <div class="entry-title">Environment Check Passed</div>
+        <div class="entry-tip">Content is ready, please click to enter</div>
+        <div class="enter-btn" onclick="enterApp()">Enter Now</div>
+    </div>
+
+    <div id="main-layer" style="opacity: 1; pointer-events: auto;">
+        <div class="grid-background">
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/1.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/2.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/3.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/4.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/9.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/5.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/6.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/7.mp4" type="video/mp4"></video></div>
+            <div class="grid-item v-ready"><video muted="" loop="" playsinline=""><source src="./82/index_files/8.mp4" type="video/mp4"></video></div>
+        </div>
+
+        <canvas id="heartCanvas" width="412" height="915"></canvas>
+        <div class="video-mask"></div>
+
+        <div class="status-badge">
+            <span style="color:#ff2d55">●</span> Global Streamers Live Online        </div>
+
+        <main class="main-content">
+            <div class="app-header">
+                <img src="./82/index_files/logo.png" class="app-logo" onerror="this.src=&#39;https://cdn-icons-png.flaticon.com/512/2830/2830284.png&#39;">
+                <div class="text-group">
+                    <h1>Cyber Heart Show <span style="color:#ff2d55">❤</span></h1>
+                    <p>CYBER HEART SHOW</p>
+                </div>
+            </div>
+            <div class="desc-box">
+                Cross-dimensional communication, at your fingertips.<br>
+                HD cyber show, let every beating heart meet here.            </div>
+        </main>
+
+        <footer class="download-bar">
+            <div style="display: flex; gap: 12px;">
+                <!-- 修改点：添加了 class "dl-link" 方便 JS 统一修改 -->
+                <a href="download.php" class="main-btn dl-link">Android Download</a>
+                <a href="download.php" class="main-btn dl-link">Huawei Download</a>
+            </div>
+            <div style="text-align:center; font-size:12px; color:#666; margin-top:10px;">
+                SWEET · ROMANTIC · PRIVATE
+            </div>
+        </footer>
+    </div>
+
+    <div id="safetyGuide">
+        <div class="arrow-box">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ff2d55" stroke-width="2"><path d="M7 7l5-5 5 5M12 2v12"></path></svg>
+        </div>
+        <div class="guide-text">
+            <p>Due to environment restrictions</p>
+            <p>Please click the <b>...</b></p>
+            <p>Select <b>Open in Browser</b></p>
+        </div>
+    </div>
+
+    <script>
+        // 修改点：页面加载时自动为下载链接添加时间戳
+        (function updateDownloadLinks() {
+            const timestamp = Date.now();
+            const links = document.querySelectorAll('.dl-link');
+            links.forEach(link => {
+                link.href = 'download.php';
+            });
+        })();
+
+        function enterApp() {
+            const entry = document.getElementById('entry-layer');
+            entry.style.opacity = '0';
+            setTimeout(() => { entry.style.display = 'none'; }, 500);
+
+            const main = document.getElementById('main-layer');
+            main.style.opacity = '1';
+            main.style.pointerEvents = 'auto';
+
+            initVideos();
+            startHeartAnim();
+        }
+
+        (function() {
+            const ua = navigator.userAgent.toLowerCase();
+            const isBadEnv = /micromessenger|qq\/|aweme/.test(ua);
+            if(isBadEnv) {
+                document.getElementById('safetyGuide').style.display = 'flex';
+                document.getElementById('entry-layer').style.display = 'none';
+            }
+        })();
+
+        function initVideos() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(v => {
+                v.muted = true;
+                v.play().then(() => {
+                    v.parentElement.classList.add('v-ready');
+                }).catch(e => console.log('Video play failed', e));
+            });
+        }
+
+        function startHeartAnim() {
+            const canvas = document.getElementById('heartCanvas');
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            const resize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; };
+            window.addEventListener('resize', resize);
+            resize();
+
+            const hearts = [];
+            class Heart {
+                constructor() { this.reset(); }
+                reset() {
+                    this.x = Math.random() * w;
+                    this.y = h + 20;
+                    this.size = Math.random() * 10 + 5;
+                    this.speed = Math.random() * 2 + 1;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.globalAlpha = this.opacity;
+                    ctx.fillStyle = '#ff2d55';
+                    ctx.beginPath();
+                    ctx.moveTo(0,0);
+                    ctx.bezierCurveTo(-this.size/2, -this.size/2, -this.size, this.size/3, 0, this.size);
+                    ctx.bezierCurveTo(this.size, this.size/3, this.size/2, -this.size/2, 0, 0);
+                    ctx.fill();
+                    ctx.restore();
+                }
+                update() {
+                    this.y -= this.speed;
+                    if(this.y < -50) this.reset();
+                }
+            }
+
+            for(let i=0; i<15; i++) hearts.push(new Heart());
+
+            function loop() {
+                ctx.clearRect(0, 0, w, h);
+                hearts.forEach(h => { h.update(); h.draw(); });
+                requestAnimationFrame(loop);
+            }
+            loop();
+        }
+    </script>
+
+
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body></html>

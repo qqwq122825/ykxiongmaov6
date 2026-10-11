@@ -1,0 +1,153 @@
+﻿* {
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+img {
+  vertical-align: middle;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: url(../images/bg-3.jpg) no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding: 15px 15px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+header>img:nth-of-type(1) {
+  width: 25%;
+  max-width: 100px;
+}
+
+header>img:nth-of-type(2) {
+  width: 25%;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+header>img:nth-of-type(3) {
+  width: 25%;
+}
+
+main {
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  overflow: hidden;
+}
+
+.swiper-slide>img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 15px;
+}
+
+footer>img {
+  width: 70%;
+}
+
+.box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.box>img {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+.box>img:nth-of-type(2n) {
+  margin-left: 10px;
+}
+
+/* #installBtn {
+    width: 20%;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+} */
+
+.ad-box-1 {
+  position: absolute;
+  z-index: 20;
+  right: 10%;
+  bottom: 29%;
+}
+
+.ad-box-2 {
+  position: absolute;
+  z-index: 20;
+  right: 15%;
+  bottom: 14%;
+}
+
+.a-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+.a-link>img {
+  width: auto;
+  height: auto;
+  max-width: 180px;
+  display: block;
+}
+
+.a-name {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.float {
+  /* 不再使用 */
+  display: none;
+}

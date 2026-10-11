@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>切片</title>
+    <defs>
+        <linearGradient x1="0%" y1="14.4042969%" x2="100%" y2="85.5957031%" id="linearGradient-1">
+            <stop stop-color="#89C4FF" offset="0%"></stop>
+            <stop stop-color="#3787FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="会议官网" transform="translate(-900.000000, -4340.000000)">
+            <g id="矩形备份-21" transform="translate(900.000000, 4340.000000)">
+                <path d="M71,53.0625 L94.5771138,39.7543244 C97.2931004,38.2212773 100.737623,39.1802392 102.27067,41.8962258 C102.748776,42.7432516 103,43.6994081 103,44.6720532 L103,76.3279468 C103,79.4467313 100.471726,81.9750057 97.3529412,81.9750057 C96.3802961,81.9750057 95.4241396,81.7237819 94.5771138,81.2456756 L71,67.9375 L71,67.9375 L71,53.0625 Z" id="矩形" fill-opacity="0.6" fill="#418BF9"></path>
+                <path d="M25,33 L77,33 C80.3137085,33 83,35.6862915 83,39 L83,81 C83,84.3137085 80.3137085,87 77,87 L25,87 C21.6862915,87 19,84.3137085 19,81 L19,39 C19,35.6862915 21.6862915,33 25,33 Z" id="矩形" fill="url(#linearGradient-1)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

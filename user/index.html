@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户模块</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:linear-gradient(180deg,#f8fbff 0%,#eef4ff 100%);color:#0f172a}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .hero{background:#fff;border:1px solid #e2e8f0;border-radius:24px;padding:24px;box-shadow:0 12px 24px rgba(15,23,42,.06)}
+    h1{margin:0 0 8px;font-size:28px}
+    p{margin:0;color:#64748b}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:18px;box-shadow:0 8px 18px rgba(15,23,42,.04)}
+    .label{font-size:12px;color:#64748b;margin-bottom:8px}.value{font-size:24px;font-weight:700}
+    ul{margin:12px 0 0;padding-left:18px;color:#334155;line-height:1.8}
+    a{display:inline-flex;margin-top:18px;color:#1d4ed8;text-decoration:none;font-weight:600}
+    @media (max-width: 900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>用户模块</h1>
+      <p>当前项目内的用户管理入口，承接账号、权限和在线状态视图。</p>
+      <div class="grid">
+        <div class="card"><div class="label">账号总数</div><div class="value">128</div></div>
+        <div class="card"><div class="label">在线用户</div><div class="value">32</div></div>
+        <div class="card"><div class="label">管理员</div><div class="value">8</div></div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <div class="label">模块能力</div>
+        <ul>
+          <li>用户列表与搜索</li>
+          <li>权限与角色配置</li>
+          <li>在线状态与登录记录</li>
+        </ul>
+        <a href="/list/basic-list">返回基础列表</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+/* ============================================
+   章鱼出海 - 全局导航栏样式 (Dark Theme)
+   ============================================ */
+
+/* Google Fonts 加载 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --nav-bg: #1a1a2e;
+  --nav-border: #2a2a4a;
+  --nav-text: #c0c0d0;
+  --nav-active: #58a6ff;
+  --nav-hover-bg: rgba(88, 166, 255, 0.1);
+  --nav-height: 40px;
+  --content-top-padding: 56px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0d1117;
+  color: #e6e6e6;
+  padding-top: var(--content-top-padding);
+  min-height: 100vh;
+}
+
+/* 全局导航栏 */
+.global-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 9999;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.global-nav .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 24px;
+  flex-shrink: 0;
+}
+
+.global-nav .nav-brand img {
+  width: 22px;
+  height: 22px;
+}
+
+.global-nav .nav-brand span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e6e6e6;
+  letter-spacing: 0.5px;
+}
+
+.global-nav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.global-nav .nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  color: var(--nav-text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.global-nav .nav-links a:hover {
+  background: var(--nav-hover-bg);
+  color: #e6e6e6;
+}
+
+.global-nav .nav-links a.active {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--nav-active);
+}
+
+.global-nav .nav-links .nav-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.global-nav .nav-links .nav-label {
+  font-size: 13px;
+}
+
+.global-nav .nav-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--nav-border);
+  margin: 0 4px;
+}
+
+.global-nav .nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.global-nav .nav-right #navTime {
+  font-size: 12px;
+  color: var(--nav-text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+.global-nav .nav-right .nav-logout {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  color: var(--nav-text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.global-nav .nav-right .nav-logout:hover {
+  background: rgba(248, 81, 73, 0.15);
+  color: #f85149;
+  border-color: rgba(248, 81, 73, 0.3);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .global-nav {
+    padding: 0 8px;
+  }
+
+  .global-nav .nav-brand {
+    margin-right: 8px;
+  }
+
+  .global-nav .nav-brand span {
+    display: none;
+  }
+
+  .global-nav .nav-links {
+    gap: 2px;
+  }
+
+  .global-nav .nav-links a {
+    padding: 4px 8px;
+  }
+
+  .global-nav .nav-links .nav-label {
+    display: none;
+  }
+
+  .global-nav .nav-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-nav .nav-links a {
+    padding: 4px 6px;
+  }
+
+  .global-nav .nav-links .nav-icon {
+    font-size: 18px;
+  }
+}

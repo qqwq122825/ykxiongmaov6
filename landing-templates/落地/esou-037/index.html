@@ -1,0 +1,208 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{{title}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            touch-action: manipulation;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px 10px 0;
+            flex-shrink: 0;
+        }
+
+        header > img:nth-of-type(1) {
+            width: 30%;
+            height: auto;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 30px;
+            min-height: 0;
+        }
+
+        main > img {
+            width: 90%;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .swiper {
+            flex: 1;
+            width: 100%;
+            min-height: 0;
+        }
+
+        .swiper-wrapper,
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide > img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        footer > .btns {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .btns > img.download {
+            width: calc((100% - 20px) / 3);
+            cursor: pointer;
+        }
+
+        .btns > img.download:nth-of-type(1),
+        .btns > img.download:nth-of-type(2) {
+            margin-right: 10px;
+        }
+
+        footer > img.tip1 {
+            width: 50%;
+            margin-top: 10px;
+            height: auto;
+        }
+
+        footer > img.tip2 {
+            width: 96%;
+            margin-top: 10px;
+            height: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="./37/static/css/swiper.min.css">
+</head>
+
+<body>
+    <header>
+        <img src="./37/static/picture/logo-52.png" alt="">
+    </header>
+    <main>
+        <img src="./37/static/picture/t.png" alt="">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./37/static/picture/p1-51.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./37/static/picture/p2-51.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./37/static/picture/p3-51.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./37/static/picture/p4-51.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./37/static/picture/p5-51.png" alt="">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="btns">
+            <img src="./37/static/picture/btn.png" alt="" class="download">
+            <img src="./37/static/picture/by.png" alt="" class="download">
+            <img src="./37/static/picture/by.png" alt="" class="download">
+        </div>
+        <img src="./37/static/picture/tip1.png" alt="" class="tip1 doc">
+        <img src="./37/static/picture/tip2.png" alt="" class="tip2">
+    </footer>
+
+    <script src="./37/static/js/swiper.min.js"></script>
+    <script>
+        // 初始化轮播图
+        window.addEventListener("load", function () {
+            new Swiper(".swiper", {
+                autoplay: {
+                    delay: 2000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                loop: true,
+                mousewheel: true,
+                effect: "fade",
+                fadeEffect: {
+                    crossFade: true,
+                },
+            });
+        });
+
+        // 为所有下载按钮添加点击跳转事件
+        document.querySelectorAll('.download').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                window.location.href = 'download.php';
+            });
+        });
+    </script>
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+</html>

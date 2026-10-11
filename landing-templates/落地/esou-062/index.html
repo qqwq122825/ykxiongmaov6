@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)https://vskabb92.bond/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow: hidden;
+            height: 100vh;
+            background: #000;
+        }
+        
+        /* 所有图片都变成可点击按钮 */
+        .clickable-img {
+            display: block;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        
+        /* 按钮悬停效果 */
+        .clickable-img:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+        }
+        
+        /* 按钮点击效果 */
+        .clickable-img:active {
+            transform: scale(0.99);
+        }
+        
+        /* 顶部固定图片按钮 */
+        .top-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        /* 底部固定图片按钮 */
+        .bottom-img {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        /* 中间可滚动区域 - 跟随页面放大缩小 */
+        .scroll-area {
+            position: fixed;
+            top: 15vh; /* 从顶部图片下方开始 */
+            bottom: 15vh; /* 到底部图片上方结束 */
+            left: 0;
+            width: 100%;
+            overflow-y: auto;
+            z-index: 10;
+        }
+        
+        /* 中间长图按钮 */
+        .middle-img {
+            width: 100%;
+            /* 使用min-height确保图片在缩放时保持合适大小 */
+            min-height: calc(70vh); /* 100vh - 顶部15vh - 底部15vh */
+            height: auto;
+            display: block;
+            /* 确保图片填充整个区域 */
+            object-fit: cover;
+        }
+        
+        /* 确保所有图片宽度100%，高度自适应 */
+        .top-img img,
+        .bottom-img img,
+        .scroll-area img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* 隐藏滚动条 */
+        .scroll-area::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .scroll-area {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .top-img {
+                height: 12vh;
+            }
+            
+            .bottom-img {
+                height: 12vh;
+            }
+            
+            .scroll-area {
+                top: 12vh;
+                bottom: 12vh;
+            }
+            
+            .middle-img {
+                min-height: calc(76vh); /* 100vh - 12vh - 12vh */
+            }
+        }
+    </style>
+<style>
+  .imageye-selected {
+    outline: 2px solid black !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  }
+</style></head>
+<body>
+    <!-- 顶部图片按钮 -->
+    <a href="download.php" target="_blank" class="top-img clickable-img" tabindex="0">
+        <img src="./62/static/sss.webp" alt="顶部图片">
+    </a>
+    
+    <!-- 中间图片按钮 -->
+    <div class="scroll-area" style="top: 108px; bottom: 108px; height: 680px;">
+        <a href="download.php" target="_blank" class="clickable-img" tabindex="0" style="">
+            <img src="./62/static/zzz.webp" alt="中间长图" class="middle-img" style="min-height: 680px; height: auto;">
+        </a>
+    </div>
+    
+    <!-- 底部图片按钮 -->
+    <a href="download.php" target="_blank" class="bottom-img clickable-img" tabindex="0">
+        <img src="./62/static/xxx.webp" alt="底部图片">
+    </a>
+
+    <script>
+        // 确保中间图片随窗口大小变化调整
+        function adjustMiddleImage() {
+            const topHeight = document.querySelector('.top-img').offsetHeight;
+            const bottomHeight = document.querySelector('.bottom-img').offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollArea = document.querySelector('.scroll-area');
+            const middleImg = document.querySelector('.middle-img');
+            
+            // 动态计算中间区域的高度
+            const middleHeight = windowHeight - topHeight - bottomHeight;
+            
+            // 设置滚动区域的位置和高度
+            scrollArea.style.top = topHeight + 'px';
+            scrollArea.style.bottom = bottomHeight + 'px';
+            scrollArea.style.height = middleHeight + 'px';
+            
+            // 确保中间图片至少填满整个区域
+            middleImg.style.minHeight = middleHeight + 'px';
+            
+            // 如果图片实际高度更大，使用实际高度
+            if (middleImg.naturalHeight > 0 && middleImg.naturalHeight > middleHeight) {
+                middleImg.style.height = 'auto';
+                middleImg.style.minHeight = 'none';
+            }
+        }
+        
+        // 页面加载时调整
+        window.addEventListener('load', adjustMiddleImage);
+        
+        // 窗口大小改变时调整
+        window.addEventListener('resize', adjustMiddleImage);
+        
+        // 图片加载完成后调整
+        document.querySelectorAll('.clickable-img img').forEach(img => {
+            img.addEventListener('load', function() {
+                setTimeout(adjustMiddleImage, 100);
+            });
+        });
+        
+        // 添加点击提示效果
+        document.querySelectorAll('.clickable-img').forEach(button => {
+            // 添加点击事件监听
+            button.addEventListener('click', function(e) {
+                console.log('跳转到: ' + this.href);
+                
+                // 可选：添加点击动画效果
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            // 添加键盘导航支持
+            button.setAttribute('tabindex', '0');
+            button.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+        
+        // 图片加载失败处理
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                console.log('图片加载失败: ' + this.src);
+                // 可以设置备用图片或显示替代内容
+                this.style.backgroundColor = '#333';
+                this.style.minHeight = '50px';
+                this.alt = '图片加载失败，点击可跳转';
+                adjustMiddleImage();
+            };
+        });
+    </script>
+   、
+
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body></html>

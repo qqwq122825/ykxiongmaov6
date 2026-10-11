@@ -1,0 +1,184 @@
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: zgl-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root123456}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-zgl}
+      MYSQL_USER: ${MYSQL_USER:-zgl}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-zgl123456}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    # 生产环境不暴露 3306，防止外网直连数据库；调试时可取消注释
+    # ports:
+    #   - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.php
+    container_name: zgl-php
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+      - php_logs:/var/www/html/private/logs
+      - php_errors:/var/www/html/private/errors
+    environment:
+      DB_SERVER: mysql
+      DB_USER: ${MYSQL_USER:-zgl}
+      DB_PASS: ${MYSQL_PASSWORD:-zgl123456}
+      DB_NAME: ${MYSQL_DATABASE:-zgl}
+      ADMIN_KEY: ${ADMIN_KEY:-admin123}
+      ADMIN_PATH: ${ADMIN_PATH:-}
+      ADMIN_IP_WHITELIST: ${ADMIN_IP_WHITELIST:-}
+      PHP_PATH: php
+      APP_URL: http://nginx
+      DEVICE_OWNERSHIP_LOCK: ${DEVICE_OWNERSHIP_LOCK:-1}
+      # ADB 桥接配置（需宿主机安装 adb）
+      ADB_BRIDGE_ENABLE: ${ADB_BRIDGE_ENABLE:-0}
+      ADB_DEVICE_LIST: ${ADB_DEVICE_LIST:-}
+      ADB_AUTO_SCAN: ${ADB_AUTO_SCAN:-0}
+      ADB_HEARTBEAT_INTERVAL_SEC: ${ADB_HEARTBEAT_INTERVAL_SEC:-30}
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
+    container_name: zgl-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    environment:
+      WS_SECRET: ${WS_SECRET:-}
+    volumes:
+      - .:/var/www/html:ro
+      - ./docker/nginx-main.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/nginx.conf:/etc/nginx/templates/default.conf.template:ro
+      - ./docker/ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+      - ./docker/blacklist.map:/var/lib/nginx-blacklist:rw
+    depends_on:
+      - php
+      - websocket
+      - autoban
+
+  websocket:
+    image: node:20-alpine
+    container_name: zgl-websocket
+    restart: unless-stopped
+    working_dir: /app
+    # Node.js 堆内存上限（根据服务器实际内存调整）
+    command: >-
+      sh -c '
+        set -e;
+        npm install --omit=dev;
+        node --max-old-space-size=2048 websocket-server.js &
+        WS_PID=$!;
+        if [ "${MQTT_ENABLE:-}" = "1" ] || [ "${MQTT_ENABLE:-}" = "true" ] || [ "${MQTT_ENABLE:-}" = "yes" ]; then
+          node mqtt-bridge.js &
+          MQTT_PID=$!;
+          trap "kill $$WS_PID $$MQTT_PID 2>/dev/null || true" INT TERM EXIT;
+          wait $$WS_PID $$MQTT_PID;
+        else
+          trap "kill $$WS_PID 2>/dev/null || true" INT TERM EXIT;
+          wait $$WS_PID;
+        fi
+      '
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    volumes:
+      - ./api/ws:/app
+    environment:
+      WS_SECRET: ${WS_SECRET:-}
+      WS_REQUIRE_TOKEN: ${WS_REQUIRE_TOKEN:-}
+      MQTT_ENABLE: ${MQTT_ENABLE:-}
+      MQTT_URL: ${MQTT_URL:-mqtt://mqtt:1883}
+      MQTT_USERNAME: ${MQTT_USERNAME:-}
+      MQTT_PASSWORD: ${MQTT_PASSWORD:-}
+      MQTT_TOPIC_PREFIX: ${MQTT_TOPIC_PREFIX:-eaod}
+      REDIS_ENABLE: ${REDIS_ENABLE:-}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      REDIS_PREFIX: ${REDIS_PREFIX:-eaod}
+      SECRIT_KEY: ${SECRIT_KEY:-}
+      SIV: ${SIV:-}
+      APP_URL: http://nginx
+      DEVICE_OWNERSHIP_LOCK: ${DEVICE_OWNERSHIP_LOCK:-1}
+      # ADB 桥接配置（需宿主机安装 adb）
+      ADB_BRIDGE_ENABLE: ${ADB_BRIDGE_ENABLE:-0}
+      ADB_DEVICE_LIST: ${ADB_DEVICE_LIST:-}
+      ADB_AUTO_SCAN: ${ADB_AUTO_SCAN:-0}
+      ADB_HEARTBEAT_INTERVAL_SEC: ${ADB_HEARTBEAT_INTERVAL_SEC:-30}
+      DB_SERVER: mysql
+      DB_USER: ${MYSQL_USER:-zgl}
+      DB_PASS: ${MYSQL_PASSWORD:-zgl123456}
+      DB_NAME: ${MYSQL_DATABASE:-zgl}
+      WS_DB_ENABLE: ${WS_DB_ENABLE:-}
+      WS_DB_WRITE_MIN_INTERVAL_SEC: ${WS_DB_WRITE_MIN_INTERVAL_SEC:-}
+      WS_AUDIT_ENABLE: ${WS_AUDIT_ENABLE:-}
+      WS_AUDIT_PING_INTERVAL_SEC: ${WS_AUDIT_PING_INTERVAL_SEC:-}
+      WS_EVENT_RETENTION_DAYS: ${WS_EVENT_RETENTION_DAYS:-}
+    depends_on:
+      - redis
+    # command 已移到上方（含 --max-old-space-size）
+    # 仅容器内访问，通过 nginx 代理 /api/ws/
+    # ports:
+    #   - "8080:8080"
+
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: zgl-mqtt
+    restart: unless-stopped
+    volumes:
+      - ./docker/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mqtt_data:/mosquitto/data
+      - mqtt_log:/mosquitto/log
+    # 如需外部直连再打开；默认只供容器内部使用
+    # ports:
+    #   - "1883:1883"
+
+  redis:
+    image: redis:7-alpine
+    container_name: zgl-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    # 默认仅容器内访问；如需外部运维再显式暴露
+    # ports:
+    #   - "6379:6379"
+
+  autoban:
+    image: python:3.12-alpine
+    container_name: zgl-autoban
+    restart: unless-stopped
+    working_dir: /app
+    command: sh -c "python /app/docker/auto-ban.py"
+    volumes:
+      - .:/app:ro
+      - nginx_logs:/var/log/nginx
+      - ./docker/blacklist.map:/var/lib/nginx-blacklist:rw
+
+volumes:
+  mysql_data:
+  php_logs:
+  php_errors:
+  mqtt_data:
+  mqtt_log:
+  nginx_logs:
+  redis_data:
+

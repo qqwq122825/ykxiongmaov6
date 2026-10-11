@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72">
+  <defs>
+    <radialGradient id="iconBg2" cx="40%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </radialGradient>
+    <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 圆角方形背景（类似 iOS 圆角） -->
+  <rect x="2" y="2" width="68" height="68" rx="18" fill="url(#iconBg2)" />
+
+  <!-- 内部上升折线 -->
+  <polyline points="18,54 28,42 38,46 48,30 58,20"
+            stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
+            fill="none" filter="url(#glow2)" />
+
+  <!-- 起点和终点圆点 -->
+  <circle cx="18" cy="54" r="4" fill="#ffffff" opacity="0.7" />
+  <circle cx="58" cy="20" r="5" fill="#ffffff" />
+</svg>

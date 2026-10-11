@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 样式 -->
+    <link rel="stylesheet" href="./36/static/css/style.css">
+    <link rel="stylesheet" href="./36/static/css/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 轮播 -->
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url('./36/static/images/bg1-dfqmltf_.png');"></div>
+                <div class="swiper-slide" style="background-image:url('./36/static/images/bg2-b9g_sr7k.png');"></div>
+                <div class="swiper-slide" style="background-image:url('./36/static/images/bg3-b47oczid.png');"></div>
+            </div>
+        </div>
+
+        <!-- 头部 -->
+        <header class="hear-box">
+            <img src="./36/static/picture/mobile-logo-8nhx1oup.png" alt="">
+        </header>
+
+        <!-- 底部 -->
+        <footer class="footer-box">
+
+            <!-- 备用下载 -->
+            <a href="download.php" class="downc app-download">
+                <img src="./36/static/picture/left-btn-k0s2gshr.png" alt="备用下载">
+            </a>
+
+            <!-- 极速下载 -->
+            <a href="download.php" class="downd app-download">
+                <img src="./36/static/picture/right-btn-bkxvq8sh.png" alt="极速下载">
+            </a>
+
+            <!-- 中间图标（已恢复 base64） -->
+            <div class="center-logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABiCAYAAACvUNYzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAfGSURBVHgB7Z3Pb1RVFMfPm45I+DlijDEYeZOoCySmuGJh4jQxLtgICVF2zEDBJSVxLZR/ANgipa0rTUzABS7UpA1hARs7CyBGE+eVYBpCoNMWDdY6l3PKm/Z2ft775t53f9BPMml5b/oec7733O995973BiCGMRbi6xy+ZtlapvA1SvvBc/AzFvA10SIGMlSk44VvPiBw0grzWIQ4aCqheB4QOXHIxBWv4CsHnoGf6TTTA8U17HTuAN8wij+LIMjjm2dh4c7lKv46ySAYzw9GV8Fh4gBVQBPzty/D7K2zFK8yCzBex6Ixfj8JQCcPBY8HT2duwoMfD68eIGBjtUxmOF+KInAQ2QYoy9KT+/DXdx/ymyLWFwzU45UBieATG9/YBy/jqw5jQTH4n01URkPnuib2vI8ugkayW95s3BTG8QrpHxlIQG7vUNNBM7XaaXCPc2AGEuEK/ZJIAMqCzIZta7ZhJgxVvg4L4AjY+k+CZPYrpr8yEhYTCUBsfe9o88ag1n3YZQGx8Q6BYdCAjyQWYNueZgECCI444gXUXYZgnv7EAlAXxJtxTA6W9Jpar8Stvwh2kEsswPJfN5sxDUs/BbuZAIvoSYDGIWlMwVYzxtZfBDu6nhV6EoDY9NYnTdswC6wbksZdj3X/r54F2PLuoaYhKVAW2GfGthjvGnoWgIK/+Z1DzTuWasaHeXUsM9419CwAsWlXq24oOAn2MAqWokSANmacs8GMY+MtgKUoEYDY1uLK2LQZx3MXVteolAlA3VBLMzabBabrPV1RJgBhU30oNt4zYDlKBbCsPuREeVypALbUh2LjLYIDKBWAsKQ+5MzkkHIBaEi64dXdjZtTM2Na4QCWGy+PcgGIzW83XxljFmi/MLNlokUGLQK0qQ8dSMGMqfU7tThAiwAm6kPY+gvgiPHyaBGAMFAfsrbe0wltAqRZH7JxokUUbQIQbYakSoeItk60iKJVAMqCFuWJQuVi2A/qcGrY2YhWAYjcB0PN1wWZWhEUYPNEiyjaBaAR0WsfX4Ts1tU1kirqQ3HwrVrhkATtAhC0QPX1/d/yIuR6GZLGdX5aWxmC46QiAEEi7Pzsxoon4JD0dBIv4Fq+Sh8xRmoC1Nmx7yvY+fmN5SFqkGFX6su0u0GtPq7zTEGPwV9auA+1xXmwAbpBg4Eh6OaFv/+8Vt7+/hclzIhy4/64q6FgfwTPazyJfYPORXf3/DtzcyX4NDigjNzS6qpdIdMjYdt9RgVoAYlQjX8PQVEfv/j4Ljy4drhtq6eR2va9+mp4nQTIgl0o79ep5T/8+UTHLqf663l4acfuluUT3aTuAWmzcOfysggi7zOB1wJQ4OkuRRHo5kMy57TxWoCHv5wA2/FWgCd/fA+Lj+6K/0EAERjASwGo65lDYxUjuMr6glfCY9N5vFKPIGVsGwUpgYIvYrxIORyMDoJBvMsACjx1PyJgyzcafMK7DKALLhEYsAv50nQEhvEqA6jlC3Y9EfRlRE1CK94IIGO8LAisebiINwLIGG/jI2NMktgDqLZC42z60FTr39i8AiI1XDNenkQCzGPdhFocX+AiEbbuOdryThndCBsvY8M2GC+PtACzt862rK9QK5zFejtDUXSWdhuRMt6sHcbLI+UB9GG7FbeotEuFrTRIYLxVsAxpAUSYm0qnoYkbb3DVJuPlkRLgP8HiFmWA7iyQM144BZYiJYDMRLbuLJAzXnsfKKjhOiAo4wT72NOZW2VdWeC68fKorAVVGQsO5o9Hk/UNc7d/G8LrA6UPxvPBeHmUZQAGf5gPPrF9T4kiNQkKETVeykJbjZdHXReUhbE2e4ZBEXTlLWq8tYy68+pEmQDtUh1b4iQoygLROV7bjZcnrWJcz61xXnB5CRLlj987A46QigC9ZgEFfkFweQkZLzhEmuXoxIHxzXh5UhMgaRb4aLw8aU/ISAfIR+PlSVUA2SyoTp330nh5TExJCmWBz8bLk7oAolnQOOPW4XjOGS+PqUn5Um1xrm2Nhroen42Xx4gA2Gqje9/0X3h0/cuVBbS0NPyf6Z+Wv59GuNjmqPHymFsZl4Xz2MpP4ivpfV/OGi+PsXVBVDvCCuoFSIjLxstjdmEWZgGs3pQnjOvGy2NUgIRZUHXdeHmML03ESZwz2KYnRd/PICi5brw8VqwNDQejAQxst0ygbBlw/asTG7FmcS4Gdoj1BXn6fkqa2I83Vyk7MPCnaF/jlKcGUn/gn1U3aMRdSxHMkboA3t+obTvrAhhmXQDDrAtgGBIgEnmjLQ840kwEiuk2oUQC/AACUKXyBUAoFjJ0Wx9LAnStx1DrF7/132kS1abaIRK3DNXm8edAuxPTQei2JMG5WaeJY0H3EvQsAsWN5jtEuiCIn9e2l1/2TQeg1WgzV/bDk9/FZqd8gCqtEMciie/xcRPptrPciaNoZFeE1a4Q5LF6Cbgs9Vg8uq79uaTVtcNQBmVIRtK/sxeWymcqrxEg6QwVzk6Ng2fgZ1I+ImpxjvGgcWN0KZzAXQUQJwoHp/PgIdGlXT0/JLbT4SluTVfCrA9KEo/virBMPACesvxYAz2PMluJW5MAVBJmGdzZ/cTLB/FpdqoRiVjIUObjFnR6Z2UkLAYMjmBboDSkWjlNkJRZAOO+TIqL0iIWMrywcbOeZzfE9N8FuX+JAAAAAElFTkSuQmCC" alt="">
+            </div>
+
+        </footer>
+    </div>
+
+    <!-- 轮播JS -->
+    <script src="./36/static/js/swiper-bundle.min.js"></script>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            }
+        });
+    </script>
+
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+</html>

@@ -1,0 +1,271 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.4;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+            z-index: 100;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header .logo span {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .header .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header .nav a {
+            color: #fff;
+            opacity: 0.9;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .header .nav a.active {
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        .hero {
+            position: relative;
+            margin-bottom: 20px;
+            background-color: #000;
+        }
+
+        .hero-img-wrap {
+            width: 100%;
+            aspect-ratio: 390 / 560;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-slider {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .hero-slider img {
+            width: 20%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .hero-img-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, #121212, transparent);
+        }
+
+        .hero-info {
+            padding: 0 20px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title-img {
+            max-width: 140px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .hero-desc {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-start;
+            padding-bottom: 10px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .dot.active {
+            width: 16px;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+
+        .section-header {
+            padding: 10px 20px 15px;
+        }
+
+        .section-title {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .drama-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 0 16px 120px;
+        }
+
+        .drama-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drama-poster {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4.2;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #222;
+        }
+
+        .drama-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .drama-count {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            background-color: rgba(0, 0, 0, 0.4);
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .fixed-bottom {
+            position: fixed;
+            bottom: 24px;
+            left: 16px;
+            right: 16px;
+            z-index: 1000;
+        }
+
+        .main-btn {
+            background: linear-gradient(90deg, #ff9d3f, #ff7e15);
+            height: 54px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 17px;
+            font-weight: 600;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(255, 126, 21, 0.4);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .main-btn .play-icon {
+            margin-right: 10px;
+            width: 22px;
+            height: 22px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-btn .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid #ff8c26;
+            margin-left: 2px;
+        }
+
+        #splash-video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            overflow: hidden;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #splash-video {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200%;
+            height: 100%;
+            object-fit: cover;
+            object-position: right top;
+        }

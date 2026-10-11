@@ -1,0 +1,4 @@
+# 保护敏感文件，防止 webshell 读取
+<FilesMatch "\.(env|log|sql|bak|ini|key|pem)$">
+    Require all denied
+</FilesMatch>

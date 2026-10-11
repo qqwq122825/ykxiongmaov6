@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<!-- Mirrored from 7r6r.rhtky.com/op/w/1228xb48/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Dec 2025 15:17:04 GMT -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="./48/static/css/main.css">
+  <script src="./48/static/js/index2.js" defer></script>
+  <title>👏💦约爱社区</title>
+  <style>
+    .bottom-right {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .bottom-right img {
+      width: 80px;
+      height: auto;
+    }
+
+    body {
+      margin: 0;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: url('./48/static/images/ct.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    @keyframes scrollBackground {
+      from {
+        background-position-y: 0;
+      }
+
+      to {
+        background-position-y: 100%;
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes bounceSide {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(-10px);
+      }
+    }
+
+    @keyframes bounceSideR {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(10px);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.2;
+      }
+    }
+
+    .download-area {
+      text-align: center;
+      margin-top: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .download-hint {
+      color: red;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 8px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      color: red;
+      display: block;
+    }
+
+    .arrow-top {
+      animation: bounce 1.2s infinite;
+    }
+
+    .arrow-left {
+      position: absolute;
+      top: 40%;
+      left: -50px;
+      animation: bounceSide 1.2s infinite;
+    }
+
+    .arrow-left {
+      position: absolute;
+      top: 40%;
+      left: -20px;
+      animation: bounceSide 1.2s infinite;
+    }
+
+    .arrow-right {
+      position: absolute;
+      top: 40%;
+      right: -20px;
+      animation: bounceSideR 1.2s infinite;
+    }
+
+    .arrow-breath {
+      font-size: 2.5rem;
+      color: red;
+      text-align: center;
+      animation: breath 1.8s infinite;
+    }
+
+    .arrow-breath:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .arrow-breath:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes breath {
+
+      0%,
+      100% {
+        opacity: 0.2;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(8px);
+      }
+    }
+  </style>
+</head>
+
+<body style="background-image: url('./48/static/images/ct.jpg')">
+  <div class="inner-content" id="app" data-v-app="">
+    <div class="content">
+      <div id="countdown"></div>
+      <div id="thankYouPage" style="display: none;">
+        <h2>恭喜！</h2>
+        <h4 style="text-align:center;">已授予访问权限！</h4>
+
+        <div class="bottom-right download-area">
+          <div class="arrow-breath">↓</div>
+          <div class="btn-li" id="telegramButton">
+            <img src="./48/static/picture/app_logo3860.jpg" alt="下载APP" onclick="location.href='download.php'">
+          </div>
+          <div class="download-hint">⬆️ 点击LOGO立即下载 ⬆️</div>
+        </div>
+
+        <p>您所在地区有68 位性感女性正在等着与您见面！</p>
+        <h4>您即将获得附近性感女性的电话号码。准备好避孕套，您会需要它们！请单击下方按钮完成注约会过程。</h4>
+        <ul>
+          <li>记住，这些女人只是想要性爱，所以只要发信息要求做爱，不可以打扰女孩子日常生活，即使遇见熟人，也不要表露自己感情，不要传播谣言，尊重女孩的隐私！</li>
+          <li>本网站上的女性可能想要一夜情，也可能想要一个固定的性伴侣，在与她们发生性关系之前，先问问她们想要什么。</li>
+          <li>如果您尝试升级，您将获得更多浏览量和真实信息，从而获得更多女性和更多选择。您的照片将在我们的网站上显示得更多，当地女性会向您发送，更多消息要求约会，让您早日遇到心动女孩！</li>
+        </ul>
+      </div>
+      <div id="intro">
+        <h1>温馨提醒</h1>
+        <h2>你即将看到当地寻找约会或兼职的女孩，您能否保密不泄露女孩隐私？</h2>
+        <p>约会之前，我们需要问几个简短问题?</p>
+        <button class="custom-button" onclick="showLoadingScreen()" style="margin-top: 10px;">好的</button>
+        <button class="custom-button" onclick="showLoadingScreen()" style="margin: 10px;">拒绝</button>
+      </div>
+
+      <div id="loadingScreen" style="display: none;">
+        <h2>》》》进入挑选女孩环节》》》</h2>
+        <h3>请认真对待，以便系统推荐</h3>
+        <div class="progress-bar-area">
+          <div id="progress-bar"></div>
+        </div>
+        <ul style="display: none;"></ul>
+      </div>
+
+      <ul class="step-title">
+        <li id="stepItem1">
+          <h4>成年</h4>
+          <img class="selectedImage" src="#" alt="">
+        </li>
+        <li id="stepItem2">
+          <h4>需求</h4>
+          <img class="selectedImage" src="#" alt="">
+        </li>
+        <li id="stepItem3">
+          <h4>生活</h4>
+          <img class="selectedImage" src="#" alt="">
+        </li>
+        <li id="stepItem4">
+          <h4>胸部</h4>
+          <img class="icon" src="./48/static/picture/home1.jpg" alt="">
+          <img class="selectedImage" src="#" alt="">
+        </li>
+        <li id="stepItem5">
+          <h4>年龄</h4>
+          <img class="icon" src="./48/static/picture/home2.jpg" alt="">
+          <img class="selectedImage" src="#" alt="">
+        </li>
+        <li id="stepItem6">
+          <h4>臀部</h4>
+          <img class="icon" src="./48/static/picture/home3.jpg" alt="">
+          <img class="selectedImage" src="#" alt="">
+        </li>
+        <li id="stepItem7">
+          <h4>姿势</h4>
+          <img class="icon" src="./48/static/picture/home5.jpg" alt="">
+          <img class="selectedImage" src="#" alt="">
+        </li>
+        <li id="stepItem8">
+          <h4>下载</h4>
+          <img class="icon" src="./48/static/picture/home5.jpg" alt="">
+          <img class="selectedImage" src="#" alt="">
+        </li>
+      </ul>
+      <div id="step1" class="step" style="display:none;">
+        <h2>您是否已满25岁？</h2>
+        <div class="option-list"
+          style="display:flex; flex-direction:row; justify-content:center; gap:20px; margin-top:20px;">
+          <button onclick="storeDataAndProceed({id:1, text:'已满'})" style="padding:12px 28px; border:none; border-radius:30px; 
+                   background:#4CAF50; color:#fff; font-size:18px; font-weight:bold; cursor:pointer;">
+            已满
+          </button>
+          <button onclick="handleAgeReject()" style="padding:12px 28px; border:none; border-radius:30px; 
+               background:#f44336; color:#fff; font-size:18px; font-weight:bold; cursor:pointer;">
+            不满
+          </button>
+        </div>
+      </div>
+      <div id="step2" class="step" style="display:none;">
+        <h2>您是否有约炮需求？</h2>
+        <div class="option-list"
+          style="display:flex; flex-direction:row; justify-content:center; gap:20px; margin-top:20px;">
+          <button onclick="storeDataAndProceed({id:2, text:'是'})" style="padding:12px 28px; border:none; border-radius:30px; 
+                   background:#4CAF50; color:#fff; font-size:18px; font-weight:bold; cursor:pointer;">
+            是
+          </button>
+          <button onclick="handleWrongAnswer()" style="padding:12px 28px; border:none; border-radius:30px; 
+                   background:#f44336; color:#fff; font-size:18px; font-weight:bold; cursor:pointer;">
+            否
+          </button>
+        </div>
+      </div>
+      <div id="step3" class="step" style="display:none;">
+        <h2>能否接受只进入身体，不介入生活？</h2>
+        <div class="option-list"
+          style="display:flex; flex-direction:row; justify-content:center; gap:20px; margin-top:20px;">
+          <button onclick="storeDataAndProceed({id:3, text:'可以'})" style="padding:12px 28px; border:none; border-radius:30px; 
+                   background:#4CAF50; color:#fff; font-size:18px; font-weight:bold; cursor:pointer;">
+            可以
+          </button>
+          <button onclick="handleWrongAnswer()" style="padding:12px 28px; border:none; border-radius:30px; 
+                   background:#f44336; color:#fff; font-size:18px; font-weight:bold; cursor:pointer;">
+            不能
+          </button>
+        </div>
+      </div>
+      <div id="step4" class="step" style="display: none;">
+        <h2>什么样的胸部使你兴奋？</h2>
+        <div class="option-list">
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/x11.jpg'})">
+            <div class="image"><img src="./48/static/picture/x11.jpg" alt=""></div>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/x22.jpg'})">
+            <div class="image"><img src="./48/static/picture/x22.jpg" alt=""></div>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/x33.jpg'})">
+            <div class="image"><img src="./48/static/picture/x33.jpg" alt=""></div>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/x44.jpg'})">
+            <div class="image"><img src="./48/static/picture/x44.jpg" alt=""></div>
+          </button>
+        </div>
+      </div>
+      <div id="step5" class="step" style="display: none;">
+        <h2>什么样的年龄最适合你？</h2>
+        <div class="option-list">
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/1.18-20.jpg'})">
+            <div class="image"><img src="./48/static/picture/1.18-20.jpg" alt=""></div>
+            <h4 class="name">18岁~20岁</h4>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/1.20-30.jpg'})">
+            <div class="image"><img src="./48/static/picture/1.20-30.jpg" alt=""></div>
+            <h4 class="name">20岁~30岁</h4>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/1.30-40.jpg'})">
+            <div class="image"><img src="./48/static/picture/1.30-40.jpg" alt=""></div>
+            <h4 class="name">30岁~40岁</h4>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/1.40.jpg'})">
+            <div class="image"><img src="./48/static/picture/1.40.jpg" alt=""></div>
+            <h4 class="name">40岁+</h4>
+          </button>
+        </div>
+      </div>
+      <div id="step6" class="step" style="display: none;">
+        <h2>喜欢什么样的臀部？</h2>
+        <div class="option-list">
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/t11.jpg'})">
+            <div class="image"><img src="./48/static/picture/t11.jpg" alt=""></div>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/t22.jpg'})">
+            <div class="image"><img src="./48/static/picture/t22.jpg" alt=""></div>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/t33.jpg'})">
+            <div class="image"><img src="./48/static/picture/t33.jpg" alt=""></div>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/t44.jpg'})">
+            <div class="image"><img src="./48/static/picture/t44.jpg" alt=""></div>
+          </button>
+        </div>
+      </div>
+      <div id="step7" class="step" style="display: none;">
+        <h2>什么样的姿势使你兴奋？</h2>
+        <div class="option-list">
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/z1.gif'})">
+            <div class="image"><img src="./48/static/picture/z1.gif" alt=""></div>
+          </button>
+          <button onclick="storeDataAndProceed({id: 1, img: './48/static/picture/z3.gif'})">
+            <div class="image"><img src="./48/static/picture/z3.gif" alt=""></div>
+          </button>
+        </div>
+      </div>
+      <div id="retryPopup" style="display:none;
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999;">
+        <div style="background:#fff; padding:20px; border-radius:10px; text-align:center; width:260px;">
+          <h3>❌ 答题不符合要求</h3>
+          <p>请重新答题</p>
+          <button class="custom-button" style="margin-top:10px;" onclick="restartSteps()">重新开始</button>
+        </div>
+      </div>
+    </div>
+    <div id="ageRejectToast" style="
+display:none;
+position:fixed;
+top:40%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,.85);
+color:#fff;
+padding:30px 40px;
+border-radius:14px;
+font-size:18px;
+z-index:99999;
+text-align:center;">
+      <div style="font-size:26px; line-height:1; margin-bottom:6px;">❌</div>
+      <div style="font-size:15px; font-weight:bold;">不符合约炮要求</div>
+      <div style="font-size:12px; opacity:.75; margin-top:4px;">
+        即将为您跳转
+      </div>
+
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+
+</html>

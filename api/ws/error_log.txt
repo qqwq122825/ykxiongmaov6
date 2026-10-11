@@ -1,0 +1,217 @@
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+
+未捕获的异常：listen EADDRINUSE: address already in use :::3000
+堆栈信息：Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3075:8)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+
+未捕获的异常：Cannot read properties of undefined (reading 'catch')
+堆栈信息：TypeError: Cannot read properties of undefined (reading 'catch')
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:3082:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
+
+未捕获的异常：listen EADDRINUSE: address already in use :::8080
+堆栈信息：Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at new WebSocketServer (/var/www/ts5025.cc/api/ws/node_modules/ws/lib/websocket-server.js:106:20)
+    at Object.<anonymous> (/var/www/ts5025.cc/api/ws/websocket-server.js:718:13)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+

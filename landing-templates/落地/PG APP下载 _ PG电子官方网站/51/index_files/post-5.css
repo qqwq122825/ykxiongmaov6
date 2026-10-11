@@ -1,0 +1,12 @@
+.elementor-kit-5{--e-global-color-primary:#7EFDFF;--e-global-color-secondary:#60FFD8;--e-global-color-text:#FFFFFF;--e-global-color-accent:#FFFFFF;--e-global-color-afbc820:#00FDFF;--e-global-color-7fdcdca:#7B6CFF;--e-global-color-746ca34:#F374DE;--e-global-color-63d6a15:#230046;--e-global-typography-primary-font-family:"Noto Sans SC";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Noto Sans SC";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Noto Sans SC";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Noto Sans SC";--e-global-typography-accent-font-weight:500;--e-global-typography-bcaca85-font-family:"Arial";--e-global-typography-bcaca85-font-weight:600;background-color:var( --e-global-color-63d6a15 );}.elementor-kit-5 button,.elementor-kit-5 input[type="button"],.elementor-kit-5 input[type="submit"],.elementor-kit-5 .elementor-button{background-color:var( --e-global-color-primary );color:var( --e-global-color-accent );}.elementor-kit-5 e-page-transition{background-color:#FFBC7D;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.e-con{--container-max-width:1140px;}.elementor-widget:not(:last-child){margin-block-end:20px;}.elementor-element{--widgets-spacing:20px 20px;--widgets-spacing-row:20px;--widgets-spacing-column:20px;}{}h1.entry-title{display:var(--page-title-display);}.site-header .site-branding{flex-direction:column;align-items:stretch;}.site-header{padding-inline-end:0px;padding-inline-start:0px;}.site-footer .site-branding{flex-direction:column;align-items:stretch;}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}/* Start custom CSS */.title-gradient {
+font-weight: 900;
+   background: linear-gradient(to right, #00FFD2 , #00E9FF, #FBA1FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-gradient {
+    background: linear-gradient(to right, #00fdff, #7b6cff, #f374de);
+}
+
+.dialog-message.dialog-lightbox-message::-webkit-scrollbar {display: none;}
+.dialog-message.dialog-lightbox-message { scrollbar-width: none; }/* End custom CSS */

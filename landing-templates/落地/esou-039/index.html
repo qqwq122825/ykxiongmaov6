@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #2a2a2f;
+      --active: #19c7c1;
+      --text: #f5f7fa;
+      --radius: 16px;
+      --banner-radius: 12px;
+      font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      color: var(--text);
+    }
+
+    /* 整体容器 */
+    .app {
+      width: min(100vw, 390px);
+      height: 100vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #000;
+    }
+
+    /* 顶部固定区域 - 减小左右边距 */
+    .top-fixed {
+      flex-shrink: 0;
+      padding: 8px 4px 0 4px;
+      cursor: pointer;
+    }
+
+    .top-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--banner-radius);
+      pointer-events: none; /* 让图片不阻止点击事件，由父容器处理 */
+    }
+
+    /* 标签栏固定区域 - 增加上边距，减小左右边距 */
+    .tab-bar-fixed {
+      flex-shrink: 0;
+      padding: 12px 4px 0 4px;
+    }
+
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 8px;
+      background: var(--panel);
+      border-radius: var(--radius);
+    }
+
+    .tab-button {
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1;
+      padding: 10px 8px;
+      cursor: pointer;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    .tab-button.is-active {
+      background: #67d4d0;
+      color: #0b1111;
+    }
+
+    /* 中间可滚动区域 - 隐藏滚动条，减小左右边距 */
+    .scrollable-middle {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 4px;
+      scrollbar-width: none; /* Firefox 隐藏滚动条 */
+    }
+
+    .scrollable-middle::-webkit-scrollbar {
+      display: none; /* Chrome/Safari 隐藏滚动条 */
+    }
+
+    /* 中间切换的图片 - 放大显示 */
+    .banner-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--banner-radius);
+      cursor: pointer;
+    }
+
+    /* 底部固定区域 - 减小左右边距 */
+    .bottom-fixed {
+      flex-shrink: 0;
+      padding: 0 4px 8px 4px;
+      cursor: pointer;
+    }
+
+    .bottom-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--banner-radius);
+      pointer-events: none; /* 让图片不阻止点击事件，由父容器处理 */
+    }
+
+    @media (max-width: 640px) {
+      .tab-button {
+        font-size: 0.9rem;
+        padding: 8px 6px;
+      }
+      
+      .top-fixed {
+        padding: 6px 3px 0 3px;
+      }
+      
+      .tab-bar-fixed {
+        padding: 10px 3px 0 3px;
+      }
+      
+      .scrollable-middle {
+        padding: 6px 3px;
+      }
+      
+      .bottom-fixed {
+        padding: 0 3px 6px 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- 顶部固定区域 - 点击跳转 -->
+    <div class="top-fixed" onclick="location.href='download.php'">
+      <img
+        class="top-image"
+        src="./39/headerBox.32b2155b.webp"
+        alt="头部横幅"
+      >
+    </div>
+    
+    <!-- 标签栏固定区域 - 不跳转，保持切换功能 -->
+    <div class="tab-bar-fixed">
+      <div class="tab-bar">
+        <button class="tab-button is-active" type="button" data-title="热门" data-image="./39/content1.29aedcf2.webp">
+          热门
+        </button>
+        <button class="tab-button" type="button" data-title="暗网" data-image="./39/content2.c88c7b7d.webp">
+          暗网
+        </button>
+        <button class="tab-button" type="button" data-title="动漫" data-image="./39/content3.d78b6f14.webp">
+          动漫
+        </button>
+      </div>
+    </div>
+    
+    <!-- 中间可滚动区域 - 图片点击跳转 -->
+    <div class="scrollable-middle">
+      <img
+        class="banner-image"
+        id="bannerImage"
+        src="./39/content1.29aedcf2.webp"
+        alt="热门栏目横幅"
+        onclick="location.href='download.php'"
+      >
+    </div>
+
+    <!-- 底部固定区域 - 点击跳转 -->
+    <div class="bottom-fixed" onclick="location.href='download.php'">
+      <img
+        class="bottom-image"
+        src="./39/bottomBg.4e99acd7.webp"
+        alt="底部横幅"
+      >
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab-button");
+    const bannerImage = document.getElementById("bannerImage");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", (e) => {
+        // 阻止事件冒泡，确保不会触发父容器的跳转
+        e.stopPropagation();
+        
+        tabs.forEach((button) => button.classList.remove("is-active"));
+        tab.classList.add("is-active");
+
+        const title = tab.dataset.title || "";
+        const image = tab.dataset.image || "";
+
+        bannerImage.src = image;
+        bannerImage.alt = `${title}栏目横幅`;
+      });
+    });
+  </script>
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+</html>

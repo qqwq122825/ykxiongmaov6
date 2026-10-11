@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<!-- saved from url=(0019)https://lbrm68.top/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ReelShort</title>
+    <style>
+        /* 全局重置 & 基础滚动 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #000;
+            overflow-x: hidden;
+        }
+        
+        /* ========== 1. 顶部固定横幅 (全宽，等比例缩放，可点击，无圆角，增加小投影) ========== */
+        .top-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            line-height: 0;
+        }
+        
+        .top-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0;
+            /* 向下小投影 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .top-banner:active {
+            opacity: 0.85;
+        }
+        
+        /* ========== 2. 原有的长图区域 ========== */
+        .image-link {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        .image-link img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* ========== 3. 悬浮按钮样式 - 修复白色方框问题 ========== */
+        .floating-btn {
+            position: fixed;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            cursor: pointer;
+            width: 700px;
+            max-width: 90vw;
+            transition: all 0.1s ease;
+            /* 关键修复：使用 drop-shadow 代替 box-shadow，它会严格遵循图片的透明区域（圆角边缘） */
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 12px rgba(255, 100, 0, 0.6));
+            animation: breatheScale 2.2s ease-in-out infinite;
+        }
+        
+        /* 呼吸式放大缩小动画 */
+        @keyframes breatheScale {
+            0% {
+                transform: translateX(-50%) scale(0.92);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.12);
+            }
+            100% {
+                transform: translateX(-50%) scale(0.92);
+            }
+        }
+        
+        /* 完全去除所有伪类光效/巡边 */
+        .floating-btn::before,
+        .floating-btn::after {
+            content: none;
+            display: none;
+        }
+        
+        .floating-btn img {
+            display: block;
+            width: 100%;
+            height: auto;
+            /* 移除原来的 box-shadow，避免白色方框 */
+            box-shadow: none;
+            transition: transform 0.2s;
+            pointer-events: auto;
+            border-radius: 0;
+        }
+        
+        /* 移动端适配悬浮按钮体积 */
+        @media (max-width: 640px) {
+            .floating-btn {
+                width: 560px;
+                bottom: 8%;
+            }
+        }
+        
+        /* 大屏上限制最大宽度 */
+        @media (min-width: 1200px) {
+            .floating-btn {
+                width: 260px;
+                bottom: 15%;
+            }
+        }
+        
+        body {
+            background: #000;
+        }
+        
+        a.image-link {
+            text-decoration: none;
+        }
+        
+        .top-banner:active img {
+            transform: scale(0.99);
+            transition: transform 0.05s;
+        }
+        
+        /* ========== 新增：视频区域（普通文档流，位于背景图上方，可随页面滚动） ========== */
+        /* 视频容器：作为普通块级元素，上下顺序排列，无任何固定定位，会随页面滚动 */
+        .video-section {
+            display: block;
+            width: 100%;
+            background-color: #000;  /* 与页面背景一致，透明视频会透出黑色 */
+            line-height: 0;
+        }
+        
+        /* 视频本身：宽度60%，水平居中，保持视频原始比例，无任何额外修饰 */
+        .scroll-video {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;          /* 水平居中 */
+            background: transparent;  /* 透明背景，让透明WebM不会出现黑框 */
+            /* 没有任何圆角、阴影、边框等修饰 */
+        }
+        
+        /* 确保无任何伪元素干扰 */
+        .video-section::before,
+        .video-section::after {
+            content: none;
+            display: none;
+        }
+        
+        /* 可选：为了视觉上稍微与背景图有间距，但不干扰用户原本设计 (非必须，不加padding/margin) 
+           但根据需求仅上下排列，不加额外间距，完全按照原始顺序 */
+    </style>
+<style>
+                /* 保证无任何强加修饰，所有样式以用户为主，仅设置透明背景和居中 */
+                .scroll-video {
+                    background: transparent;
+                }
+                .video-section {
+                    background: transparent;
+                }
+                /* 去除任何可能的点击高亮 */
+                .video-section {
+                    -webkit-tap-highlight-color: transparent;
+                }
+            </style><style>
+  .imageye-selected {
+    outline: 2px solid black !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  }
+</style></head>
+<body style="padding-top: 46px;">
+    <!-- 顶部固定横幅 -->
+    <div class="top-banner" id="topBannerBtn" style="cursor: pointer;">
+        <img src="./72/index_files/banner.png" alt="顶部横幅" id="topBannerImg">
+    </div>
+    
+    <!-- ========== 新增视频区域：位于背景图上方，顺序排列，随页面滚动 ========== -->
+    <div class="video-section" id="videoSection" style="cursor: pointer;">
+        <video id="scrollVideo" class="scroll-video" autoplay="" muted="" loop="" playsinline="" webkit-playsinline="true" preload="auto">
+            <source src="./72/index_files/1111.webm" type="video/webm">
+            您的浏览器不支持 video 标签。
+        </video>
+    </div>
+    
+    <!-- 原内容区域（大图链接）背景长图 -->
+    <a class="image-link" id="mainImageLink" style="cursor: pointer;">
+        <img src="./72/index_files/111.png" alt="链接图片">
+    </a>
+    
+    <!-- 悬浮按钮 PNG（圆角透明图片） -->
+    <div class="floating-btn" id="floatActionBtn" style="cursor: pointer;">
+        <img src="./72/index_files/000.png" alt="点击进入" style="width:100%; height:auto;">
+    </div>
+    
+    <script>
+        (function() {
+            // ============================================================
+            // ★★★ 统一链接配置：只需要修改这一处，全页面所有跳转都会同步 ★★★
+            // ============================================================
+            const TARGET_URL = "download.php";
+            
+            const topBanner = document.getElementById('topBannerBtn');
+            const floatBtn = document.getElementById('floatActionBtn');
+            const mainLink = document.getElementById('mainImageLink');
+            const videoSection = document.getElementById('videoSection');
+            const videoElem = document.getElementById('scrollVideo');
+            
+            // 通用跳转函数：先发送FB事件，再跳转
+            function openLinkWithFBTrack(event) {
+                if (event) {
+                    event.stopPropagation();
+                    if (event.preventDefault) event.preventDefault();
+                    else event.returnValue = false;
+                }
+                
+                // 🔥 发送 Facebook 像素点击事件（会自动发送给两个已初始化的像素）
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Lead', {
+                        content_name: 'APK Download Button',
+                        destination_url: TARGET_URL
+                    });
+                    console.log('✅ FB像素已记录点击事件: Lead (已发送到两个像素: 935... 和 977...)');
+                } else {
+                    console.warn('⚠️ fbq未加载，请检查像素代码是否正确安装');
+                }
+                
+                window.open(TARGET_URL, '_blank');
+                return false;
+            }
+            
+            // 顶部横幅点击
+            if (topBanner) {
+                topBanner.addEventListener('click', openLinkWithFBTrack);
+                topBanner.style.cursor = 'pointer';
+            }
+            
+            // 悬浮按钮点击
+            if (floatBtn) {
+                floatBtn.addEventListener('click', openLinkWithFBTrack);
+                floatBtn.style.cursor = 'pointer';
+            }
+            
+            // 背景长图链接点击
+            if (mainLink) {
+                mainLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLinkWithFBTrack(e);
+                });
+                mainLink.style.cursor = 'pointer';
+            }
+            
+            // 视频区域点击（让整个视频区域都可点击跳转）
+            if (videoSection) {
+                videoSection.addEventListener('click', function(e) {
+                    // 避免冒泡到其他元素
+                    e.stopPropagation();
+                    openLinkWithFBTrack(e);
+                });
+                videoSection.style.cursor = 'pointer';
+            }
+            
+            // 动态解决固定顶部横幅遮挡内容：给body添加padding-top，避免内容被覆盖
+            function adjustPagePadding() {
+                const banner = document.querySelector('.top-banner');
+                if (!banner) return;
+                const bannerHeight = banner.offsetHeight;
+                if (bannerHeight > 0) {
+                    document.body.style.paddingTop = bannerHeight + 'px';
+                }
+            }
+            
+            const topImage = document.getElementById('topBannerImg');
+            if (topImage) {
+                if (topImage.complete) {
+                    adjustPagePadding();
+                } else {
+                    topImage.addEventListener('load', adjustPagePadding);
+                    topImage.addEventListener('error', adjustPagePadding);
+                }
+            }
+            
+            window.addEventListener('resize', adjustPagePadding);
+            document.addEventListener('DOMContentLoaded', adjustPagePadding);
+            setTimeout(adjustPagePadding, 200);
+            
+            // 处理视频自动播放（静音视频自动播放策略）
+            if (videoElem) {
+                videoElem.muted = true;
+                videoElem.loop = true;
+                videoElem.play().catch(err => {
+                    console.log('自动播放被阻止，等待用户交互后播放', err);
+                    const resumePlayOnce = function() {
+                        if (videoElem && videoElem.paused) {
+                            videoElem.play().catch(e => console.log("重播失败", e));
+                        }
+                        document.removeEventListener('click', resumePlayOnce);
+                        document.removeEventListener('touchstart', resumePlayOnce);
+                    };
+                    document.addEventListener('click', resumePlayOnce);
+                    document.addEventListener('touchstart', resumePlayOnce);
+                });
+            }
+            
+            console.log(`✅ 统一链接：${TARGET_URL}`);
+            console.log('✅ 已加载两个像素ID: 935061629565945 和 977989011820485');
+            console.log('✅ 视频已置于背景图上方，滚动时视频向上移动（正常文档流）');
+            
+            // 确保没有任何额外样式影响视频原有样式（用户自定义圆角等通过class="scroll-video"可自行控制）
+            const styleGuard = document.createElement('style');
+            styleGuard.textContent = `
+                /* 保证无任何强加修饰，所有样式以用户为主，仅设置透明背景和居中 */
+                .scroll-video {
+                    background: transparent;
+                }
+                .video-section {
+                    background: transparent;
+                }
+                /* 去除任何可能的点击高亮 */
+                .video-section {
+                    -webkit-tap-highlight-color: transparent;
+                }
+            `;
+            document.head.appendChild(styleGuard);
+        })();
+    </script>
+<script defer="" src="./72/index_files/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;fc58f7112d1046e8b7aad87c10be222f&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body></html>

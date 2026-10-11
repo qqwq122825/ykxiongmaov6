@@ -1,0 +1,42 @@
+# Runtime / sensitive configuration
+.env
+install.lock
+*.lock.local
+*.local
+
+# Secrets and credentials
+.frp_token
+.frp_admin_pass
+.jwt_secret
+private/apk-release.keystore
+docker/ssl/
+
+# Runtime logs and generated data
+*.log
+error_logs/
+private/logs/
+private/errors/
+private/expired_accounts.log
+user/storage/
+user/apps/
+node-server/data/fisher.db
+配置与数据库/
+凭据与配置/
+
+# Dependency caches / generated dependency dirs
+node_modules/
+api/ws/node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build/package output
+*.tar.gz
+*.idsig
+__pycache__/
+
+# Extra SSL/cert directories
+deploy-extra/docker/ssl/

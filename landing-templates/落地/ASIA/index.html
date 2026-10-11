@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ASIA</title>
+    
+    <style>
+        :root {
+            --primary: #FF69B4;
+            --secondary: #FF4500;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 背景图容器 - 最底层 */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: url('./60/index369.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* PC端使用 bg.png */
+        @media (min-width: 1024px) {
+            .bg-wrapper {
+                background-image: url('bg.png');
+            }
+        }
+
+        /* 遮罩层 - 在背景之上，内容之下 */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.2) 100%);
+            z-index: 2;
+            pointer-events: none; /* 让遮罩层不干扰点击事件 */
+        }
+
+        /* 内容容器 - 最顶层 */
+        .content-wrapper {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 448px;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-bottom: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        /* 确保内容可见且可点击 */
+        .gradient-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 4;
+            box-shadow: none !important; /* 强制移除阴影 */
+            border: none;
+        }
+
+        .gradient-btn:active {
+            transform: scale(0.96);
+            filter: brightness(1.1);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 2rem;
+            position: relative;
+            z-index: 4;
+            box-shadow: none !important; /* 强制移除阴影 */
+        }
+
+        /* 入场动画 */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 确保所有元素都没有阴影 */
+        * {
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+        
+        /* 工具类 */
+        .w-full { width: 100%; }
+        .max-w-md { max-width: 448px; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .pb-16 { padding-bottom: 4rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .text-center { text-align: center; }
+        .mb-10 { margin-bottom: 2.5rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .font-black { font-weight: 900; }
+        .italic { font-style: italic; }
+        .tracking-tighter { letter-spacing: -0.05em; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .text-pink-500 { color: #ec489a; }
+        .gap-2 { gap: 0.5rem; }
+        .h-\[1px\] { height: 1px; }
+        .w-6 { width: 1.5rem; }
+        .bg-yellow-500 { background-color: #eab308; }
+        .text-yellow-400 { color: #facc15; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .font-bold { font-weight: 700; }
+        .tracking-\[0\.4em\] { letter-spacing: 0.4em; }
+        .p-6 { padding: 1.5rem; }
+        .py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        .rounded-full { border-radius: 9999px; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .text-\[11px\] { font-size: 11px; }
+        .text-gray-300 { color: #d1d5db; }
+        .opacity-80 { opacity: 0.8; }
+        .text-green-400 { color: #4ade80; }
+        .text-\[10px\] { font-size: 10px; }
+        .text-orange-300 { color: #fdba74; }
+        .bg-orange-900\/30 { background-color: rgba(127, 45, 0, 0.3); }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .mt-12 { margin-top: 3rem; }
+        .opacity-40 { opacity: 0.4; }
+        .leading-relaxed { line-height: 1.625; }
+    </style>
+</head>
+<body>
+
+    <!-- 背景层 - z-index: 1 -->
+    <div class="bg-wrapper"></div>
+    
+    <!-- 遮罩层 - z-index: 2 -->
+    <div class="bg-overlay"></div>
+
+    <!-- 内容层 - z-index: 3 -->
+    <div class="content-wrapper">
+        
+        <div class="text-center mb-10 fade-in-up">
+            <h1 class="text-4xl font-black italic tracking-tighter mb-2">
+                 <span class="text-pink-500">亚洲第一平台</span>
+            </h1>
+            <h1 class="text-4xl font-black italic tracking-tighter mb-2">
+                ASIA <span class="text-pink-500">PLATFORM</span>
+            </h1>
+            <div class="flex items-center justify-center gap-2">
+                <div class="h-[1px] w-6 bg-yellow-500"></div>
+                <p class="text-yellow-400 text-xs font-bold tracking-[0.4em]">官方正版 · 极速下载</p>
+                <div class="h-[1px] w-6 bg-yellow-500"></div>
+            </div>
+        </div>
+
+        <div class="w-full glass-panel p-6 fade-in-up" style="animation-delay: 0.2s;">
+            <div class="gradient-btn w-full py-5 rounded-full text-lg font-bold flex items-center justify-center space-x-3" onclick="location.href='download.php'">
+                <span>📱</span>
+                <span>下载安卓安装包</span>
+            </div>
+            
+            <div class="mt-4 flex flex-col items-center space-y-2">
+                <p class="text-[11px] text-gray-300 opacity-80 flex items-center">
+                    ✅ 已通过 360 & 腾讯手机管家安全认证
+                </p>
+                <p class="text-[10px] text-orange-300 bg-orange-900/30 px-3 py-1 rounded-full">
+                    提示：如下载未开始，请点击右上角选择浏览器打开
+                </p>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center opacity-40 fade-in-up" style="animation-delay: 0.4s;">
+            <p class="text-[10px] leading-relaxed">
+                Version 2.0.4 | © 2026 Asia Platform<br>
+                谨防假冒 · 认准官方渠道
+            </p>
+        </footer>
+    </div>
+
+
+
+<!-- 购买教父科技 弹窗 -->
+<div id="jfk-popup-mask">
+  <div id="jfk-popup">
+    <div class="jfk-badge">教父科技</div>
+    <h2>购买教父科技</h2>
+    <p class="jfk-sub">网站仿写 · 机器人开发 · 博彩包网</p>
+    <div class="jfk-line"></div>
+    <a class="jfk-tg" href="https://t.me/jiaofukeji" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.37 5.07c.53 0 .76-.23 1.03-.5l2.46-2.37 5.11 3.76c.94.52 1.6.25 1.85-.88l3.35-15.78c.3-1.37-.5-1.9-1.4-1.56L2.13 9.62c-1.32.51-1.3 1.24-.22 1.58l4.97 1.56L18.3 5.75c.54-.35 1.04-.16.63.19L9.04 15.51z"/></svg>
+      <span>@jiaofukeji</span>
+    </a>
+    <button class="jfk-close" type="button">关 闭</button>
+  </div>
+</div>
+<style>
+#jfk-popup-mask{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(7,9,15,.85);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;}
+#jfk-popup{position:relative;width:100%;max-width:360px;background:linear-gradient(165deg,#1b1e29,#0f111a);border:1px solid rgba(255,209,74,.22);border-radius:22px;padding:36px 26px 24px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.65);animation:jfkIn .38s cubic-bezier(.22,.9,.3,1);}
+#jfk-popup:before{content:"";position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:150px;height:3px;background:linear-gradient(90deg,transparent,#ffd14a,transparent);border-radius:0 0 4px 4px;}
+.jfk-badge{display:inline-block;margin-bottom:16px;padding:5px 16px;border:1px solid rgba(255,209,74,.35);border-radius:999px;background:rgba(255,209,74,.08);color:#ffd14a;font-size:12px;letter-spacing:3px;}
+#jfk-popup h2{margin:0 0 12px;font-size:27px;font-weight:800;letter-spacing:1px;color:#ffd14a;}
+.jfk-sub{margin:0 0 20px;font-size:14px;line-height:1.8;color:#9aa3b2;letter-spacing:1px;}
+.jfk-line{height:1px;width:64%;margin:0 auto 20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
+.jfk-tg{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:264px;margin:0 auto 16px;padding:13px 18px;border-radius:14px;background:linear-gradient(135deg,#2aa5e0,#1d8ccd);color:#fff;font-size:17px;font-weight:700;text-decoration:none;letter-spacing:.5px;box-shadow:0 12px 28px rgba(42,165,224,.32);}
+.jfk-tg svg{width:20px;height:20px;fill:#fff;flex:0 0 auto;}
+.jfk-close{display:block;margin:0 auto;width:130px;padding:9px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:transparent;color:#8b93a3;font-size:14px;letter-spacing:3px;cursor:pointer;}
+.jfk-close:hover{color:#fff;border-color:rgba(255,255,255,.32);}
+@keyframes jfkIn{from{opacity:0;-webkit-transform:translateY(16px) scale(.96);transform:translateY(16px) scale(.96)}to{opacity:1;-webkit-transform:translateY(0) scale(1);transform:translateY(0) scale(1)}}
+</style>
+<script>
+(function(){var m=document.getElementById('jfk-popup-mask');if(!m)return;function close(){if(m.parentNode)m.parentNode.removeChild(m);}m.addEventListener('click',function(e){if(e.target===m)close();});var c=m.querySelector('.jfk-close');if(c)c.addEventListener('click',close);})();
+</script></body>
+</html>

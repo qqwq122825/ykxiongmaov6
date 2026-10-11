@@ -1,0 +1,387 @@
+﻿.quickPass{width: 100%;}
+.quickPass .wrapper{margin:0 auto;}
+
+.quickPass .quickPass-banner{width: 100%;height: 420px;}
+.quickPass .quickPass-banner .left{float: left;width: 280px;height: 370px;margin: 50px 110px 0 200px;}
+.quickPass .quickPass-banner .left img{width: 100%;height: 100%;}
+.quickPass .quickPass-banner .right{float: left;margin-top: 83px;}
+.quickPass .quickPass-banner .right h3{font-family: fangzheng-unionpay-sc;font-size: 40px;color: #FFFFFF;letter-spacing: 2px;line-height: 80px;}
+.quickPass .quickPass-banner .right p{font-size: 24px;font-family: fangzheng-unionpay-sc;color: #FFFFFF;letter-spacing: 15px;line-height: 48px;margin-bottom: 40px;}
+.quickPass .quickPass-banner .right .img{overflow: hidden}
+.quickPass .quickPass-banner .right .img img{display: block;float: left;width: 120px;height: 120px;}
+.quickPass .quickPass-banner .right .img img:nth-child(2){margin: 0 20px;border-radius: 10px;}
+.quickPass .quickPass-banner .right .img span{display: block;float: left;font-size: 16px;line-height: 32px;letter-spacing: 0.5px;color: #ffffff;margin-top: 22px;}
+
+.quickPass .quickPass-introduce{padding-top: 50px;overflow: hidden;}
+.quickPass .quickPass-introduce h5{font-weight: bold;font-size: 24px;color: #222222;letter-spacing: 1px;line-height: 40px;width: 780px;text-align: center;margin: 0 auto 30px;}
+.quickPass .quickPass-introduce p{font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 32px;margin: 30px auto 0;width: 980px;}
+.quickPass .quickPass-introduce .quickPass-introduce-video{width: 780px;height: auto;margin: 0 auto 50px;}
+.quickPass .quickPass-introduce .quickPass-introduce-video video{border-radius: 10px; }
+
+.quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul{margin-bottom: -80px;}
+.quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul li{background: #FFFFFF;border: 1px solid #E3E3E3;padding: 50px 0;}
+.quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul li .li-bottom{margin-top: 30px;}
+.public .public-horizontalList-3 .public-horizontalList-3-background{background:#CCCCCC url("../image/banner1.png") no-repeat center;}
+.quickPass.public .riskControlFooterBanner .riskControlFooterBannerList{height: 214px;}
+.quickPass.public .riskControlFooterBanner{height: 294px;position: relative;}
+.quickPass.public .riskControlFooterBanner .riskControlFooterBannerList>ul li{height: 214px;}
+.quickPass.public .riskControlFooterBanner .riskControlFooterBannerList>ul li h5{font-size:20px;color: #222222;letter-spacing: 1px;line-height: 40px;width: 600px;margin-bottom:10px;margin-top: 0}
+
+.quickPass .quickPass-details{background: #F2F2F2;height: 473px;width: 100%;padding: 130px 0 50px;overflow: hidden;}
+.quickPass .quickPass-details .quickPass-details-left{float: left;width: 380px;height: 293px;margin-left: 99px; }
+.quickPass .quickPass-details .quickPass-details-left img{width: 100%;height: 100%;}
+.quickPass .quickPass-details .quickPass-details-right{float: right;text-align: left;font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 36px;width: 580px;margin-top: 32px;}
+
+.quickPass .quickPass-minimalistPayment{padding: 80px 0 0;}
+.quickPass .quickPass-minimalistPayment .riskControlSection{margin: 20px 0 50px 0;}
+.quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul{overflow: hidden;margin-bottom: -220px;}
+.quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li{float: left;margin-right: 20px;}
+.quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li:last-child{margin: 0;}
+.quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-top{width: 380px;padding: 10px 10px 0;background: #FFFFFF;border: 1px solid #E3E3E3;}
+.quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-top img{width: 100%;height: 360px;padding: 10px 10px 0;}
+.quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-top .minimalistPayment-text{height: 94px;width: 100%;display: table;}
+.quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-top .minimalistPayment-text span{vertical-align: middle;display: table-cell;font-size: 16px;color: #222222;letter-spacing: 0.5px;text-align: center;line-height: 32px;}
+.quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-bottom{text-align: center;padding: 60px 0 0;}
+.quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-bottom p{font-weight: 500;font-family: fangzheng-unionpay-sc;font-size: 28px;color: #222222;letter-spacing: 2px;text-align: center;line-height: 32px;margin-bottom: 20px;}
+.quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-bottom span{font-weight: 500;font-size: 20px;color: #222222;letter-spacing: 1px;text-align: center;line-height: 28px;}
+.quickPass-minimalistPayment .quickPass-minimalistPayment-bottom{background: #F2F2F2;height: 270px;}
+
+.quickPass  .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .public-horizontalList-2-bottom-top{position: relative;}
+.quickPass  .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .public-horizontalList-2-bottom-top .font-text{overflow: hidden;position: absolute;left: 0;right: 0;top: 28%; margin: auto;text-align: center;}
+.quickPass  .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .public-horizontalList-2-bottom-top .font-text p{font-family: fangzheng-unionpay-sc;font-size: 28px;color: #FFFFFF;letter-spacing: 2px;text-align: center;line-height: 56px;}
+.quickPass  .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .public-horizontalList-2-bottom-top .font-text span{display: block;font-size: 20px;color: #FFFFFF;letter-spacing: 1px;text-align: center;line-height: 40px;}
+
+.quickPass .launchingProcess{}
+.quickPass .launchingProcess .wrapper .riskControlSection{margin: 20px 0 50px;}
+.quickPass .launchingProcess .launchingProcess-p{font-size: 24px;color: #222222;letter-spacing: 1px;text-align: center;line-height: 48px;font-weight: 500;margin-bottom: 80px;}
+.quickPass .launchingProcess .quickPass-background{background: #F2F2F2;width: 100%;height: 80px;margin-bottom: 229px;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list{position: relative;top: -60px;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-list-top{overflow: hidden;width: 580px;height: 200px;margin: 0 auto;background: #FFFFFF;border: 1px solid #E3E3E3; }
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-list-top>img{float: left;display: block;width: 120px;height: 120px;margin: 40px 30px 0 150px;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-list-top .launchingProcess-list-top-right{float: left;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-list-top .launchingProcess-list-top-right .right-p{font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 32px;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-list-top .launchingProcess-list-top-right .right-img{width: 40px;height: 40px;margin: 57px 0 4px;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-list-bottom-active{text-align: center;margin-top: 28px;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-mobile span{display: inline-block;font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 32px;margin-right: 15px;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list .launchingProcess-list-bottom-active img{width: 30px;height: 30px;vertical-align: middle;}
+.quickPass .launchingProcess img{width: 100%;height: 100%;}
+.quickPass .launchingProcess .launchingProcess-list-bottom{text-align: center;}
+.quickPass .launchingProcess .arrowhead{margin: 13px 0 0;width:30px;height:30px;}
+.quickPass .launchingProcess .launchingProcess-list-bottom-p{font-size: 24px;color: #222222;letter-spacing: 1px;text-align: center;line-height: 48px;}
+
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-1{overflow: hidden}
+.quickPass .launchingProcess .quickPass-background ul li{float: left;margin-right: 20px;width: 280px;height: 200px;}
+/* .quickPass .launchingProcess .quickPass-background .launchingProcess-list-1 li:nth-child(1){background: url("../../resources/images/quickPass/launchingProcess-8-new@3x.png") no-repeat center;background-size: cover;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-1 li:nth-child(2){background: url("../../resources/images/quickPass/launchingProcess-9-new@3x.png") no-repeat center;background-size: cover;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-1 li:nth-child(3){background: url("../../resources/images/quickPass/launchingProcess-10@3x.png") no-repeat center;background-size: cover;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-1 li:last-child{margin: 0;background: url("../../resources/images/quickPass/launchingProcess-11@3x.png") no-repeat center;background-size: cover;} */
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-1 li:last-child{margin: 0;}
+
+/* .quickPass .launchingProcess .quickPass-background .launchingProcess-list-2 li:nth-child(1){background: url("../../resources/images/quickPass/launchingProcess-4@3x.png") no-repeat center;background-size: cover;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-2 li:nth-child(2){background: url("../../resources/images/quickPass/launchingProcess-5@3x.png") no-repeat center;background-size: cover;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-2 li:nth-child(3){background: url("../../resources/images/quickPass/launchingProcess-6@3x.png") no-repeat center;background-size: cover;}
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-2 li:last-child{margin: 0;background: url("../../resources/images/quickPass/launchingProcess-7@3x.png") no-repeat center;background-size: cover;} */
+.quickPass .launchingProcess .quickPass-background .launchingProcess-list-2 li:last-child{margin: 0;}
+
+.quickPass .launchingProcess .quickPass-background ul li{float: left;margin-right: 20px;width: 280px;height: 200px;}
+.quickPass .launchingProcess .quickPass-background ul li .quickPass-procedure{margin-left: 125px;}
+.quickPass .launchingProcess .quickPass-background ul li .quickPass-procedure span{font-size: 20px;color: #DD2C34;letter-spacing: 1px;display: block;width: 40px;height: 40px;line-height: 40px;text-align: center;background: url("../image/launchingProcess-15@3x.png") no-repeat center;background-size: cover;margin: 30px 0 10px;}
+.quickPass .launchingProcess .quickPass-background ul li .quickPass-procedure p{font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 32px;}
+
+/*.quickPass .launchingProcess .quickPass-background-2{}*/
+.quickPass .launchingProcess #red-font{color: #dd2c34;}
+
+.launchingProcess-mobile .wrapper>a{display: block;width: 180px;height: 40px;border-radius: 20px;background: #DD2C34;margin: 30px auto 20px;font-size: 13px;color: #FFFFFF;letter-spacing: 1px;text-align: center;line-height: 40px;}
+.launchingProcess-mobile .wrapper>img{display: block;margin: 0 auto 10px;width: 16px;height: 16px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1{display: -moz-box;display: -webkit-flex;display:-ms-flexbox;display: flex;flex-wrap: wrap;-webkit-box-pack: justify;-moz-box-pack:justify;-ms-flex-pack: justify;-webkit-justify-content: space-between;justify-content: space-between;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2{display: -moz-box;display: -webkit-flex;display:-ms-flexbox;display: flex;flex-wrap: wrap;-webkit-box-pack: justify;-moz-box-pack:justify;-ms-flex-pack: justify;-webkit-justify-content: space-between;justify-content: space-between;}
+
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1 li{width:50%;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2 li{width:50%;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1 li:nth-child(1) .img{padding-top: 9px;width: 100%;height: 130px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1 li:nth-child(2) .img{padding-top: 9px;width: 100%;height: 130px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1 li:nth-child(3) .img{padding-top: 9px;width: 100%;height: 130px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1 li:nth-child(4) .img{padding-top: 9px;width: 100%;height: 130px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2 li:nth-child(1) .img{padding-top: 9px;width: 100%;height: 130px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2 li:nth-child(2) .img{padding-top: 9px;width: 100%;height: 130px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2 li:nth-child(3) .img{padding-top: 9px;width: 100%;height: 130px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2 li:nth-child(4) .img{padding-top: 9px;width: 100%;height: 130px;}
+
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1 li .img span{font-weight: bold;text-align: center;display: block;font-size: 20px;color: #DF2D33;letter-spacing: 0.83px;line-height: 24px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-1 li p{width: 160px;margin:10px auto 15px auto;font-size: 13px;color: #222222;letter-spacing: 0.5px;text-align: center;line-height: 22px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2 li .img span{font-weight: bold;text-align: center;display: block;font-size: 20px;color: #DF2D33;letter-spacing: 0.83px;line-height: 24px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main .mobile-launchingProcess-list-2 li p{width: 160px;margin:10px auto 15px auto;font-size: 13px;color: #222222;letter-spacing: 0.5px;text-align: center;line-height: 22px;}
+
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main>li:last-child{padding-top:32px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main li .img1{width: 160px;height: 160px;margin: 0 auto;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main li .img1 img{width: 100%;height: 100%;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main li .img2{width: 40px;height: 40px;margin: 62px auto 0;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main li .img2 img{width: 100%;height: 100%;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main li .p-active{margin: 20px 0 0;font-size: 16px;text-align: center;color: #222222;letter-spacing: 0.5px;line-height: 18px;}
+.launchingProcess-mobile .slider-mobile .slider-mobile-content .slider-mobile-main li a{display: block;text-align: center;margin-top: 30px;font-size: 13px;color: #DD2C34;letter-spacing: 0.5px;line-height: 16px;text-decoration: underline;}
+
+.riskControlFooterBanner .riskControlFooterBannerList>ul li div{overflow: hidden;}
+.riskControlFooterBanner .riskControlFooterBannerList>ul li div a{margin-top: 24px;float: right;font-size: 16px;color: #DD2C34;letter-spacing: 1px;background: #FFFFFF;width: 128px;height: 40px;border: 1px solid #DD2C34;border-radius: 20px;line-height: 40px;text-align: center;}
+
+.public.quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul li .li-bottom{font-weight: bold;}
+
+.quickPass .minimalistPayment{margin-top: 80px;}
+.quickPass .minimalistPayment .title{margin-bottom: 50px;}
+/* .quickPass .minimalistPayment .title h3{font-family: fangzheng-unionpay-sc;font-size: 40px;color: #222222;letter-spacing: 2px;text-align: center;line-height: 40px;margin-bottom: 20px;} */
+/* .quickPass .minimalistPayment .title p{font-size: 16px;color: #646464;letter-spacing: 16px;text-align: center;line-height: 20px;} */
+.quickPass .minimalistPayment .list{}
+.quickPass .minimalistPayment .list .wrapper{height: 100%;position: relative;}
+.quickPass .minimalistPayment .list ul{width: 100%;}
+.quickPass .minimalistPayment .list ul li{overflow: hidden;height: 516px;}
+.quickPass .minimalistPayment .list ul li .left{margin-left: 200px;float: left;margin-top: 106px;}
+.quickPass .minimalistPayment .list ul li .left h5{font-size: 32px;color: #FFFFFF;letter-spacing: 0.49px;font-weight: bold;margin-bottom: 10px;}
+.quickPass .minimalistPayment .list ul li .left p{font-size: 28px;color: #FFFFFF;letter-spacing: 0.43px;margin-bottom: 40px;}
+.quickPass .minimalistPayment .list ul li .left .button{}
+.quickPass .minimalistPayment .list ul li .left .button span{display: inline-block;vertical-align: middle;font-size: 16px;color: #FFFFFF;letter-spacing: 0.5px;text-align: right;line-height: 24px;font-weight: 500;margin-right: 10px;}
+.quickPass .minimalistPayment .list ul li .left .button img{display: inline-block;vertical-align: middle;width: 16px;height: 16px;}
+
+
+.quickPass .minimalistPayment .list ul li .right{position: absolute;bottom: 0;right: 190px;width: 380px;}
+.quickPass .minimalistPayment .list ul li .right img{width: 100%;}
+.quickPass .minimalistPayment .list .bx-controls-direction{display: none;}
+.quickPass .minimalistPayment .list .bx-pager{position: absolute;left: 208px;bottom: 70px;width: auto;}
+.quickPass .minimalistPayment .list .bx-controls{width: 1180px;margin: auto;position: relative;}
+
+.quickPass .freePayment{margin-top: 80px;}
+.quickPass .freePayment .title{margin-bottom: 50px;}
+
+.quickPass .freePayment .list{position: relative;}
+.quickPass .freePayment .list ul{}
+.quickPass .freePayment .list ul li{}
+.quickPass .freePayment .list ul li .img{width: 100%;height: 100%;}
+.quickPass .freePayment .list ul li .img img{width: 100%;height: 100%;}
+.quickPass .freePayment .list ul li .text{padding: 42px 100px 0;position: relative;}
+.quickPass .freePayment .list ul li .text .left{}
+.quickPass .freePayment .list ul li .text .left p{font-size: 20px;color: #222222;letter-spacing: 1px;line-height: 40px;font-weight: 500;width: 600px;margin-bottom: 10px;}
+.quickPass .freePayment .list ul li .text .left span{display: block;width: 580px;font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 32px;font-weight: 400;}
+.quickPass .freePayment .list ul li .text .right{position: absolute;bottom: 0;right: 100px;}
+.quickPass .freePayment .list ul li .text .right .button{width: 128px;height: 40px;background: #FFFFFF;border: 1px solid #DD2C34;border-radius: 20px;font-size: 16px;color: #DD2C34;letter-spacing: 1px;text-align: center;line-height: 40px;font-weight: 400;display: block;}
+
+.quickPass .freePayment .list .bx-controls-direction{display: none;}
+.quickPass .freePayment .list .bx-pager .bx-pager-item a{background: rgba(0,0,0,0.50);}
+.quickPass .freePayment .list .bx-pager .bx-pager-item a.active{background: #DD2C34;}
+.quickPass .freePayment .list .bx-pager{position: absolute;bottom: 90px;right: 90px;width: auto;}
+
+.quickPass .public-horizontalList-1 .content-box{text-align: center;margin-top: 50px;}
+.quickPass .public-horizontalList-1 .content-box .content-box-txt{display: inline-block;vertical-align: middle;}
+.quickPass .public-horizontalList-1 .content-box .content-box-txt li{margin-top: 60px;}
+.quickPass .public-horizontalList-1 .content-box .content-box-txt li:first-child{margin-top: 0px;}
+.quickPass .public-horizontalList-1 .content-box .content-box-txt li .img{display: inline-block;vertical-align: middle;width: 80px;height: 80px;border-radius: 40px;margin-right: 10px;}
+.quickPass .public-horizontalList-1 .content-box .content-box-txt li .img img{width: 100%;height: 100%;}
+.quickPass .public-horizontalList-1 .content-box .content-box-txt li p{display: inline-block;vertical-align: middle;font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 24px;font-weight: 500;width: 240px;text-align: left;}
+
+.quickPass .public-horizontalList-1 .content-box .content{display: inline-block;vertical-align: middle;width: 280px;margin: 0 50px 0 40px;}
+.quickPass .public-horizontalList-1 .content-box .content img{width: 100%;height: 100%;}
+.quickPass .public-horizontalList-1 .background{background: #F2F2F2;width: 100%;height: 240px;}
+.quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul{margin-bottom: -180px;}
+
+@media (max-width:1220px) {
+    .quickPass .quickPass-minimalistPayment .wrapper{margin:0 auto;width: 89.4%;}
+    .quickPass .quickPass-introduce .wrapper{width: 89.3%}
+    /* .quickPass .quickPass-introduce .quickPass-introduce-text{width:46%;padding:0;float: left;}
+    .quickPass .quickPass-introduce .quickPass-introduce-text h5{font-weight: 500;font-size: 26px;color: #222222;letter-spacing: 1px;line-height:36px;}
+    .quickPass .quickPass-introduce .quickPass-introduce-text p{font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 26px;}
+    .quickPass .quickPass-introduce .quickPass-introduce-video{float: right;width:50%;height: 334px;position: relative;}
+    .quickPass .quickPass-introduce .quickPass-introduce-video video{position: absolute;top: 0; bottom: 0;margin: auto;} */
+
+    .quickPass .quickPass-details{background: #F2F2F2;height: 473px;width: 100%;padding: 130px 0 50px;overflow: hidden;}
+    .quickPass .quickPass-details .quickPass-details-left{float: left;width:42%;height: 293px;margin-left:6%; }
+    .quickPass .quickPass-details .quickPass-details-right{float: right;text-align: left;font-size: 16px;color: #222222;letter-spacing: 0.5px;line-height: 36px;width:46%;margin-right:5%;margin-top: 32px;}
+
+    .quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul{overflow: hidden;margin-bottom: -220px;}
+    .quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li{float: left;margin-right:1%;width: 32%}
+    .quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li:first-child{margin-left:1%;}
+    .quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-top{width:100%;padding: 10px 10px 0;background: #FFFFFF;border: 1px solid #E3E3E3;}
+    .quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-top img{width: 100%;height:auto;padding: 10px 10px 0;}
+    .quickPass .quickPass-minimalistPayment .quickPass-minimalistPayment-top ul li .quickPass-li-top .minimalistPayment-text{height: 94px;width: 100%;display: table;}
+
+    .quickPass .launchingProcess .quickPass-background{background: #F2F2F2;width: 100%;height:45px;margin-bottom:190px;}
+    .quickPass .launchingProcess .list-1{margin-bottom: 495px;margin-top:390px;}
+    .quickPass .launchingProcess .list-2{margin-top: 495px;margin-bottom: 357px;}
+    .quickPass .launchingProcess .list-1 .launchingProcess-list{position: relative;top: -186px;}
+    .quickPass .launchingProcess .list-2 .launchingProcess-list{position: relative;top: -186px;}
+    .quickPass .launchingProcess .quickPass-background .launchingProcess-list ul{width:580px;margin: 0 auto;}
+    .quickPass .launchingProcess .quickPass-background ul li{float: left;margin-right: 20px;margin-bottom:20px;width: 280px;height: 200px;}
+    .quickPass .launchingProcess .quickPass-background ul li:nth-child(2n){margin-right: 0}
+    .quickPass .launchingProcess .quickPass-background ul li:nth-child(3){margin-bottom: 0}
+    .quickPass .launchingProcess .quickPass-background ul li:nth-child(4){margin-bottom: 0}
+    .quickPass .launchingProcess .launchingProcess-list-bottom{text-align: center;width:580px;margin: 0 auto;}
+
+    .quickPass .quickPass-banner .left{margin: 50px 90px 0 120px;}
+
+    .quickPass .quickPass-introduce h5{width: 70%;}
+    .quickPass .quickPass-introduce p{width: 85%;}
+    .quickPass .quickPass-introduce .quickPass-introduce-video{width: 70%;}
+
+    .quickPass .minimalistPayment .list .bx-controls{width: 89.3%;}
+    .quickPass .minimalistPayment .wrapper{width: 89.3%}
+    .quickPass .minimalistPayment .list ul li .left{margin-left: 15%;margin-top: 130px;}
+    .quickPass .minimalistPayment .list ul li .left h5{font-size: 30px;}
+    .quickPass .minimalistPayment .list ul li .left p{font-size: 24px;}
+    .quickPass .minimalistPayment .list ul li .left .button{}
+    .quickPass .minimalistPayment .list ul li .left .button span{font-size: 14px;}
+    .quickPass .minimalistPayment .list ul li .left .button img{width: 14px;height: 14px;}
+    .quickPass .minimalistPayment .list ul li .right{right: 11%;width: 35%;}
+    .quickPass .minimalistPayment .list ul li .right img{width: 100%;}
+    .quickPass .minimalistPayment .list .bx-pager{left: 15%;}
+    .quickPass .minimalistPayment .list .bx-controls{width: 89.3%;margin: auto;position: relative;}
+
+    .quickPass .freePayment .wrapper{width: 89.3%}
+    .quickPass .freePayment .list ul li .text .left p{width: 61%;}
+    .quickPass .freePayment .list ul li .text .left span{width: 61%;}
+    .quickPass .freePayment .list ul li .text{padding: 42px 8.4% 0;}
+    .quickPass .freePayment .list ul li .text .right{right: 8.4%;}
+
+    .quickPass .public-horizontalList-1 .content-box .content-box-txt li .img{width: 70px;height: 70px;border-radius: 35px;}
+    .quickPass .public-horizontalList-1 .content-box .content-box-txt li p{font-size: 14px;width: 200px;}
+
+    .quickPass .public-horizontalList-1 .content-box .content{width: 25%;margin: 0 20px 0;}
+    
+}
+
+@media (max-width:950px) {
+    .quickPass .quickPass-banner .left{margin: 50px 6.3% 0 13.4%;}
+    .quickPass .quickPass-banner .right h3{font-family: fangzheng-unionpay-sc;letter-spacing: 2px;font-size: 28px;line-height: 52px;}
+    .quickPass .quickPass-banner .right p{font-size: 16px;color: #ffffff;letter-spacing: 6px;line-height: 20px;}
+    .quickPass .quickPass-banner .right .img span{font-size: 14px;letter-spacing: 0.5px;line-height: 26px;}
+
+
+    .quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul{margin-bottom: -80px;}
+    .quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul li{background: #FFFFFF;border: 1px solid #E3E3E3;padding: 40px 0;}
+    .quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul li .li-bottom{margin-top: 30px;}
+    .quickPass .quickPass-details{background: #F2F2F2;height: 443px;width: 100%;padding: 120px 0 50px;overflow: hidden;}
+    .quickPass .quickPass-details .quickPass-details-left{float: left;width:42%;height: 293px;margin-left:6%; }
+    .quickPass .quickPass-details .quickPass-details-right{float: right;text-align: left;font-size: 12px;color: #222222;letter-spacing: 0.5px;line-height: 32px;width:46%;margin-right:5%;margin-top: 32px;}
+    .quickPass.public .riskControlFooterBanner .riskControlFooterBannerList>ul li{width:98%;padding-top: 50px;}
+    .quickPass.public .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li:last-child{margin: 0 1%;}
+
+    .quickPass .quickPass-banner .left{width: 250px;height: 330px;margin: 90px 5.3% 0 9.4%;}
+    .quickPass .quickPass-banner .right{margin-top: 100px;}
+
+    .quickPass .quickPass-introduce h5{width: 100%;}
+    .quickPass .quickPass-introduce p{width: 95%;}
+    .quickPass .quickPass-introduce .quickPass-introduce-video{width: 80%;}
+
+    .quickPass .minimalistPayment .list ul li .left{margin-left: 11%;}
+    .quickPass .minimalistPayment .list ul li .left p{width: 83%;}
+    .quickPass .minimalistPayment .list ul li .right{right: 7%;width: 40%;}
+    .quickPass .minimalistPayment .list .bx-pager{left: 10%;}
+    
+    .quickPass .public-horizontalList-1 .content-box .content-box-txt li{margin-top: 40px;}
+    
+    .quickPass .public-horizontalList-1 .content-box .content-box-txt li .img{width: 60px;height: 60px;border-radius: 30px;margin-right: 5px;}
+    .quickPass .public-horizontalList-1 .content-box .content-box-txt li p{width: 170px;}
+    .quickPass .public-horizontalList-1 .content-box .content{margin: 0 10px 0;}
+    .quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul{margin-bottom: -180px;}
+}
+
+@media (max-width:760px) {
+    .quickPass .launchingProcess-mobile{padding-top: 50px;}
+    .quickPass.public .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li:last-child{margin: 0;}
+    .quickPass .quickPass-minimalistPayment .wrapper{width: 100%;}
+    .quickPass.public .public-horizontalList-2 .wrapper .public-horizontalList-2-center .riskControlSection{margin:12px 0px 30px;}
+    .quickPass .btn-mobile{background: #ffffff;}
+    #quickPass-rights-lastli{margin-bottom: 20px;}
+    /* .quickPass .quickPass-introduce .quickPass-icon .quickPass-logo{width: 80px;height:80px;margin:50px auto 30px;}
+    .quickPass .quickPass-introduce .quickPass-icon .quickPass-logo img{width: 100%;height: 100%}
+    .quickPass .quickPass-introduce .quickPass-icon .quickPass-download {margin:0 auto;}
+    .quickPass .quickPass-introduce .quickPass-icon .quickPass-download a {background: #DD2C34;color:#ffffff;font-size:13px;border-radius:20px;line-height:16px;letter-spacing:1px;width: 140px;height: 40px;padding-top: 12px;margin-top:20px;} */
+
+    .quickPass .quickPass-cardManage-img{width:73.3%;height:auto;margin:0 auto;}
+    .quickPass .quickPass-cardManage-img img {width: 100%; height: 100%}
+    .quickPass .li-line[data-toggle="0"]{display: none;}
+
+    .quickPass .quickPass-minimalistPayment{padding: 50px 0 0;}
+    .quickPass .quickPass-minimalistPayment .riskControlSection{margin:12px 0 30px 0;}
+    .quickPass .quickPass-minimalistPayment ul{margin:0 auto;width:89.3%;overflow: hidden;}
+    .quickPass .quickPass-minimalistPayment ul li{float: none;margin:0 10% 30px 0;padding:0;width:100%;height:136px;background:#f2f2f2;display:flex;-webkit-box-pack: center;-moz-box-pack:center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;}
+    .quickPass .quickPass-minimalistPayment ul li:first-child{margin-top:14px;}
+    .quickPass .quickPass-minimalistPayment ul li:last-child{margin-bottom:14px;}
+    .quickPass .quickPass-minimalistPayment ul .quickPass-li-1{float:left;height: 164px;width:118px;margin-top: -14px;}
+    .quickPass .quickPass-minimalistPayment ul .quickPass-li-2{float:left;height: 110px;width: 155px;margin:13px 0 0 10%;}
+    .quickPass .quickPass-minimalistPayment ul .quickPass-li-3{float:left;height: 164px;width:118px;margin-top: -14px;}
+    .quickPass .quickPass-minimalistPayment ul .quickPass-li-1-bottom{width:180px;text-align:left;padding:20px 0 0;float: left;margin:0 5% 0 5%;}
+    .quickPass .quickPass-minimalistPayment ul .quickPass-li-2-bottom{width:110px;text-align:left;padding:20px 0 0;float: left;}
+    .quickPass .quickPass-minimalistPayment ul .quickPass-li-3-bottom{width:180px;text-align:left;padding:20px 0 0;float: left;margin:0 5% 0 3%;}
+
+
+    .quickPass .quickPass-minimalistPayment  ul li .quickPass-li-top{width: 380px;padding: 10px 10px 0;background: #FFFFFF;border: 1px solid #E3E3E3;}
+    .quickPass .quickPass-minimalistPayment  ul li img{width: 100%;height:100%;padding:0;}
+    .quickPass .quickPass-minimalistPayment  ul li .quickPass-li-top .minimalistPayment-text{height: 94px;width: 100%;display: table;}
+    .quickPass .quickPass-minimalistPayment  ul li .quickPass-li-top .minimalistPayment-text span{font-weight: 500;vertical-align: middle;display: table-cell;font-size: 16px;color: #222222;letter-spacing: 0.5px;text-align: center;line-height: 32px;}
+    .quickPass .quickPass-minimalistPayment  ul li h6{font-weight: 500;font-family: fangzheng-unionpay-sc;font-size: 20px;line-height:36px;color: #222222;letter-spacing:2px;margin:0}
+    .quickPass .quickPass-minimalistPayment  ul li p{font-weight: 500;font-size:13px;color: #222222;letter-spacing:0.5px;line-height: 22px;margin-top:10px;}
+    .quickPass .quickPass-minimalistPayment  ul li span{font-weight: 500;font-size:16px;color: #222222;letter-spacing: 1px;line-height:28px;}
+    .quickPass .quickPass-btn{background-color: #dd2c34;width: 180px;height: 40px;color: #ffffff;}
+
+    .quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul p{margin: 20px auto; float: none;font-size:13px;color: #222222;letter-spacing: 0px;line-height:28px;}
+    .quickPass .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .top-1{background: url("../image/trade-security-mobile-1@3x.png")no-repeat center;background-size: 100%;}
+    .quickPass .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .top-2{background: url("../image/trade-security-mobile-2-new@3x.png")no-repeat center;background-size: 100%;}
+    .quickPass .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .top-3{background: url("../image/trade-security-mobile-3-new@3x.png")no-repeat center;background-size: 100%;}
+    .quickPass .public-horizontalList-3 .public-horizontalList-3-background{background: url("../image/rights-background@3x.png") no-repeat center; background-size: 100%;}
+
+    .quickPass.public .riskControlFooterBanner{height: auto;}
+    .quickPass  .public-horizontalList-2 .wrapper .public-horizontalList-2-bottom ul li .public-horizontalList-2-bottom-top{height: 104px;}
+
+
+    .quickPass .header-mobile{}
+    .quickPass .header-mobile .wrapper{width: 89.3%}
+    .quickPass .header-mobile .title{background: #ffffff;}
+    .quickPass .header-mobile .title .img{width: 165px;height: 200px;margin: 30px auto 20px;}
+    .quickPass .header-mobile .title .img img{width: 100%;height: 100%;}
+    .quickPass .header-mobile .title h3{font-family: fangzheng-unionpay-sc;font-size: 24px;color: #222222;letter-spacing: 2px;text-align: center;line-height: 26px;font-weight: 400;margin-bottom: 12px;}
+    .quickPass .header-mobile .title span{font-size: 11px;color: #222222;letter-spacing: 6px;text-align: center;line-height: 14px;font-weight: 400;display: block;}
+    .quickPass .header-mobile .title .button{width: 140px;height: 40px;background: #DD2C34;margin: 20px auto 30px;border-radius: 20px;}
+    .quickPass .header-mobile .title .button a{font-size: 13px;color: #FFFFFF;letter-spacing: 1px;text-align: center;line-height: 40px;font-weight: 400;display: block;}
+    .quickPass .header-mobile .title p{font-size: 16px;color: #222222;letter-spacing: 1px;text-align: center;line-height: 28px;font-weight: bold;}
+
+    .quickPass .header-mobile .video{width: 100%;height: auto;margin: 20px 0;}
+    .quickPass .header-mobile .video-text{}
+    .quickPass .header-mobile .video-text p{font-size: 13px;color: #222222;letter-spacing: 0.5px;line-height: 28px;font-weight: 400;margin-top: 10px}
+
+    .quickPass .minimalistPayment-mobile{margin-top: 50px;}
+    .quickPass .minimalistPayment-mobile .list{margin-top: 30px;}
+    .quickPass .minimalistPayment-mobile .list ul{}
+    .quickPass .minimalistPayment-mobile .list ul li{}
+    .quickPass .minimalistPayment-mobile .list ul li .wrapper{position: relative;height: 100%;padding-left: 20px;padding-top: 60px;width: 89.3%}
+    .quickPass .minimalistPayment-mobile .list ul li h5{font-size: 24px;color: #FFFFFF;letter-spacing: 0.37px;font-weight: 500;margin-bottom: 10px;}
+    .quickPass .minimalistPayment-mobile .list ul li p{font-size: 20px;color: #FFFFFF;letter-spacing: 0.31px;font-weight: 400;margin-bottom: 30px;}
+    .quickPass .minimalistPayment-mobile .list ul li span{font-size: 13px;color: #FFFFFF;letter-spacing: 0.2px;font-weight: 400;margin-bottom: 30px;display: block;}
+    .quickPass .minimalistPayment-mobile .list ul li .button{display: flex;align-items: center;}
+    .quickPass .minimalistPayment-mobile .list ul li .button i{font-size: 13px;color: #FFFFFF;letter-spacing: 0.41px;text-align: right;line-height: 24px;font-weight: 500;margin-right: 5px;font-style: inherit;}
+    .quickPass .minimalistPayment-mobile .list ul li .button img{width: 14px;height: 14px;}
+    .quickPass .minimalistPayment-mobile .list ul li .img{width: 100%;text-align: right;margin-top: -45px;}
+    .quickPass .minimalistPayment-mobile .list ul li .img img{width: 215px;height: auto;}
+    .quickPass .minimalistPayment-mobile .list .bx-controls-direction{display: none;}
+    .quickPass .minimalistPayment-mobile .list .bx-pager{margin-top: 30px;}
+    .quickPass .minimalistPayment-mobile .list .bx-pager .bx-pager-item{margin-right: 4px;}
+    .quickPass .minimalistPayment-mobile .list .bx-pager .bx-pager-item a{background: rgba(34,34,34,0.40);}
+    .quickPass .minimalistPayment-mobile .list .bx-pager .bx-pager-item a.active{background: #DD2C34;}
+
+    .quickPass .freePayment .wrapper{width: 100%}
+    .quickPass .freePayment .list ul li .img{width: 100%;height: 100%;}
+    .quickPass .freePayment .list ul li .img img{width: 100%;height: 100%;}
+    .quickPass .freePayment .list ul li .text{padding: 20px 5.3% 0;}
+    .quickPass .freePayment .list ul li .text .left{display: block;}
+    .quickPass .freePayment .list ul li .text .left p{font-size: 16px;color: #222222;letter-spacing: 1px;line-height: 28px;font-weight: 500;width: 100%;margin-bottom: 10px;}
+    .quickPass .freePayment .list ul li .text .left span{display: block;width: 100%;font-size: 13px;color: #222222;letter-spacing: 0.5px;line-height: 22px;font-weight: 400;}
+    .quickPass .freePayment .list ul li .text .right{position: initial;display: block;margin-top: 30px;}
+    .quickPass .freePayment .list ul li .text .right .button{width: 120px;height: 30px;background: #FFFFFF;border: 1px solid #DD2C34;border-radius: 20px;font-size: 13px;color: #DD2C34;letter-spacing: 1px;text-align: center;line-height: 30px;font-weight: 400;margin: auto;}
+    .quickPass .freePayment .list .bx-controls-direction{display: none;}
+    .quickPass .freePayment .list .bx-pager{margin-top: 30px;position: inherit;}
+    .quickPass .freePayment .list .bx-pager .bx-pager-item{margin-right: 4px;}
+    .quickPass .freePayment .list .bx-pager .bx-pager-item a{background: rgba(34,34,34,0.40);}
+    .quickPass .freePayment .list .bx-pager .bx-pager-item a.active{background: #DD2C34;}
+
+    .quickPass .public-horizontalList-1 .bg-text{margin-bottom: 14px;}
+    .quickPass .public-horizontalList-1 .bg-text .img{width: 53%;height: auto;margin: 10px auto;}
+    .quickPass .public-horizontalList-1 .bg-text .img img{width: 100%;height: 100%;}
+    .quickPass .public-horizontalList-1 .bg-text .text p{font-size: 13px;color: #222222;letter-spacing: 0;line-height: 32px;font-weight: 400;padding: 0 5.3%;text-align: center;}
+    .public.quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom{margin-top: 0;padding-bottom: 30px;}
+    .public.quickPass .public-horizontalList-1 .wrapper .public-horizontalList-1-bottom ul{padding-top: 20px;padding-bottom: 20px;}
+}

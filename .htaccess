@@ -1,0 +1,19 @@
+# 防止 webshell 和敏感文件被访问
+<FilesMatch "\.(env|env\.example|log|sql|bak|ini|config)$">
+    Require all denied
+</FilesMatch>
+# 禁止访问隐藏文件
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    RewriteRule ^ index.html [L]
+</IfModule>

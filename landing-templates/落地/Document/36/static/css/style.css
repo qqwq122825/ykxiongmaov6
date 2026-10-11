@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+    font-family: Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    color: #fff;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#app {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+@media screen and (min-width: 520px) {
+    #app {
+        width: 520px;
+        max-width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    }
+}
+
+.hear-box {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    height: 46px;
+    padding: 14px 18px;
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-box {
+    width: 100%;
+    height: 55px;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 520px) {
+    .footer-box {
+        width: 520px;
+        max-width: 100%;
+    }
+}
+
+.hear-box img {
+    height: 18px;
+    width: 100px;
+}
+
+.hear-box .icon-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.hear-box .icon-list img {
+    width: 48px;
+}
+
+.hear-box .icon-list .dian {
+    height: 6px;
+    width: 2px;
+    margin: 0 20px;
+}
+
+/* 左侧备用下载按钮 */
+.footer-box .downc {
+    width: 50%;
+    flex-shrink: 0;
+    display: block;
+    text-decoration: none;
+}
+
+.footer-box .downc img {
+    width: 100%;
+    display: block;
+}
+
+/* 右侧极速下载按钮 */
+.footer-box .downd {
+    width: 50%;
+    flex-shrink: 0;
+    display: block;
+    text-decoration: none;
+}
+
+.footer-box .downd img {
+    width: 100%;
+    display: block;
+}
+
+/* 中间图标 */
+.footer-box .center-logo {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 999;
+    pointer-events: none;
+    /* 调试用：添加背景色查看位置 */
+    /* background: rgba(255, 0, 0, 0.3); */
+}
+
+.footer-box .center-logo img {
+    height: 45px;
+    width: 44.5px;
+    display: block;
+    /* 确保图片可见 */
+    opacity: 1;
+    object-fit: contain;
+}
+
+.swiper {
+    /* width: 100vw; */
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 0 !important;
+}
+
+.swiper-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.swiper {
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.swiper:active {
+    cursor: grabbing;
+}
+
+.swiper-slide img {
+    user-drag: none;
+    user-select: none;
+}

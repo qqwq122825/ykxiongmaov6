@@ -1,0 +1,454 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    user-select: none;
+    color: #ffffff;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgb(14, 8, 28);
+}
+#loyoutId{
+    display: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .pc_body {
+        display: none;
+        font-size: 0.03733rem;
+    }
+}
+
+@media (min-width: 481px) {
+    .mobiel_body {
+        display: none;
+    }
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.pc_body {
+    font-size: 14px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.pc_content {
+    z-index: 99;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pc_head {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    height: 86px;
+    padding-left: 44px;
+    padding-right: 44px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pc_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 41px 70px 65px 44.5px;
+}
+
+.pc_title {
+    width: 700px;
+}
+
+.pc_text {
+    width: 640px;
+}
+
+.pc_down_list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.ios_down,
+.android_down {
+    width: 60%;
+    margin-left: .05rem;
+    position: relative;
+}
+
+.ios_down {
+    margin-right: 1rem;
+}
+
+.ios_down:hover > .qr_code,
+.android_down:hover > .qr_code {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease-in;
+}
+
+.qr_code {
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.app_text_content {
+    width: 700px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 38px;
+}
+
+.mobiel_body {
+    font-size: 0.03733rem;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.btn_list {
+    z-index: 999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 0.08rem;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    font-size: 0.0373rem;
+}
+
+.btn_list .btn_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid #ffffff;
+    padding: 0.013rem 0.02rem;
+    border-radius: 0.013rem;
+}
+
+.mobiel_content {
+    z-index: 99;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0.146rem 0.0586rem 0.05rem 0.0586rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.mb_row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.mb_logo {
+    width: 0.491rem;
+}
+
+.mb_text {
+    width: 0.285rem;
+}
+
+.mb_ios,
+.mb_android,
+.mb_qingliang {
+    display: inline-block;
+    width: 0.5rem;
+}
+
+.pc_logo {
+    width: 120px;
+}
+
+.pc_btn_list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pc_btn_list .btn_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 26px;
+    width: 98px;
+    height: 27.5px;
+    border-radius: 10px;
+    border: 0.5px solid #fff;
+    color: #fff;
+    font-size: 14px;
+}
+
+.mb_down_list {
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    outline: none;
+    background: transparent;
+}
+
+.pc_tips_row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+#pc_url_qrcode {
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.no-follow-linkbox {
+    position: absolute;
+    font-size: 12px;
+    transform: translateX(-100%);
+}
+
+/* ç§»åŠ¨ç«¯è¿”å›žæŒ‰é’® */
+.mobile_back {
+    height: .125rem;
+    padding: .025rem;
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+}
+
+.mobile_back > img {
+    width: auto;
+    height: 100%;
+    display: block;
+}
+
+/* æ”¾å¤§åŠ¨ç”» */
+@-webkit-keyframes heartBeat {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    14% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    28% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    42% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    70% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes heartBeat {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    14% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    28% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    42% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+    70% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.heartBeat {
+    -webkit-animation-name: heartBeat;
+    animation-name: heartBeat;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-duration: 1.3s;
+    animation-duration: 1.3s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+}
+
+/* å®‰å“ä¸‹è½½å‰å®‰è£…æŒ‡å—æ‰“å¼€æŒ‰é’® */
+.mobile_android_guide_btn {
+    margin-top: 0.05rem;
+    font-size: 0.04rem;
+    color: #fff;
+    text-decoration: underline;
+    display: none;
+}
+
+/* æ‰‹æœºç«¯å¼¹å‡ºæ¡† */
+.mobile_android_dialog {
+    overflow-y: scroll;
+    background: center/cover no-repeat url("/new/css/index/image/android_setup.png?v=2022");
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/* å®‰å“ä¸‹è½½å‰å®‰è£…æŒ‡å— */
+.mobile_android_guide {
+    display: none;
+}
+
+.mobile_android_guide_title {
+    margin: .03rem 0;
+    text-align: center;
+    font-size: 0.06rem;
+}
+
+.mobile_android_guide_subtitle {
+    margin: .025rem 0;
+    font-size: 0.045rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile_android_guide_mark {
+    width: 0.075rem;
+    height: 0.075rem;
+    margin-right: 0.01rem;
+    font-size: 0.05rem;
+    font-weight: 500;
+    text-align: center;
+    background: rgba(29, 27, 27, 0.15);
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mobile_android_guide_img {
+    margin: 0.075rem 0.1rem 0 0.1rem;
+}
+
+.mobile_android_guide_prompt {
+    margin-top: .04rem;
+    text-align: center;
+    font-size: 0.02rem;
+    color: #FFD500;
+}
+
+.mobile_android_guide_download_btn {
+    height: 0.1125rem;
+    line-height: 0.1125rem;
+    font-size: 0.035rem;
+    border: 1px solid #FFFFFF;
+    margin: 0.05rem;
+    color: white;
+    -webkit-filter: drop-shadow(0 0.026667rem 0.053333rem rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 0.026667rem 0.053333rem rgba(0, 0, 0, 0.3));
+    background: rgba(29, 27, 27, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* å®‰å“æŠ¥æ¯’çš„å®‰è£…æ•™ç¨‹ */
+.mobile_android_tutorial {
+    display: none;
+}
+
+.mobile_android_tutorial_title {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+    width: 0.7095rem;
+    height: 0.21rem;
+    background: center/contain no-repeat url("/new/css/index/image/android_title.png?v=2022");
+    margin: .15rem auto .125rem auto;
+}
+
+.mobile_android_tutorial_list {
+    width: 75%;
+    margin: 0.01rem auto;
+    list-style: none;
+}
+
+.mobile_android_tutorial_list > li {
+    height: 0.1125rem;
+    line-height: 0.1125rem;
+    background-color: rgba(255, 255, 255, 0.99);
+    border-radius: 0.22rem;
+    color: black;
+    font-size: 0.045rem;
+    text-align: center;
+    margin: 0.055rem auto;
+}

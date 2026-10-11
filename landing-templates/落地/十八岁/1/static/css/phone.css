@@ -1,0 +1,151 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+img {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    background: url(../images/bg-1081.png) top / cover no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px 15px 0;
+    z-index: 10;
+}
+
+header>img:first-of-type {
+    width: 30%;
+    max-width: 60px;
+}
+
+header>img:nth-of-type(2) {
+    margin-left: auto;
+    margin-right: 20px;
+    width: 25%;
+}
+
+header>img:nth-of-type(3) {
+    width: 25%;
+}
+
+main {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main>img:first-of-type {
+    width: 80%;
+}
+
+.swiper {
+    width: 100%;
+    flex: 1;
+}
+
+.swiper-wrapper,
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    overflow: hidden;
+}
+
+.swiper-slide>img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+footer>img {
+    width: 80%;
+}
+
+.box {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+}
+
+.box>img {
+    width: 40%;
+    margin-bottom: 12px;
+}
+
+.fixed {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    z-index: 100;
+    width: 50px;
+    height: fit-content;
+    background: url(../images/bg1.png) no-repeat;
+    background-size: 100% 100%;
+    padding: 20px 8px 5px;
+}
+
+.fixed>img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.a-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+}
+
+.a {
+    /* 不需要绝对定位 */
+}
+
+.b {
+    /* 不需要绝对定位 */
+}
+
+.a-link>img {
+    width: auto;
+    height: auto;
+    max-width: 180px;
+    display: block;
+}
+
+.a-name {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #000;
+}
